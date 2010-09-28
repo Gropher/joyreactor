@@ -1,0 +1,904 @@
+sfGuardGroup:
+  sfGuardGroup_1:
+    name: admin
+    description: 'Administrator group'
+    created_at: '2009-03-04 14:02:19'
+    updated_at: '2009-03-04 14:02:19'
+sfGuardUser:
+  sfGuardUser_1:
+    username: admin
+    algorithm: sha1
+    salt: 25c0df7f2138af01b81df6001c60fe74
+    fixturesHash: a374beaea6b32a724212175733267e89deabc0e2
+    is_active: true
+    is_super_admin: true
+    last_login: '2009-03-31 06:53:08'
+    created_at: '2009-03-04 14:20:36'
+    updated_at: '2009-03-31 18:53:08'
+  sfGuardUser_2:
+    username: Gropher
+    algorithm: sha1
+    salt: 1f0f5793d760f8ec76d97f51a01638f4
+    fixturesHash: d5d6eda85b782431c3e435080dbc6ab9428855cf
+    is_active: true
+    is_super_admin: false
+    last_login: '2009-04-04 08:28:50'
+    created_at: '2009-03-04 14:23:45'
+    updated_at: '2009-04-04 20:28:50'
+  sfGuardUser_3:
+    username: Integra
+    algorithm: sha1
+    salt: 1121218c404d815273be1190a4832038
+    fixturesHash: 8a9078e6d95067f4a59b8b02b068d9f1a8416c9b
+    is_active: true
+    is_super_admin: false
+    last_login: '2009-04-02 07:29:35'
+    created_at: '2009-03-20 16:29:24'
+    updated_at: '2009-04-02 07:29:35'
+  sfGuardUser_4:
+    username: FoodAndDrag
+    algorithm: sha1
+    salt: 37115c90467919cc9c134c2c50704240
+    fixturesHash: d9f4df30782b5fd9dd66b7fbccfd0355845ce036
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-21 13:44:40'
+    updated_at: '2009-03-21 13:44:40'
+  sfGuardUser_5:
+    username: IrinkaNsk
+    algorithm: sha1
+    salt: f588fdd994ce836e1e546b7ce9bcbe6b
+    fixturesHash: ba4bec4805acfaaf7d4b3019de07b4e24e8d63c4
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-22 19:21:46'
+    updated_at: '2009-03-22 19:21:46'
+  sfGuardUser_6:
+    username: Maxxupers
+    algorithm: sha1
+    salt: 9f075fcc1e7b5d1e089461c9ddbb5be7
+    fixturesHash: 392552d8744ede20c304192a20fe03cec9467792
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-22 23:34:42'
+    updated_at: '2009-03-22 23:34:42'
+  sfGuardUser_7:
+    username: amogelogrered
+    algorithm: sha1
+    salt: 5fc0403dc681d305e00a3861e6a69bef
+    fixturesHash: 43839044fc6efac342204c584543d1de24a8be25
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-23 07:00:10'
+    updated_at: '2009-03-23 07:00:10'
+  sfGuardUser_8:
+    username: spartaniarumagaz
+    algorithm: sha1
+    salt: 58ba4f66b80f78aa0a428551a0317727
+    fixturesHash: 31c2e9fdfcbebe02c1980e87ccb1296e7688c531
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-23 15:35:50'
+    updated_at: '2009-03-23 15:35:50'
+  sfGuardUser_9:
+    username: limbobimba799
+    algorithm: sha1
+    salt: f21754b70d03f574d8787bf5df27e54f
+    fixturesHash: d2c6c478b576f2022c1657361c5211234d7b242c
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-23 16:07:35'
+    updated_at: '2009-03-23 16:07:35'
+  sfGuardUser_10:
+    username: Seomanjiis
+    algorithm: sha1
+    salt: ae3d0d41be70bbb58f4d421c40979310
+    fixturesHash: 1d2de18ddf84621589d4e90bf62e938515b0f3b3
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-24 00:57:28'
+    updated_at: '2009-03-24 00:57:28'
+  sfGuardUser_11:
+    username: AuvInok
+    algorithm: sha1
+    salt: 910c047969b5dc55d3cbb7d868326ce4
+    fixturesHash: 7cc3cd5aa2c0a9ce1b676c657866ed16505e2665
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-24 13:35:38'
+    updated_at: '2009-03-24 13:35:38'
+  sfGuardUser_12:
+    username: Marinassii
+    algorithm: sha1
+    salt: f780b94a668651e9dde14dd1e4888a9e
+    fixturesHash: 291e958d19c49c56b8e0ff4c5f746ad712bdfdd1
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-25 01:44:37'
+    updated_at: '2009-03-25 01:44:37'
+  sfGuardUser_13:
+    username: GlobalGur
+    algorithm: sha1
+    salt: bdd1609c7926302903ae0c6daad0c9a0
+    fixturesHash: 44139a973b4444cef0fa5b15c63ac5248f2d73dd
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-25 11:17:40'
+    updated_at: '2009-03-25 11:17:40'
+  sfGuardUser_14:
+    username: stelsbikesru
+    algorithm: sha1
+    salt: cafc61132ed00e6b1f95037bb9c1d6dd
+    fixturesHash: bb02a10f441ba0cc1088214d877ac7445eed846f
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-26 09:04:36'
+    updated_at: '2009-03-26 09:04:36'
+  sfGuardUser_15:
+    username: delfqsa
+    algorithm: sha1
+    salt: 9b17446b74672bda4955fb9d5a84fdd8
+    fixturesHash: 0b1155a9fd28190bfa0e104e5c63f29078b6fa14
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-27 02:00:15'
+    updated_at: '2009-03-27 02:00:15'
+  sfGuardUser_16:
+    username: Fefkegili
+    algorithm: sha1
+    salt: 166d85f7acc44178885fa22bf8ec6acd
+    fixturesHash: 252b5bc2bf1ae17ddef0c3581262a9f5c1833c85
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-27 10:49:32'
+    updated_at: '2009-03-27 10:49:32'
+  sfGuardUser_17:
+    username: charoit
+    algorithm: sha1
+    salt: dd84467ea16deffd31c71a2a49a7fef8
+    fixturesHash: 4dffcdf0a451444598bfb580a920ea7b871f0896
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-27 13:12:58'
+    updated_at: '2009-03-27 13:12:58'
+  sfGuardUser_18:
+    username: NalcheGS
+    algorithm: sha1
+    salt: 2e914d0866f3f9ba03cf7f6b924f0150
+    fixturesHash: 559d7937807e40944be28ca94bb86d0ed2bcf84c
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-28 12:19:16'
+    updated_at: '2009-03-28 12:19:16'
+  sfGuardUser_19:
+    username: Ivannesisns
+    algorithm: sha1
+    salt: 2273d4a0d50fa2ef4c3656a01c4858d0
+    fixturesHash: 7583c8d99b39c60048fe5c663e4a330e15eab82c
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-28 23:15:39'
+    updated_at: '2009-03-28 23:15:39'
+  sfGuardUser_20:
+    username: SJTim
+    algorithm: sha1
+    salt: 1a1ce1891fae386a84f9bdc8f37335e7
+    fixturesHash: 9f55a02d2708dad8ec9044a04c43a5c0ff49bd4f
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-30 05:32:45'
+    updated_at: '2009-03-30 05:32:45'
+  sfGuardUser_21:
+    username: AlelveExeby
+    algorithm: sha1
+    salt: bb29e0f980c7a8b8f934474fb48537d8
+    fixturesHash: 4d69732369a4126200ba16eee301050c8977cd2e
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-30 07:21:33'
+    updated_at: '2009-03-30 07:21:33'
+  sfGuardUser_22:
+    username: Voniissio
+    algorithm: sha1
+    salt: 4cec3b96f5b0bd0c6a8d16ac0fdc76f3
+    fixturesHash: 3ed1704d8fb92056e3d17378171ac97469d83d37
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-30 14:03:36'
+    updated_at: '2009-03-30 14:03:36'
+  sfGuardUser_23:
+    username: KrisOlssen
+    algorithm: sha1
+    salt: 12e34f21b7bc6ebdd2b2404e782a9a7f
+    fixturesHash: 1cb30be113ae94ba263db270962100257c3a4c50
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-31 03:40:24'
+    updated_at: '2009-03-31 03:40:24'
+  sfGuardUser_24:
+    username: Rimasoks
+    algorithm: sha1
+    salt: b1bbf9bd68528d9c9597b09019cd5ef7
+    fixturesHash: cdf9fbde6de64a970d7430df54c253e338adc309
+    is_active: false
+    is_super_admin: false
+    last_login: null
+    created_at: '2009-03-31 10:45:40'
+    updated_at: '2009-03-31 10:45:40'
+sfGuardGroupPermission:
+  sfGuardGroupPermission_1_1:
+    sfGuardGroup: sfGuardGroup_1
+    sfGuardPermission: sfGuardPermission_1
+    created_at: '2009-03-04 14:02:19'
+    updated_at: '2009-03-04 14:02:19'
+sfGuardPermission:
+  sfGuardPermission_1:
+    name: admin
+    description: 'Administrator permission'
+    created_at: '2009-03-04 14:02:19'
+    updated_at: '2009-03-04 14:02:19'
+Post:
+  Post_1:
+    User: sfGuardUser_1
+    text: First
+    rating: '-2'
+    mood: 0
+    created_at: '2009-03-04 14:28:21'
+    updated_at: '2009-03-20 09:22:38'
+  Post_2:
+    User: sfGuardUser_1
+    text: Second
+    rating: '2'
+    mood: -1
+    created_at: '2009-03-04 14:28:34'
+    updated_at: '2009-03-20 09:22:38'
+  Post_3:
+    User: sfGuardUser_1
+    text: Third
+    rating: '-2'
+    mood: -1
+    created_at: '2009-03-04 14:28:46'
+    updated_at: '2009-03-20 09:22:38'
+  Post_4:
+    User: sfGuardUser_2
+    text: first
+    rating: '2'
+    mood: -1
+    created_at: '2009-03-04 14:32:07'
+    updated_at: '2009-03-20 09:22:38'
+  Post_5:
+    User: sfGuardUser_2
+    text: second
+    rating: '2'
+    mood: 0
+    created_at: '2009-03-04 14:32:19'
+    updated_at: '2009-03-20 09:22:38'
+  Post_6:
+    User: sfGuardUser_2
+    text: third
+    rating: '-2'
+    mood: 0
+    created_at: '2009-03-04 14:32:26'
+    updated_at: '2009-03-20 09:22:38'
+  Post_7:
+    User: sfGuardUser_2
+    text: fourth
+    rating: '-2'
+    mood: 1
+    created_at: '2009-03-09 14:26:27'
+    updated_at: '2009-03-20 09:22:38'
+  Post_8:
+    User: sfGuardUser_2
+    text: fifth
+    rating: '3'
+    mood: 0
+    created_at: '2009-03-09 14:37:53'
+    updated_at: '2009-03-20 09:22:38'
+  Post_9:
+    User: sfGuardUser_1
+    text: fourth
+    rating: '2'
+    mood: 0
+    created_at: '2009-03-09 14:50:18'
+    updated_at: '2009-03-20 09:22:38'
+  Post_10:
+    User: sfGuardUser_3
+    text: ы!
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-20 16:30:53'
+    updated_at: '2009-03-20 16:30:53'
+  Post_11:
+    User: sfGuardUser_3
+    text: ы!
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-20 16:31:03'
+    updated_at: '2009-03-20 16:31:03'
+  Post_12:
+    User: sfGuardUser_3
+    text: ы!
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-20 16:31:05'
+    updated_at: '2009-03-20 16:31:05'
+  Post_13:
+    User: sfGuardUser_3
+    text: ы!
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-20 16:31:05'
+    updated_at: '2009-03-20 16:31:05'
+  Post_14:
+    User: sfGuardUser_3
+    text: ы!
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-20 16:31:06'
+    updated_at: '2009-03-20 16:31:06'
+  Post_15:
+    User: sfGuardUser_3
+    text: ы!
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-20 16:31:20'
+    updated_at: '2009-03-20 16:31:20'
+  Post_16:
+    User: sfGuardUser_3
+    text: ы!
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-20 16:31:21'
+    updated_at: '2009-03-20 16:31:21'
+  Post_17:
+    User: sfGuardUser_3
+    text: "test\n"
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-20 17:08:03'
+    updated_at: '2009-03-20 17:08:03'
+  Post_18:
+    User: sfGuardUser_3
+    text: "test\n"
+    rating: '0'
+    mood: 1
+    created_at: '2009-03-20 17:08:08'
+    updated_at: '2009-03-20 17:08:08'
+  Post_19:
+    User: sfGuardUser_1
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-21 18:32:53'
+    updated_at: '2009-03-21 18:32:53'
+  Post_20:
+    User: sfGuardUser_3
+    text: ''
+    rating: '1'
+    mood: 0
+    created_at: '2009-03-21 18:35:38'
+    updated_at: '2009-03-25 18:10:53'
+  Post_21:
+    User: sfGuardUser_3
+    text: 'Да будет ТРЕШЪ'
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-21 18:36:49'
+    updated_at: '2009-03-21 18:36:49'
+  Post_22:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-21 18:40:12'
+    updated_at: '2009-03-21 18:40:12'
+  Post_23:
+    User: sfGuardUser_3
+    text: 'Мои новые Nando Muzi'
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-24 13:46:04'
+    updated_at: '2009-03-24 13:46:04'
+  Post_24:
+    User: sfGuardUser_3
+    text: ''
+    rating: '1'
+    mood: 0
+    created_at: '2009-03-25 13:28:59'
+    updated_at: '2009-03-25 18:08:28'
+  Post_25:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-25 19:47:41'
+    updated_at: '2009-03-25 19:47:41'
+  Post_26:
+    User: sfGuardUser_3
+    text: 'Журнал Компьютерра: В конце концов, по компьютеру тоже не скажешь, что в нем может спрятаться столько порнографии.'
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-30 07:29:44'
+    updated_at: '2009-03-30 07:29:44'
+  Post_27:
+    User: sfGuardUser_1
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-30 10:14:38'
+    updated_at: '2009-03-30 10:14:38'
+  Post_28:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-31 16:44:59'
+    updated_at: '2009-03-31 16:44:59'
+  Post_29:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-31 16:45:57'
+    updated_at: '2009-03-31 16:45:57'
+  Post_30:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 1
+    created_at: '2009-03-31 16:47:07'
+    updated_at: '2009-03-31 16:47:07'
+  Post_31:
+    User: sfGuardUser_3
+    text: 'http://udaff.com/image/903/90301.jpg'
+    rating: '0'
+    mood: 1
+    created_at: '2009-03-31 16:48:23'
+    updated_at: '2009-03-31 16:48:23'
+  Post_32:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-31 20:22:29'
+    updated_at: '2009-03-31 20:22:29'
+  Post_33:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-31 20:23:35'
+    updated_at: '2009-03-31 20:23:35'
+  Post_34:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-03-31 20:25:07'
+    updated_at: '2009-03-31 20:25:07'
+  Post_35:
+    User: sfGuardUser_2
+    text: 'Пульсометр работает и это шикарно!!!'
+    rating: '0'
+    mood: 1
+    created_at: '2009-04-01 12:45:56'
+    updated_at: '2009-04-01 12:45:56'
+  Post_36:
+    User: sfGuardUser_3
+    text: 'http://zooart.livejournal.com/178801.html'
+    rating: '0'
+    mood: 0
+    created_at: '2009-04-01 18:19:46'
+    updated_at: '2009-04-01 18:19:46'
+  Post_37:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-04-01 19:52:40'
+    updated_at: '2009-04-01 19:52:40'
+  Post_38:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-04-01 19:54:21'
+    updated_at: '2009-04-01 19:54:21'
+  Post_39:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-04-01 19:54:43'
+    updated_at: '2009-04-01 19:54:43'
+  Post_40:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-04-01 19:57:45'
+    updated_at: '2009-04-01 19:57:45'
+  Post_41:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-04-01 20:06:46'
+    updated_at: '2009-04-01 20:06:46'
+  Post_42:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-04-01 20:39:48'
+    updated_at: '2009-04-01 20:39:48'
+  Post_43:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-04-01 20:43:36'
+    updated_at: '2009-04-01 20:43:36'
+  Post_44:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-04-01 20:48:52'
+    updated_at: '2009-04-01 20:48:52'
+  Post_45:
+    User: sfGuardUser_3
+    text: ''
+    rating: '0'
+    mood: 0
+    created_at: '2009-04-02 07:43:56'
+    updated_at: '2009-04-02 07:43:56'
+PostComment:
+  PostComment_1:
+    User: sfGuardUser_3
+    Post: Post_17
+    comment: ыть!
+    power: '0'
+    created_at: '2009-03-21 11:38:19'
+    updated_at: '2009-03-21 11:38:19'
+  PostComment_2:
+    User: sfGuardUser_1
+    Post: Post_25
+    comment: 'шо це?!!!'
+    power: '0'
+    created_at: '2009-03-25 19:49:48'
+    updated_at: '2009-03-25 19:49:48'
+  PostComment_3:
+    User: sfGuardUser_3
+    Post: Post_35
+    comment: респект!
+    power: '0'
+    created_at: '2009-04-01 18:18:18'
+    updated_at: '2009-04-01 18:18:18'
+  PostComment_4:
+    User: sfGuardUser_3
+    Post: Post_35
+    comment: респект!
+    power: '0'
+    created_at: '2009-04-01 18:18:18'
+    updated_at: '2009-04-01 18:18:18'
+  PostComment_5:
+    User: sfGuardUser_2
+    Post: Post_35
+    comment: дада
+    power: '0'
+    created_at: '2009-04-03 10:56:15'
+    updated_at: '2009-04-03 10:56:15'
+PostAttribute:
+  PostAttribute_1:
+    Post: Post_19
+    type: picture
+    value: /uploads/1237660373hse-inc.png
+    comment: null
+    created_at: '2009-03-21 18:32:53'
+    updated_at: '2009-03-21 18:32:53'
+  PostAttribute_2:
+    Post: Post_20
+    type: picture
+    value: /uploads/12376605381166468327-cathulhu.b.jpg
+    comment: null
+    created_at: '2009-03-21 18:35:38'
+    updated_at: '2009-03-21 18:35:38'
+  PostAttribute_3:
+    Post: Post_21
+    type: picture
+    value: /uploads/1237660609ni1828_0.gif
+    comment: null
+    created_at: '2009-03-21 18:36:49'
+    updated_at: '2009-03-21 18:36:49'
+  PostAttribute_4:
+    Post: Post_22
+    type: picture
+    value: /uploads/1237660812darkharmony.jpg
+    comment: null
+    created_at: '2009-03-21 18:40:12'
+    updated_at: '2009-03-21 18:40:12'
+  PostAttribute_5:
+    Post: Post_23
+    type: picture
+    value: /uploads/1237902364IMG_0874.jpg
+    comment: null
+    created_at: '2009-03-24 13:46:04'
+    updated_at: '2009-03-24 13:46:04'
+  PostAttribute_6:
+    Post: Post_24
+    type: picture
+    value: /uploads/1237987739cap025.JPG
+    comment: null
+    created_at: '2009-03-25 13:28:59'
+    updated_at: '2009-03-25 13:28:59'
+  PostAttribute_7:
+    Post: Post_25
+    type: picture
+    value: '/uploads/123801046220 - WFHP_2.jpg'
+    comment: null
+    created_at: '2009-03-25 19:47:42'
+    updated_at: '2009-03-25 19:47:42'
+  PostAttribute_8:
+    Post: Post_27
+    type: picture
+    value: 'http://img.dirty.ru/d3/gertruda/8.jpg'
+    comment: null
+    created_at: '2009-03-30 10:14:38'
+    updated_at: '2009-03-30 10:14:38'
+  PostAttribute_9:
+    Post: Post_28
+    type: picture
+    value: 'http://udaff.com/image/899/89971.jpg'
+    comment: null
+    created_at: '2009-03-31 16:44:59'
+    updated_at: '2009-03-31 16:44:59'
+  PostAttribute_10:
+    Post: Post_29
+    type: picture
+    value: 'http://udaff.com/image/911/91111.jpg'
+    comment: null
+    created_at: '2009-03-31 16:45:58'
+    updated_at: '2009-03-31 16:45:58'
+  PostAttribute_11:
+    Post: Post_30
+    type: picture
+    value: 'http://udaff.com/image/914/91431.gif'
+    comment: null
+    created_at: '2009-03-31 16:47:08'
+    updated_at: '2009-03-31 16:47:08'
+  PostAttribute_12:
+    Post: Post_31
+    type: picture
+    value: 'http://udaff.com/image/914/91431.gif'
+    comment: null
+    created_at: '2009-03-31 16:48:23'
+    updated_at: '2009-03-31 16:48:23'
+  PostAttribute_13:
+    Post: Post_32
+    type: picture
+    value: /uploads/1238530949a_2a893f9c.jpg
+    comment: null
+    created_at: '2009-03-31 20:22:29'
+    updated_at: '2009-03-31 20:22:29'
+  PostAttribute_14:
+    Post: Post_33
+    type: picture
+    value: /uploads/123853101535.jpg
+    comment: null
+    created_at: '2009-03-31 20:23:36'
+    updated_at: '2009-03-31 20:23:36'
+  PostAttribute_15:
+    Post: Post_34
+    type: picture
+    value: /uploads/123853110719994.png
+    comment: null
+    created_at: '2009-03-31 20:25:07'
+    updated_at: '2009-03-31 20:25:07'
+  PostAttribute_16:
+    Post: Post_37
+    type: picture
+    value: 'http://cs1691.vkontakte.ru/u26531968/82387782/x_400d1c83.jpg'
+    comment: null
+    created_at: '2009-04-01 19:52:40'
+    updated_at: '2009-04-01 19:52:40'
+  PostAttribute_17:
+    Post: Post_38
+    type: picture
+    value: 'http://cs1237.vkontakte.ru/u5055587/375661/x_4fb9dd9b.jpg'
+    comment: null
+    created_at: '2009-04-01 19:54:21'
+    updated_at: '2009-04-01 19:54:21'
+  PostAttribute_18:
+    Post: Post_39
+    type: picture
+    value: 'http://cs1249.vkontakte.ru/u9109992/375661/x_322339a6.jpg'
+    comment: null
+    created_at: '2009-04-01 19:54:43'
+    updated_at: '2009-04-01 19:54:43'
+  PostAttribute_19:
+    Post: Post_40
+    type: picture
+    value: 'http://cs13.vkontakte.ru/u39675/375661/x_266e308347.jpg'
+    comment: null
+    created_at: '2009-04-01 19:57:45'
+    updated_at: '2009-04-01 19:57:45'
+  PostAttribute_20:
+    Post: Post_41
+    type: picture
+    value: 'http://cs1231.vkontakte.ru/u7971454/13655808/x_aace6edc.jpg'
+    comment: null
+    created_at: '2009-04-01 20:06:46'
+    updated_at: '2009-04-01 20:06:46'
+  PostAttribute_21:
+    Post: Post_42
+    type: picture
+    value: 'http://photofile.name/photo/fishki_net/3701841/83336234.jpg'
+    comment: null
+    created_at: '2009-04-01 20:39:48'
+    updated_at: '2009-04-01 20:39:48'
+  PostAttribute_22:
+    Post: Post_43
+    type: picture
+    value: 'http://photofile.name/photo/fishki_net/3701841/83336303.jpg'
+    comment: null
+    created_at: '2009-04-01 20:43:36'
+    updated_at: '2009-04-01 20:43:36'
+  PostAttribute_23:
+    Post: Post_44
+    type: picture
+    value: 'http://de.fishki.net/picsw/032009/27/girls/tits/018.jpg'
+    comment: null
+    created_at: '2009-04-01 20:48:52'
+    updated_at: '2009-04-01 20:48:52'
+  PostAttribute_24:
+    Post: Post_45
+    type: picture
+    value: 'http://demotivation.ru/images/20090328/echg95asipzq.jpg'
+    comment: null
+    created_at: '2009-04-02 07:43:56'
+    updated_at: '2009-04-02 07:43:56'
+sfGuardUserProfile:
+  sfGuardUserProfile_1:
+    User: sfGuardUser_1
+    email: root@localhost.com
+    fullname: Administrator
+    icq: ''
+    jabber: ''
+    ljlogin: ''
+    validate: ne06dd2405c08cb37
+    created_at: '2009-03-20 09:22:38'
+    updated_at: '2009-03-20 09:22:38'
+  sfGuardUserProfile_2:
+    User: sfGuardUser_2
+    email: grophen@gmail.com
+    fullname: Gropher
+    icq: '278304893'
+    jabber: gropher@jabber.ru
+    ljlogin: ''
+    validate: r22094f77c0bee4e0
+    created_at: '2009-03-20 09:22:38'
+    updated_at: '2009-03-20 09:22:38'
+  sfGuardUserProfile_3:
+    User: sfGuardUser_3
+    email: zblkova@gmail.com
+    fullname: null
+    icq: null
+    jabber: null
+    ljlogin: null
+    validate: null
+    created_at: '2009-03-20 16:29:24'
+    updated_at: '2009-03-20 16:29:33'
+PostVote:
+  PostVote_1:
+    User: sfGuardUser_2
+    Post: Post_1
+    comment: null
+    power: '-1'
+    created_at: '2009-03-04 15:33:02'
+    updated_at: '2009-03-04 15:33:02'
+  PostVote_2:
+    User: sfGuardUser_2
+    Post: Post_2
+    comment: null
+    power: '1'
+    created_at: '2009-03-04 15:38:24'
+    updated_at: '2009-03-04 15:38:24'
+  PostVote_3:
+    User: sfGuardUser_2
+    Post: Post_3
+    comment: null
+    power: '-1'
+    created_at: '2009-03-04 15:38:27'
+    updated_at: '2009-03-04 15:38:27'
+  PostVote_4:
+    User: sfGuardUser_2
+    Post: Post_9
+    comment: null
+    power: '1'
+    created_at: '2009-03-09 14:52:58'
+    updated_at: '2009-03-09 14:52:58'
+  PostVote_5:
+    User: sfGuardUser_1
+    Post: Post_8
+    comment: null
+    power: '1'
+    created_at: '2009-03-09 16:04:22'
+    updated_at: '2009-03-09 16:04:22'
+  PostVote_6:
+    User: sfGuardUser_1
+    Post: Post_6
+    comment: null
+    power: '-1'
+    created_at: '2009-03-09 16:04:38'
+    updated_at: '2009-03-09 16:04:38'
+  PostVote_7:
+    User: sfGuardUser_1
+    Post: Post_4
+    comment: null
+    power: '1'
+    created_at: '2009-03-09 16:05:48'
+    updated_at: '2009-03-09 16:05:48'
+  PostVote_8:
+    User: sfGuardUser_1
+    Post: Post_5
+    comment: null
+    power: '1'
+    created_at: '2009-03-09 16:24:39'
+    updated_at: '2009-03-09 16:24:39'
+  PostVote_9:
+    User: sfGuardUser_1
+    Post: Post_7
+    comment: null
+    power: '-1'
+    created_at: '2009-03-09 16:24:44'
+    updated_at: '2009-03-09 16:24:44'
+  PostVote_10:
+    User: sfGuardUser_1
+    Post: Post_24
+    comment: null
+    power: '1'
+    created_at: '2009-03-25 18:08:28'
+    updated_at: '2009-03-25 18:08:28'
+  PostVote_11:
+    User: sfGuardUser_1
+    Post: Post_20
+    comment: null
+    power: '1'
+    created_at: '2009-03-25 18:10:53'
+    updated_at: '2009-03-25 18:10:53'
+Blog:
+  Blog_1:
+    user_id: '1'
+    name: 'Разработка'
+    tag: 'dev'
+    rating: '0'
+    created_at: '2009-03-20 14:31:43'
+    updated_at: '2009-03-20 14:31:43'
+  Blog_2:
+    user_id: '1'
+    name: 'Эротика'
+    tag: 'eros'
+    rating: '0'
+    created_at: '2009-03-20 14:31:43'
+    updated_at: '2009-03-20 14:31:43'

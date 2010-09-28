@@ -1,0 +1,14 @@
+fillin:
+  enabled: true
+  param:
+    name: sf_apply_settings
+
+fields:
+  fullname:
+    required: yes
+      msg: "You must provide your full name so that email can be successfully delivered."
+    sfStringValidator:
+      min: 6
+      min_error: "Your full name must be at least six characters long."
+      max: 128
+      max_error: "Your full name must be 128 characters or less."

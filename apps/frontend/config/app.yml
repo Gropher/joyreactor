@@ -1,0 +1,49 @@
+all:
+  sitename: 'JoyReactor.ru'
+  rss_editor: 'rss@joyreactor.ru'
+
+  user_comment_rating: 0.3
+  user_post_rating: 1
+  user_partner_rating: 100
+  user_star1_threshold: 50
+  user_star2_threshold: 150
+  user_star3_threshold: 400
+  user_star4_threshold: 800
+  user_star5_threshold: 1500
+  user_online_period: 480
+
+  post_favorite_rating: 0.3
+  post_comment_rating: 0.3
+  post_hide_rating: -0.3
+  post_vote_rating: 1
+  post_mainpage_threshold: 1.0
+  post_bestpage_threshold: 6.0
+  post_worstpage_threshold: -1.0
+  blog_favorite_rating: 1
+
+  posts_per_page: 10
+  blogs_per_page: 10
+  users_per_page: 10
+
+  post_title_length: 100
+  post_short_title_length: 50
+  post_description_length: 300
+
+  sphinx_index: 'empaty_seo_content'
+  sphinx_results_per_page: 5
+  
+#  sfThumbnailPlugin:
+#    adapter: 'sfImageMagickAdapter'
+  sfApplyPlugin:
+    from:
+      email: 'noreply@joyreactor.ru'
+      fullname: "Joyreactor"
+  sf_guard_plugin:
+      success_signin_url:      'post/user'
+      success_signout_url:     '@homepage'
+  mailer:
+    defaults:
+      connection:
+        type: native
+      from:                  'noreply@joyreactor.ru'
+      subject-template:      "Joyreactor -  %s"

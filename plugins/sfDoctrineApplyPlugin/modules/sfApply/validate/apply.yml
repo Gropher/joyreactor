@@ -1,0 +1,41 @@
+fillin:
+  enabled: true
+  param:
+    name: sf_apply_apply
+
+fields:
+  username:
+    required: yes
+      msg: "You must choose a username. Example: bob523"
+    sfStringValidator:
+      min: 4
+      min_error: "Your username must be at least four characters long."
+      max: 16
+      max_error: "Your username must be 16 characters or less."
+  email:
+    required: yes
+      msg: "You must provide a valid and complete email address in order to participate. Example: example@example.com"
+    sfEmailValidator:
+      strict: true
+      email_error: "You must provide a valid and complete email address in order to participate. Example: example@example.com"
+  password:
+    required: yes
+      msg: "You must choose a password."
+    sfStringValidator:
+      min: 6
+      min_error: "Your password must be at least six characters long."
+      max: 128
+      max_error: "Your password must be 128 characters or less."
+  fullname:
+    required: yes
+      msg: "You must provide your full name so that email can be successfully delivered."
+    sfStringValidator:
+      min: 6
+      min_error: "Your full name must be at least six characters long."
+      max: 128
+      max_error: "Your full name must be 128 characters or less."
+validators:
+  emailValidator:
+    class: sfEmailValidator
+    strict: true
+

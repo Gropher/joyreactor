@@ -1,0 +1,28 @@
+span.radio_good
+{
+	background:transparent url(/images/radio_good.png) no-repeat scroll 0 0;
+	display:inline-block;
+	height:46px;
+	margin:6px 3px 0 3px;
+	width:46px;
+}
+span.radio_normal
+{
+	background:transparent url(/images/radio_normal.png) no-repeat scroll 0 0;
+	display:inline-block;
+	height:46px;
+	margin:6px 3px 0 3px;
+	width:46px;
+}
+span.radio_bad
+{
+	background:transparent url(/images/radio_bad.png) no-repeat scroll 0 0;
+	display:inline-block;
+	height:46px;
+	margin:6px 3px 0 3px;
+	width:46px;
+}
+
+input.styled_good { display: none; }
+input.styled_normal { display: none; }
+input.styled_bad { display: none; }

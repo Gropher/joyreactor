@@ -1,0 +1,176 @@
+sfSmarty plugin
+===============
+
+## Overview ##
+
+This plugin gives you the ability to use the Smarty templating engine for your view templates.
+http://www.smarty.net
+
+## Installation ##
+
+#### sfSmartyPlugin ####
+
+Checkout the plugin from the SVN repository http://svn.symfony-project.com/plugins/sfSmartyPlugin/trunk, download and install the pear package or via symfony plugin install.
+
+#### Smarty ####
+You must also install Smarty (http://www.smarty.net)
+
+The latest version of Smarty is 2.6.22 and is considered the best version to use. Its currently undergoing an upgrade to version 3.0 which is Alpha right now and has not been tested with the sfSmartyPlugin.
+
+Suggest making it an external in the project root/lib/vendor directory.
+
+It can be checked out from the Smarty SVN repository here, http://smarty-php.googlecode.com/svn/tags/Smarty_2_6_22/
+
+## Configuration ##
+Once you have installed smarty, you must edit the app.yml in each of your applications that you intend to use the smarty engine.
+
+	# default values
+	all:
+	  sfSmarty:
+	    class_path: lib/vendor/smarty/libs
+	    template_extension: .tpl
+	    template_security: false
+
+The Smarty.class.php file is located under your smarty/libs folder. Thus the /libs on the end of the class_path.
+
+Clear the cache to enable the autoloading to find the new classes:
+
+## Versions ## 
+
+This plugin is intended for Symfony 1.1 or 1.2 Only.
+
+## Usage ##
+
+Smarty is considered one of the best templating engines for PHP.  
+The official Smarty documentation is located at http://www.smarty.net/docs.php
+
+If you intend to use Smarty as the default templating engine, edit your project root/config/module.yml file. (if it doesnt exist, create one)
+
+	default:
+	  view_class: sfSmarty
+	  partial_view_class: sfSmarty
+
+From then on all template files ending with .tpl (or whatever extension you set during installation) will be processed with sfSmarty.
+
+If you only intend to use it with specific modules modify your module/config/module.yml with details as above.
+
+You can still utilize .php templates as the plugin will now check the extention of the template and use the appropriate renderer.
+
+sfSmartyPlugin also contains a settings.yml in its config folder. Suggest leaving this alone.
+
+### Templates ### 
+When using Smarty as the default templating engine, you must also rename the default symfony layout.php file to layout.tpl
+and then update it so it looks like this:
+
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+	
+	{include_http_metas}
+	{include_metas}
+	
+	{include_title}
+	
+	<link rel="shortcut icon" href="/favicon.ico" />
+	
+	</head>
+	<body>
+	
+	{$sf_content}
+	
+	</body>
+	</html>
+
+Nice and Clean isnt it. =D
+
+### link_to_app ###
+
+The link_to_app helper method will allow easy linking between applications
+
+	{link_to_app app='admin' name='Admin App Link'} 
+
+With Optionals
+
+	{link_to_app app='admin' name='Admin App Link' internal_uri='default/index' path='/admin/ subdomain=false}
+
+From above the subdomain and path arguments will generally be used together. If you do not have your applications on separate subdomains then you would set subdomain to false and your path would have the web folder location of your application index scripts. The path argument MUST have a trailing AND leading slash.
+
+## Example Usage ##
+
+sfSmarty will automatically attach sf_data, sf_context, sf_request, etc.. to the smarty vars.
+
+These can be used as such:
+
+	{$sf_data->get('arg')}
+
+
+Any variable in an action that is assigned to $this is also available, for example in the action:
+
+	$this->var = 'foobar';
+
+Can be used in the template as: 
+
+	{$var}
+
+
+This is typical Smarty. All values are assigned by reference to Smarty.
+The smarty vars (sf_data, sf_context, ..) are also assigned by references.
+
+### Smarty Methods ###
+Smarty internal functions for looping and conditions work as is and should be used.
+
+	{foreach from=$arr item='item'}
+		My item is {$item}
+	{/foreach}
+
+Refer to the Smarty documentation. 
+
+### Symfony Helpers ###
+The Javascript helper tag is also available and must be used as such:
+
+	{javascript}
+		function someFunc() {ldelim}
+			do_sum_func();
+		{rdelim}
+	{/javascript}
+
+Because the braces have a specific use in Smarty. It is suggested (of course) that the bulk of your javascript should be in javascript files which are attached when needed. Keep template javascript to a minimum.
+
+To attach helpers:
+
+	{use helper='Javascript'}
+
+The {use} tag does not accept an array of values currently.
+
+All other helpers are used as compiler methods in Smarty. That is you would use the function name after the opening brace.
+	{include_component moduleName='default' componentName'test'}
+
+As well all symfony helper methods are also modifiers meaning they can be used within compiler function calls like so
+	{url_for internal_uri="foo/bar"|cat:"?command=new"}
+This will concatenate 'command=new' to 'foo/bar' and of course the modifier can be a variable.
+
+Another example would be link_to with an image:
+	{link_to name="foo_icon.gif"|image_tag routeName='@foobar'}
+And if you need image_tag to take additional parameters
+	{link_to name="foo_icon.gif"|image_tag:par2:par3 routeName='@foobar'}
+where par1 to image_tag is of course "foo_icon.gif"
+
+### Symfony Actions ###
+Smarty can also be utilized within actions via static calls. In an action:
+
+	$smarty = sfSmarty::getInstance()->getSmarty();
+	$smarty->register_object('foobar',$myobj);
+
+$foobar will then be available as an object reference in your template.
+
+
+## Final Notes ##
+
+The sfSmartyPlugin has been improved considerably over the last couple weeks and there is still further improvements that can be made.
+Specifically the compiler method should also compile modifier scripts if they are not smarty internal modifiers. Currently the modifiers will run through Smarty which adds extra overhead and is not necessary.
+
+Helpers that are used are cached and will also be loaded from the cache after that. Smarty also compiles the templates and once compiled are always loaded until modified.
+
+It may even be possible to store the references to these compiled templates to have the sfPHPView load them directly which reduce template rendering time a little further.
+
+Symfony view caching can be used together with sfSmarty but it is not suggested to combine Symfony view cacheing with Smarty view caching as it is just extra overhead. Both cached files would be essentially the same. 

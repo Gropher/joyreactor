@@ -1,0 +1,4 @@
+chmod +x symfony
+./symfony project:permissions
+./symfony plugin:publish-assets
+./symfony doctrine-build-all-reload

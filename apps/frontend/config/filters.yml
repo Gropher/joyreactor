@@ -1,0 +1,11 @@
+rendering: ~
+security:
+  class:   sfGuardBasicSecurityFilter
+
+# insert your own filters here
+remember:
+  class:   rememberMeFilter
+
+cache:     ~
+common:    ~
+execution: ~

@@ -1,0 +1,15 @@
+dev:
+  doctrine:
+    param:
+      classname: DebugPDO
+test:
+  doctrine:
+    param:
+      classname: DebugPDO
+all:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn: 'mysql:host=localhost;dbname=empaty'
+      username: empaty
+      password: empaty

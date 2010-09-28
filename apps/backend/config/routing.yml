@@ -1,0 +1,51 @@
+post_comment:
+  class: sfDoctrineRouteCollection
+  options:
+    model:               PostComment
+    module:              post_comment
+    prefix_path:         post_comment
+    column:              id
+    with_wildcard_routes: true
+
+apply:
+  url:  /apply
+  param: { module: sfApply, action: apply }
+reset:
+  url: /reset
+  param: { module: sfApply, action: reset }
+
+resetRequest:
+  url: /reset-request
+  param: { module: sfApply, action: resetRequest }
+
+validate:
+  url: /confirm/:validate
+  param: { module: sfApply, action: confirm }
+
+settings:
+  url: /settings
+  param: { module: sfApply, action: settings }
+
+sf_guard_password:
+  url: /reset-request
+  param: { module: sfApply, action: resetRequest }
+post:
+  class: sfDoctrineRouteCollection
+  options:
+    model:               Post
+    module:              post
+    prefix_path:         post
+    column:              id
+    with_wildcard_routes: true
+
+# default rules
+homepage:
+  url:   /
+  param: { module: sfAdminDash, action: dashboard }
+
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

@@ -1,0 +1,18 @@
+new:
+  is_secure:   on
+
+create:
+  is_secure:   on
+
+edit:
+  is_secure:   on
+
+update:
+  is_secure:   on
+
+delete:
+  is_secure:   on
+
+all:
+  is_secure:   off
+

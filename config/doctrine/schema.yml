@@ -1,0 +1,798 @@
+options:
+  type: MYISAM
+  collate: utf8_unicode_ci
+  charset: utf8
+
+
+sfGuardUserProfile:
+  tableName: sf_guard_user_profile
+  actAs:
+    Timestampable: ~
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+      notnull: true
+    email:
+      type: string(80)
+    fullname:
+      type: string(80)
+    icq:
+      type: string(15)
+    jabber:
+      type: string(80)
+    commentsToJabber:
+      type: boolean
+      notnull: true
+      default: false
+    commentsToIcq:
+      type: boolean
+      notnull: true
+      default: false
+    commentsToMail:
+      type: boolean
+      notnull: true
+      default: true
+    collectJabberStatus:
+      type: boolean
+      notnull: true
+      default: false
+    collectIcqStatus:
+      type: boolean
+      notnull: true
+      default: false
+    useCrossposting:
+      type: boolean
+      notnull: true
+      default: false
+    notifyFriendline:
+      type: boolean
+      notnull: true
+      default: false
+    ljlogin:
+      type: string(128)
+    ljpassword:
+      type: string(128)
+    avatar:
+      type: string(128)
+    about:
+      type: string(65536)
+    rating:
+      type: float
+      notnull: true
+      default: 0
+    validate:
+      type: string(17)
+    isNew:
+      type: boolean
+      default: true
+  indexes:
+    user_id:
+      fields: [user_id]
+      type: ~
+    email:
+      fields: [email]
+      type: ~
+    fullname:
+      fields: [fullname]
+      type: ~
+    icq:
+      fields: [icq]
+      type: ~
+    jabber:
+      fields: [jabber]
+      type: ~
+    rating:
+      fields: [rating]
+      type: ~
+    isNew:
+      fields: [isNew]
+      type: ~
+    created_at:
+      fields: [created_at]
+      type: ~
+    updated_at:
+      fields: [updated_at]
+      type: ~
+  relations:
+    User:
+      class: sfGuardUser
+      foreign: id
+      local: user_id
+      type: one
+      onDelete: cascade
+      foreignType: one
+      foreignAlias: Profile
+
+Cookie:
+  tableName: cookie
+  actAs: { Timestampable: ~ }
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+      notnull: true
+    name:
+      type: string(128)
+      notnull: true
+    value:
+      type: string(128)
+      notnull: true
+    expires:
+      type: timestamp
+      notnull: true
+  indexes:
+    user_id:
+      fields: [user_id]
+      type: ~
+    name:
+      fields: [name]
+      type: ~
+    expires:
+      fields: [expires]
+      type: ~
+    created_at:
+      fields: [created_at]
+      type: ~
+    updated_at:
+      fields: [updated_at]
+      type: ~
+  relations:
+    User:
+      class: sfGuardUser
+      foreign: id
+      local: user_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: Cookies
+
+PostComment:
+  tableName: post_comment
+  actAs: { Timestampable: ~ }
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+      notnull: true
+    post_id:
+      type: integer(4)
+      notnull: true
+    parent_id:
+      type: integer(4)
+      notnull: false
+    comment:
+      type: string(2147483647)
+      notnull: true
+    power:
+      type: integer(4)
+      notnull: true
+      default: 0
+    isNew:
+      type: boolean
+      default: true
+  indexes:
+    user_id:
+      fields: [user_id]
+      type: ~
+    post_id:
+      fields: [post_id]
+      type: ~
+    parent_id:
+      fields: [parent_id]
+      type: ~
+    isNew:
+      fields: [isNew]
+      type: ~
+    created_at:
+      fields: [created_at]
+      type: ~
+    updated_at:
+      fields: [updated_at]
+      type: ~
+  relations:
+    User:
+      class: sfGuardUser
+      foreign: id
+      local: user_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: PostComments
+    Post:
+      class: Post
+      foreign: id
+      local: post_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: Comments
+    Parent:
+      class: PostComment
+      foreign: id
+      local: parent_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: Comments
+
+PostVote:
+  tableName: post_vote
+  actAs: { Timestampable: ~ }
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+      notnull: true
+    post_id:
+      type: integer(4)
+      notnull: true
+    comment: string(2147483647)
+    power:
+      type: integer(4)
+      notnull: true
+      default: 0
+    isNew:
+      type: boolean
+      default: true
+  indexes:
+    user_id:
+      fields: [user_id]
+      type: ~
+    post_id:
+      fields: [post_id]
+      type: ~
+    created_at:
+      fields: [created_at]
+      type: ~
+    updated_at:
+      fields: [updated_at]
+      type: ~
+    isNew:
+      fields: [isNew]
+      type: ~
+  relations:
+    User:
+      class: sfGuardUser
+      foreign: id
+      local: user_id
+      foreignAlias: PostVotes
+    Post:
+      class: Post
+      foreign: id
+      local: post_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: Votes
+
+PostAttribute:
+  tableName: post_attribute
+  actAs: { Timestampable: ~ }
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    post_id:
+      type: integer(4)
+      notnull: true
+    type:
+      type: enum(10)
+      values: [tag, picture, audio, video]
+      notnull: true
+    value:
+      type: string(2147483647)
+      notnull: true
+    origin:
+      type: string(1024)
+      notnull: true
+      default: ''
+    comment: string(2147483647)
+  indexes:
+    post_id:
+      fields: [post_id]
+      type: ~
+    type:
+      fields: [type]
+      type: ~
+    created_at:
+      fields: [created_at]
+      type: ~
+    updated_at:
+      fields: [updated_at]
+      type: ~
+  relations:
+    Post:
+      class: Post
+      foreign: id
+      local: post_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: Attributes
+
+MessageAttachment:
+  tableName: message_attachment
+  actAs: { Timestampable: ~ }
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    message_id:
+      type: integer(4)
+      notnull: true
+    type:
+      type: enum(10)
+      values: [tag, picture, audio, video]
+      notnull: true
+    value:
+      type: string(2147483647)
+      notnull: true
+    comment: string(2147483647)
+  indexes:
+    message_id:
+      fields: [post_id]
+      type: ~
+    type:
+      fields: [type]
+      type: ~
+    created_at:
+      fields: [created_at]
+      type: ~
+    updated_at:
+      fields: [updated_at]
+      type: ~
+  relations:
+    Message:
+      class: Post
+      foreign: id
+      local: message_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: Attachments
+
+Friend:
+  tableName: friend
+  actAs: { Timestampable: ~ }
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+      notnull: true
+    friend_id:
+      type: integer(4)
+      notnull: true
+    isNew:
+      type: boolean
+      default: true
+  indexes:
+    user_id:
+      fields: [user_id]
+      type: ~
+    friend_id:
+      fields: [friend_id]
+      type: ~
+    isNew:
+      fields: [isNew]
+      type: ~
+    created_at:
+      fields: [created_at]
+      type: ~
+    updated_at:
+      fields: [updated_at]
+      type: ~
+  relations:
+    User:
+      class: sfGuardUser
+      foreign: id
+      local: user_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: Friends
+    Friend:
+      class: sfGuardUser
+      foreign: id
+      local: friend_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: InFriends
+
+Blog:
+  tableName: blog
+  actAs: { Timestampable: ~ }
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+      notnull: true
+    name:
+      type: string(255)
+      notnull: true
+    tag:
+      type: string(20)
+      notnull: true
+      default: 'dev'
+    rating:
+      type: integer(4)
+      notnull: true
+      default: 0
+  indexes:
+    user_id:
+      fields: [user_id]
+      type: ~
+    name:
+      fields: [name]
+      type: ~
+    rating:
+      fields: [rating]
+      type: ~
+    created_at:
+      fields: [created_at]
+      type: ~
+    updated_at:
+      fields: [updated_at]
+      type: ~
+  relations:
+    User:
+      class: sfGuardUser
+      foreign: id
+      local: user_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: Blogs
+
+BlogPost:
+  tableName: blog_post
+  actAs: { Timestampable: ~ }
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    blog_id:
+      type: integer(4)
+      notnull: true
+    post_id:
+      type: integer(4)
+      notnull: true
+  indexes:
+    blog_id:
+      fields: [blog_id]
+      type: ~
+    post_id:
+      fields: [post_id]
+      type: ~
+    created_at:
+      fields: [created_at]
+      type: ~
+    updated_at:
+      fields: [updated_at]
+      type: ~
+  relations:
+    Blog:
+      class: Blog
+      foreign: id
+      local: blog_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: BlogPosts
+    Post:
+      class: Post
+      foreign: id
+      local: post_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: BlogPosts
+
+Favorite:
+  tableName: favorite
+  actAs: { Timestampable: ~ }
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+      notnull: true
+    post_id:
+      type: integer(4)
+      notnull: true
+  indexes:
+    post_id:
+      fields: [post_id]
+      type: ~
+    user_id:
+      fields: [user_id]
+      type: ~
+    created_at:
+      fields: [created_at]
+      type: ~
+    updated_at:
+      fields: [updated_at]
+      type: ~
+  relations:
+    User:
+      class: sfGuardUser
+      foreign: id
+      local: user_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: FavoritePosts
+    Post:
+      class: Post
+      foreign: id
+      local: post_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: InFavorite
+
+FavoriteBlog:
+  tableName: favorite_blog
+  actAs: { Timestampable: ~ }
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+      notnull: true
+    blog_id:
+      type: integer(4)
+      notnull: true
+    value:
+      type: integer(1)
+      notnull: true
+      default: 1
+  indexes:
+    blog_id:
+      fields: [blog_id]
+      type: ~
+    user_id:
+      fields: [user_id]
+      type: ~
+    value:
+      fields: [value]
+      type: ~
+    created_at:
+      fields: [created_at]
+      type: ~
+    updated_at:
+      fields: [updated_at]
+      type: ~
+  relations:
+    User:
+      class: sfGuardUser
+      foreign: id
+      local: user_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: FavoriteBlogs
+    Blog:
+      class: Blog
+      foreign: id
+      local: Blog_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: InFavorite
+
+
+Hidden:
+  tableName: hidden
+  actAs: { Timestampable: ~ }
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+      notnull: true
+    post_id:
+      type: integer(4)
+      notnull: true
+    value:
+      type: integer(1)
+      notnull: true
+      default: 1
+  indexes:
+    post_id:
+      fields: [post_id]
+      type: ~
+    user_id:
+      fields: [user_id]
+      type: ~
+    created_at:
+      fields: [created_at]
+      type: ~
+    updated_at:
+      fields: [updated_at]
+      type: ~
+  relations:
+    User:
+      class: sfGuardUser
+      foreign: id
+      local: user_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: FavoritePosts
+    Post:
+      class: Post
+      foreign: id
+      local: post_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: InFavorite
+
+Post:
+  tableName: post
+  actAs: { Timestampable: ~ }
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+      notnull: true
+    text:
+      type: string(2147483647)
+      notnull: true
+    rating:
+      type: float
+      notnull: true
+      default: 0
+    comments_count:
+      type: integer(4)
+      notnull: true
+      default: 0 
+    mood:
+      type: float
+      default: 0
+    type:
+      type: string(255)
+      default: "post"
+    isNew:
+      type: boolean
+      default: true
+    lj:
+      type: boolean
+      default: false
+  indexes:
+    user_id:
+      fields: [user_id]
+      type: ~
+    rating:
+      fields: [rating]
+      type: ~
+    comments_count:
+      fields: [comments_count]
+      type: ~
+    mood:
+      fields: [mood]
+      type: ~
+    type:
+      fields: [type]
+      type: ~
+    isNew:
+      fields: [isNew]
+      type: ~
+    created_at:
+      fields: [created_at]
+      type: ~
+    updated_at:
+      fields: [updated_at]
+      type: ~
+  relations:
+    User:
+      class: sfGuardUser
+      foreign: id
+      local: user_id
+      type: one
+      foreignType: many
+      foreignAlias: Posts
+    Blog:
+      class: Blog
+      refClass: BlogPost
+      foreign: blog_id
+      local: post_id
+      type: many
+      alias: Blogs
+      foreignType: many
+      foreignAlias: Posts
+
+Message:
+  tableName: message
+  actAs: { Timestampable: ~ }
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+      notnull: true
+    object_id:
+      type: integer(4)
+    direction:
+      type: string(255)
+      notnull: true
+    type:
+      type: string(255)
+      notnull: true
+    protocol:
+      type: string(255)
+      notnull: true
+    status:
+      type: string(255)
+      notnull: true
+      default: "not sent"
+    text:
+      type: string(2147483647)
+      notnull: true
+  indexes:
+    user_id:
+      fields: [user_id]
+      type: ~
+    object_id:
+      fields: [object_id]
+      type: ~
+    direction:
+      fields: [direction]
+      type: ~
+    type:
+      fields: [type]
+      type: ~
+    protocol:
+      fields: [protocol]
+      type: ~
+    status:
+      fields: [status]
+      type: ~
+    created_at:
+      fields: [created_at]
+      type: ~
+    updated_at:
+      fields: [updated_at]
+      type: ~
+  relations:
+    User:
+      class: sfGuardUser
+      foreign: id
+      local: user_id
+      type: one
+      foreignType: many
+      foreignAlias: Messages

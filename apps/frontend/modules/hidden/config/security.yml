@@ -1,0 +1,9 @@
+delete:
+  is_secure:   on
+
+create:
+  is_secure:   on
+
+all:
+  is_secure:   off
+

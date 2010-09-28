@@ -1,0 +1,9 @@
+fields:
+  password:
+    required: yes
+      msg: "You must choose a new password."
+    sfStringValidator:
+      min: 6
+      min_error: "Your password must be at least six characters long."
+      max: 128
+      max_error: "Your password must be 128 characters or less."

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+  <persistence-unit name="emPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>em.PostComment</class>
+    <class>em.Hidden</class>
+    <class>em.PostVote</class>
+    <class>em.Friend</class>
+    <class>em.PostAttribute</class>
+    <class>em.Favorite</class>
+    <class>em.SfGuardUserProfile</class>
+    <class>em.SfGuardUser</class>
+    <class>em.Post</class>
+    <class>em.Message</class>
+    <class>em.Blog</class>
+    <class>em.MessageAttachment</class>
+    <class>em.BlogPost</class>
+    <properties>
+      <property name="eclipselink.cache.type.default" value="NONE"/>
+      <property name="eclipselink.jdbc.password" value="empaty"/>
+      <property name="eclipselink.jdbc.user" value="empaty"/>
+      <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/empaty"/>
+    </properties>
+  </persistence-unit>
+</persistence>

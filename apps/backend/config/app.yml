@@ -1,0 +1,18 @@
+all:
+  sf_admin_dash:
+        web_dir:              /sfAdminDashPlugin
+        image_dir:            /sfAdminDashPlugin/images/icons/
+        default_image:        config.png
+        resize_mode:          thumbnail
+        logout:               yes
+        site:                 Empaty
+        include_jquery:       yes
+        items:
+          Posts:
+            url:    post
+          Post Comments:
+            url:    post_comment
+  sfApplyPlugin:
+       from:
+         email: "mail@explore-it.ru"
+         fullname: "Empaty"
