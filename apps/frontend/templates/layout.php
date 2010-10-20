@@ -8,6 +8,7 @@
                 <script type="text/javascript" src="/js/unitpngfix.js"></script>
 		<link rel="stylesheet" href="/css/lte7.css" type="text/css" media="screen" />
 	<![endif]-->
+	<meta name="google-site-verification" content="wgjnptO3Yx_w-OEQIB4a5nHsb-WnmhIx-TEXL2kXff4" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <?php if (has_slot('rsslink')): ?>
             <?php include_slot('rsslink') ?>
@@ -16,6 +17,7 @@
         <?endif?>
     </head>
     <body>
+    	<script type="text/javascript" src="http://vkontakte.ru/js/api/share.js?10" charset="windows-1251"></script>
         <div id="container">
             <div id="header">
                 <h1><? echo link_to(__('JoyReactor'), '@homepage') ?></h1>
