@@ -1,10 +1,10 @@
 <?if(!isset($tag)) $tag = ''?>
-<?if(!isset($noajax) || !$noajax):?>
-    <? echo form_tag('post/create', array('method' => 'post', 'id' => 'add_post', 'enctype' => 'multipart/form-data', 'onkeypress' => "ctrlEnter(event, this);", 'onsubmit' => "return AIM.submit(this, {'onStart' : startCallback, 'onComplete' : completeCallback})") ) ?>
-<?else:?>
+<?//if(!isset($noajax) || !$noajax):?>
+    <?// echo form_tag('post/create', array('method' => 'post', 'id' => 'add_post', 'enctype' => 'multipart/form-data', 'onkeypress' => "ctrlEnter(event, this);", 'onsubmit' => "return AIM.submit(this, {'onStart' : startCallback, 'onComplete' : completeCallback})") ) ?>
+<?//else:?>
     <? echo form_tag('post/create', array('method' => 'post', 'id' => 'add_post', 'enctype' => 'multipart/form-data', 'onkeypress' => "ctrlEnter(event, this);", 'onsubmit' => '$j("#submit").attr("disabled", true);') ) ?>
     <? echo input_hidden_tag('noajax', $noajax) ?>
-<?endif?>
+<?//endif?>
     <div>
 	<b><label for="text"><? echo __('Как дела? Что новенького?') ?></label></b><br/>
 	<? echo textarea_tag('text', $tag, array('rows' => 3	, 'cols' => 76)) ?><br/>

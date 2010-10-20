@@ -141,6 +141,7 @@ class sfGuardUser extends PluginsfGuardUser {
 
     public function getPersonalLine($page=1) {
         $query = Doctrine_Query::create()
+        	->useResultCache(true, 300)
             ->select('p.*')
             ->from('Post p')
             ->leftJoin('p.User u')

@@ -78,9 +78,9 @@ class Post extends BasePost {
         $res = '';
         foreach($this->Blogs as $blog) {
             if($blog->getName())
-                $res .= $blog->getName().", ";
+                $res .= $blog->getName()." ";
             else
-                $res .= $blog->getTag().", ";
+                $res .= $blog->getTag()." ";
         }
         return substr($res, 0, -2);
     }
@@ -311,7 +311,7 @@ class Post extends BasePost {
 
     public static function getTextLine($page=1) {
         $query = Doctrine_Query::create()
-            //->useResultCache(true, 3600)
+            ->useResultCache(true, 3600)
             ->select('p.*')
             ->from('Post p')
 	    ->leftJoin('p.Attributes a')

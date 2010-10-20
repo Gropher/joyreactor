@@ -295,7 +295,7 @@ class postActions extends sfActions {
                 $post->getAttributes()->add($postAttr);
             }
             $post->save();
-            if(!$this->getRequestParameter('noajax')) {
+            /*if(!$this->getRequestParameter('noajax')) {
                 if($this->getRequestParameter('mypage'))
                     $post_list = $user->getLine();
                 else
@@ -303,7 +303,11 @@ class postActions extends sfActions {
                 return $this->renderPartial('post/postList', array('posts' => $post_list));
             }
             else
-                $this->redirect(url_for('post/new'));
+                $this->redirect(url_for('post/new'));*/
+	    if($this->getRequestParameter('mypage'))
+		$this->redirect(url_for('post/user'));
+	    else
+		$this->redirect(url_for('post/new'));
         } catch (Exception $e) {
             echo "Возникла ошибка при создании поста.<br/>\n";
             if($this->getRequestParameter('text')) {

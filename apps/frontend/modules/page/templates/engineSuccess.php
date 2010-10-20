@@ -16,7 +16,7 @@
 <h3><?echo __("Ссылки")?></h3>
 <ul>
     <li>
-        <p>SVN &mdash; <a href="http://subversion.assembla.com/svn/lt/">http://subversion.assembla.com/svn/lt/</a></p>
+        <p>GIT &mdash; <a href="http://git.plugncode.com/?p=joyreactor/.git;a=summary">http://git.plugncode.com/?p=joyreactor/.git;a=summary</a></p>
     </li>
     <li>
         <p><?echo __("Инструкция по установке")?> &mdash; <a href="http://www.joyreactor.ru/uploads/reactor.txt">http://www.joyreactor.ru/uploads/reactor.txt</a></p>

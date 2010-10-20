@@ -293,13 +293,16 @@ class BasesfApplyActions extends sfActions
     $type = sfConfig::get('app_sfApplyPlugin_mailer_type', 'NativeMail');
     $class = 'Swift_Connection_' . $type;
     $connection = new $class;
-
     if ($type === 'SMTP')
     {
       $encryption = sfConfig::get('app_sfApplyPlugin_mailer_smtp_encryption', false);
-      if ($encryption !== false)
+      if ($encryption === 'tls')
       {
-        $encryption = constant('Swift_Connection_SMTP', $encryption);
+        $encryption = Swift_Connection_SMTP::ENC_TLS;
+      }
+      elseif($encryption === 'ssl')
+      {
+      	$encryption = Swift_Connection_SMTP::ENC_SSL;
       }
       else
       {
