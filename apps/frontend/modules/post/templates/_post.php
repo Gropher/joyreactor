@@ -31,7 +31,7 @@
         <span style="display:block; color:#666;">
             <?
             foreach($post->getBlogs() as $blog)
-                echo link_to('#'.$blog->getTag(), 'blog/show?name='.$blog->getTag(ESC_RAW), array("absolute" => "true", "title" => $blog->getName()))." ";
+                echo link_to($blog->getTag(), 'blog/show?name='.$blog->getTag(ESC_RAW), array("absolute" => "true", "title" => $blog->getName()))." ";
             ?>
         </span>
         <?endif?>

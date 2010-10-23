@@ -82,7 +82,7 @@ class Post extends BasePost {
             else
                 $res .= $blog->getTag()." ";
         }
-        return substr($res, 0, -2);
+        return substr($res, 0, -1);
     }
 
     public function getMoodNameI18N() {
