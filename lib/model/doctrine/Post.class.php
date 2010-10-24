@@ -82,6 +82,8 @@ class Post extends BasePost {
             else
                 $res .= $blog->getTag()." ";
         }
+	if(!$res && !$this->getText() && $this->Attributes->count())
+	    $res = 'Прикольные картинки ';
         return substr($res, 0, -1);
     }
 
