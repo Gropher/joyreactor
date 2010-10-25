@@ -73,7 +73,7 @@
                 <?echo submit_tag(__("Сохранить"))?>
             </form>
         </span>
-	<span style="display:none;" id="post_share_form<?echo $post->getId()?>">
+	<span style="display:none;margin-top:10;" id="post_share_form<?echo $post->getId()?>">
 		<span style="float:left;">
 		<script type="text/javascript">
 			document.write(VK.Share.button({url: "<?echo url_for('post/show?id='.$post->getId(), array('absolute' => true))?>"},{type: "link", text: "Сохранить"}));
@@ -83,6 +83,11 @@
 		<iframe allowtransparency="true" frameborder="0" scrolling="no"
         src="http://platform.twitter.com/widgets/tweet_button.html?url=<?echo urlencode(url_for('post/show?id='.$post->getId(), array('absolute' => true)))?>"
         style="width:130px; height:21px;"></iframe>
+        <br/>
+        <label for='share-blog'><?echo __('Код для блога:')?></label>
+        <input value='<?echo $post->getBlogCode()?>' name='share-blog' readonly='true' />
+        <label for='share-forum'><?echo __('Код для форума:')?></label>
+        <input value='<?echo $post->getForumCode()?>' name='share-forum' readonly='true' />
 	</span>
         <div id="post_comment_list<?echo $post->getId()?>" <?if(!$show_comments):?>style="display:none;"<?endif?>>
             <?if($show_comments):?>

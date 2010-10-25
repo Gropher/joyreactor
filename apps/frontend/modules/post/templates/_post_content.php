@@ -13,7 +13,7 @@
     <?endif?>
     <? foreach($post->getAttributes() as $attr):?>
         <div class="image" >
-        <? echo image_tag($attr->getValue(), array('id'=> 'postPicture'.$attr->getId(),
+        <? echo image_tag($attr->getValue(), array('absolute' => true,'id'=> 'postPicture'.$attr->getId(),
             "alt"=>$attr->getComment(),
             "title"=>str_replace("\n", " ", $attr->getComment()),
             'onload'=> 'var width = 811; if(screen.width == 1024) width=689; if(typeof $j == \'function\' && $j(\'#postPicture'.$attr->getId().'\') && $j(\'#postPicture'.$attr->getId().'\').width() > width)'.
