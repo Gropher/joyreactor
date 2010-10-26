@@ -101,13 +101,9 @@ class postActions extends sfActions {
         $this->partnerId = $request->getParameter('partnerId');
         if($this->partnerId)
             setcookie('partnerId', $this->partnerId, time()+60*60*2 , "/");
-        $this->title = "";
-        $this->description = "";
-        $attr = $this->post->getAttributes();
-        if(count($attr) && $attr[0]->getComment()) {
-            $this->description = trimword($attr[0]->getComment(), sfConfig::get('app_post_description_length'));
-            $this->title = trimword($attr[0]->getComment(), sfConfig::get('app_post_title_length'))." / ";
-        }
+        $this->title = $this->post->getSeoTitle();
+        $this->title = $this->title ? $this->title." / " : "";
+        $this->description = $this->post->getSeoDescription();
         $this->text = trimword(strip_tags($this->post->getText()), sfConfig::get('app_post_description_length'));
         if($this->text)
             $this->title .= $this->text." / ";
@@ -122,9 +118,6 @@ class postActions extends sfActions {
                 $options = array(
                     'limit'   => sfConfig::get('app_sphinx_results_per_page'),
                     'offset'  => 0,
-                    //                    'weights' => array(100, 1),
-                    //                    'sort'    => sfSphinxClient::SPH_SORT_EXTENDED,
-                    //                    'sortby'  => '@weight DESC',
                     'mode'    => sfSphinxClient::SPH_MATCH_ANY,
                 );
                 $this->sphinx = new sfSphinxClient($options);
@@ -133,9 +126,7 @@ class postActions extends sfActions {
                 $this->pager->setPage(1);
                 $this->pager->init();
                 $this->simPosts = $this->pager->getResults();
-            } catch (Exception $e) {
-            //echo $e->getMessage();die;
-            }
+            } catch (Exception $e) { }
         }
     }
 
@@ -203,6 +194,16 @@ class postActions extends sfActions {
                 $bp->save();
             }
         }
+        return $this->renderPartial('post/post', array('post' => $post));
+    }
+    
+    public function executeSetheader(sfWebRequest $request) {
+        $this->forward404Unless($request->isMethod('post'));
+        $post = Doctrine::getTable('Post')->find(array($request->getParameter('id')));
+        $user = $this->getUser()->getGuardUser();
+        $this->forward404Unless($post, $user, $user->getIsSuperAdmin());
+        $post->setHeader(trim($request->getParameter('post_header')));
+        $post->save();
         return $this->renderPartial('post/post', array('post' => $post));
     }
 

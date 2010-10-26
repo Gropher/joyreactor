@@ -36,6 +36,8 @@ class Post extends BasePost {
     }
 
     public function getSeoTitle() {
+        if($this->getHeader())
+            return $this->getHeader();
         $attr = $this->getAttributes();
         if(count($attr) && $attr[0]->getComment()) {
             return trimword($attr[0]->getComment(), sfConfig::get('app_post_title_length'));
@@ -45,6 +47,8 @@ class Post extends BasePost {
     }
 
     public function getSeoShortTitle() {
+        if($this->getHeader())
+            return $this->getHeader();
         $attr = $this->getAttributes();
         if(count($attr) && $attr[0]->getComment()) {
             return trimword($attr[0]->getComment(), sfConfig::get('app_post_short_title_length'));
@@ -54,6 +58,8 @@ class Post extends BasePost {
     }
 
     public function getSeoDescription() {
+        if($this->getHeader())
+            return $this->getHeader();
         $attr = $this->getAttributes();
         if(count($attr) && $attr[0]->getComment()) {
             return trimword($attr[0]->getComment(), sfConfig::get('app_post_description_length'));

@@ -299,7 +299,7 @@ PostAttribute:
     origin:
       type: string(1024)
       notnull: true
-      default: ''
+      default: "" 
     comment: string(2147483647)
   indexes:
     post_id:
@@ -671,6 +671,8 @@ Post:
     text:
       type: string(2147483647)
       notnull: true
+    header:
+      type: string(2147483647)
     rating:
       type: float
       notnull: true

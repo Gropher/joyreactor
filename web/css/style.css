@@ -543,9 +543,6 @@ a#cancel-comment-reply-link {
 .favorite_link {
     float: right;
 }
-.hidden_link {
-    margin-left:10px;
-}
 .post_rating {
     position:absolute;
     bottom: 0px;
@@ -620,7 +617,6 @@ a#cancel-comment-reply-link {
 }
 .article .ufoot .manage {
     font-size:10px;
-    padding-left:15px;
 }
 .article .ufoot .comments {
     padding-left:15px;

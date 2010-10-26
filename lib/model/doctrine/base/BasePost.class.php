@@ -8,6 +8,7 @@
  * @property integer $id
  * @property integer $user_id
  * @property string $text
+ * @property string $header
  * @property float $rating
  * @property integer $comments_count
  * @property float $mood
@@ -47,6 +48,10 @@ abstract class BasePost extends sfDoctrineRecord
         $this->hasColumn('text', 'string', 2147483647, array(
              'type' => 'string',
              'notnull' => true,
+             'length' => '2147483647',
+             ));
+        $this->hasColumn('header', 'string', 2147483647, array(
+             'type' => 'string',
              'length' => '2147483647',
              ));
         $this->hasColumn('rating', 'float', null, array(

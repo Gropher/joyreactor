@@ -16,6 +16,7 @@ class BasePostFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'user_id'        => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'text'           => new sfWidgetFormFilterInput(),
+      'header'         => new sfWidgetFormFilterInput(),
       'rating'         => new sfWidgetFormFilterInput(),
       'comments_count' => new sfWidgetFormFilterInput(),
       'mood'           => new sfWidgetFormFilterInput(),
@@ -30,6 +31,7 @@ class BasePostFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'user_id'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
       'text'           => new sfValidatorPass(array('required' => false)),
+      'header'         => new sfValidatorPass(array('required' => false)),
       'rating'         => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'comments_count' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'mood'           => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
@@ -75,6 +77,7 @@ class BasePostFormFilter extends BaseFormFilterDoctrine
       'id'             => 'Number',
       'user_id'        => 'ForeignKey',
       'text'           => 'Text',
+      'header'         => 'Text',
       'rating'         => 'Number',
       'comments_count' => 'Number',
       'mood'           => 'Number',
