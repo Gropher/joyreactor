@@ -42,11 +42,11 @@
         </span>
         <span class="manage">
 	        &nbsp;<? echo link_to(__('поделиться'), 'post/show?id='.$post->getId(), array('id' => 'post_share_link'.$post->getId(), 'title' => __('поделиться ссылкой на пост с друзьями'), 'class'=>'link', 'onclick' => '$j("#post_share_form'.$post->getId().'").toggle("fast");return false;')) ?>&nbsp;
-            <? if($sf_user->isAuthenticated() && $sf_user->getGuardUser() == $post->getUser()): ?>
+            <? if($sf_user->isAuthenticated() && ($sf_user->getGuardUser() == $post->getUser() || $sf_user->getGuardUser()->getIsSuperAdmin())): ?>
                 <? echo link_to(__('удалить'), 'post/delete?id='.$post->getId(), array('title' => __('удалить пост'), 'class'=>"delete", 'onclick' => "return confirm('".__('Действительно удалить пост?')."')")) ?>&nbsp;
-                <? echo link_to(__('теги'), 'post/show?id='.$post->getId(), array('id' => 'post_settag_link'.$post->getId(), 'title' => __('изменить тег'), 'class'=>'link', 'onclick' => '$j("#post_settag_form'.$post->getId().'").toggle("fast");return false;')) ?>&nbsp;
+                <? echo link_to(__('теги'), 'post/show?id='.$post->getId(), array('id' => 'post_settag_link'.$post->getId(), 'title' => __('изменить теги'), 'class'=>'link', 'onclick' => '$j("#post_settag_form'.$post->getId().'").toggle("fast");return false;')) ?>&nbsp;
             <? endif ?>
-            <? if($sf_user->isAuthenticated() && $sf_user->getGuardUser() != $post->getUser()): ?>
+            <? if($sf_user->isAuthenticated() && $sf_user->getGuardUser() != $post->getUser() && !$sf_user->getGuardUser()->getIsSuperAdmin()): ?>
                 <? echo link_to(__('добавить теги'), 'post/show?id='.$post->getId(), array('id' => 'post_settag_link'.$post->getId(), 'title' => __('изменить теги'), 'class'=>'link', 'onclick' => '$j("#post_settag_form'.$post->getId().'").toggle("fast");return false;')) ?>&nbsp;
             <? endif ?>
             <? if($sf_user->isAuthenticated()): ?>
@@ -77,13 +77,15 @@
             </form>
         </span>
 	    <?endif?>
+	    <?if($sf_user->getGuardUser()):?>
         <span style="display:none;" id="post_settag_form<?echo $post->getId()?>">
             <?echo form_remote_tag(array( 'url' => "post/settag?id=".$post->getId(), 'update' => 'postContainer'.$post->getId()))?>
-                <?if($post->getBlogs()->count() != 0 && $post->getUser() == $sf_user->getGuardUser()) $tag = $post->getTagline(); else $tag="";?>
+                <?if($post->getBlogs()->count() != 0 && ($sf_user->getGuardUser() == $post->getUser() || $sf_user->getGuardUser()->getIsSuperAdmin())) $tag = $post->getTagline(); else $tag="";?>
                 <?echo input_tag("tag",$tag)?>
                 <?echo submit_tag(__("Сохранить"))?>
             </form>
         </span>
+        <?endif?>
 	    <span style="display:none;margin-top:10;" id="post_share_form<?echo $post->getId()?>">
 		    <span style="float:left;">
 		    <script type="text/javascript">

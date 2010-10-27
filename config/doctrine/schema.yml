@@ -432,7 +432,7 @@ Blog:
       type: string(255)
       notnull: true
     tag:
-      type: string(20)
+      type: string(255)
       notnull: true
       default: 'dev'
     rating:

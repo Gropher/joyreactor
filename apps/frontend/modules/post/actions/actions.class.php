@@ -113,6 +113,7 @@ class postActions extends sfActions {
         $this->getResponse()->setTitle($this->title.__("JoyReactor – твое хорошее настроние. Картинки, приколы, видео, демотиваторы."));
         $this->getResponse()->addMeta('description', $this->description);
         $this->getResponse()->addMeta('keywords', wordlist($this->description));
+        $attr = $this->post->Attributes;
         if(count($attr) && $attr[0]->getComment()) {
             try {
                 $options = array(
@@ -182,7 +183,7 @@ class postActions extends sfActions {
         $post = Doctrine::getTable('Post')->find(array($request->getParameter('id')));
         $this->forward404Unless($post, $this->getUser()->getGuardUser());
         $tags = split("[,;:]", str_replace("*", "", str_replace("#", "", trim($request->getParameter('tag')))));
-        if($post->getUser() == $this->getUser()->getGuardUser())
+        if($post->getUser() == $this->getUser()->getGuardUser() || $this->getUser()->getGuardUser()->getIsSuperAdmin())
             $post->deleteBlogs();
         foreach($tags as $tag) {
             $tag = trim($tag);

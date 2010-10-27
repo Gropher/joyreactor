@@ -26,7 +26,7 @@ class BaseBlogForm extends BaseFormDoctrine
       'id'         => new sfValidatorDoctrineChoice(array('model' => 'Blog', 'column' => 'id', 'required' => false)),
       'user_id'    => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser')),
       'name'       => new sfValidatorString(array('max_length' => 255)),
-      'tag'        => new sfValidatorString(array('max_length' => 20)),
+      'tag'        => new sfValidatorString(array('max_length' => 255)),
       'rating'     => new sfValidatorInteger(),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),

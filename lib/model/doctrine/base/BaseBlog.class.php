@@ -41,11 +41,11 @@ abstract class BaseBlog extends sfDoctrineRecord
              'notnull' => true,
              'length' => '255',
              ));
-        $this->hasColumn('tag', 'string', 20, array(
+        $this->hasColumn('tag', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
              'default' => 'dev',
-             'length' => '20',
+             'length' => '255',
              ));
         $this->hasColumn('rating', 'integer', 4, array(
              'type' => 'integer',
