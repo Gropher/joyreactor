@@ -2,7 +2,7 @@ about:
   url:  /about
   param: { module: page, action: index }
 profile:
-  url:  /user/:username/profile
+  url:  /people/show/:username
   param: { module: people, action: show }
 friendLine:
   url:  /user/:username/friendline/:page

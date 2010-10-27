@@ -96,9 +96,9 @@ class Post extends BasePost {
     public function getTagline() {
         $res = '';
         foreach($this->Blogs as $blog) {
-            $res .= "#".$blog->getTag()." ";
+            $res .= $blog->getTag().",";
         }
-        return $res;
+        return substr($res, 0, -1);
     }
 
     public function getTagNames() {

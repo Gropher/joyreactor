@@ -38,7 +38,9 @@
     <?echo __('С нами с').':    '?>
     <span id="usertime<?echo $user->getId()?>">
         <? echo user_time($user->getCreatedAt()) ?>
-    </span>
+    </span><br/>
+    <?echo __('Профиль').':    '?>
+    <?echo link_to(url_for('people/show?username='.$user->getUsername(), 'absolute=true'), 'people/show?username='.$user->getUsername())?>
 <?else:?>
     <br/>
 <?endif?>

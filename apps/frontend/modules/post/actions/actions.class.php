@@ -181,7 +181,7 @@ class postActions extends sfActions {
         $this->forward404Unless($request->isMethod('post'));
         $post = Doctrine::getTable('Post')->find(array($request->getParameter('id')));
         $this->forward404Unless($post, $this->getUser()->getGuardUser());
-        $tags = split("[,;: \n]", str_replace("*", "", str_replace("#", "", trim($request->getParameter('tag')))));
+        $tags = split("[,;:]", str_replace("*", "", str_replace("#", "", trim($request->getParameter('tag')))));
         if($post->getUser() == $this->getUser()->getGuardUser())
             $post->deleteBlogs();
         foreach($tags as $tag) {
