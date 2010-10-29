@@ -1,7 +1,7 @@
 <li>
     <h2><? echo __('Теги ').$user->getUsername() ?></h2>
     <div class="sidebarContent">
-        <div id="tagcloud" style="width:243px;height:200px;">
+        <div id="tagcloud" style="width:243px;">
         </div>
     </div>
 </li>
@@ -9,7 +9,7 @@
     <h2><? echo __('Мета') ?></h2>
     &nbsp;<a href="/post/text" style="text-decoration: none"><?echo __("Комиксы, демотиваторы, цитаты")?></a>
     <div class="sidebarContent">
-        <div id="metacloud" style="width:243px;height:170px;">
+        <div id="metacloud" style="width:243px;">
         </div>
     </div>
 </li>
