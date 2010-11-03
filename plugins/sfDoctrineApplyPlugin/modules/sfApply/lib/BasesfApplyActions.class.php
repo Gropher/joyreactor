@@ -13,9 +13,9 @@ class BasesfApplyActions extends sfActions
   public function executeApply(sfRequest $request)
   {
     $this->form = $this->newForm('sfApplyApplyForm');
-    $this->partnerId = $request->getParameter('partnerId');
+    $this->partnerId = $request->getParameter('partnerId', false);
     if(!$this->partnerId)
-        $this->partnerId = $_COOKIE['partnerId'];
+        $this->partnerId = isset($_COOKIE['partnerId'])? $_COOKIE['partnerId'] : 1;
     if ($request->isMethod('post'))
     {
       $this->form->bind($request->getParameter('sfApplyApply'));

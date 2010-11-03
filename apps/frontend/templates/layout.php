@@ -17,7 +17,6 @@
         <?endif?>
     </head>
     <body>
-    	<script type="text/javascript" src="http://vkontakte.ru/js/api/share.js?10" charset="windows-1251"></script>
         <div id="container">
             <div id="header">
                 <h1><? echo link_to(__('JoyReactor'), '@homepage') ?></h1>

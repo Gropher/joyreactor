@@ -114,7 +114,7 @@ class postActions extends sfActions {
         $this->getResponse()->addMeta('description', $this->description);
         $this->getResponse()->addMeta('keywords', wordlist($this->description));
         $attr = $this->post->Attributes;
-        if(count($attr) && $attr[0]->getComment()) {
+        if($this->title) {
             try {
                 $options = array(
                     'limit'   => sfConfig::get('app_sphinx_results_per_page'),
@@ -122,7 +122,7 @@ class postActions extends sfActions {
                     'mode'    => sfSphinxClient::SPH_MATCH_ANY,
                 );
                 $this->sphinx = new sfSphinxClient($options);
-                $res = $this->sphinx->Query($attr[0]->getComment(), sfConfig::get('app_sphinx_index'));
+                $res = $this->sphinx->Query($this->title, sfConfig::get('app_sphinx_index'));
                 $this->pager = new sfSphinxPager('Post', $options['limit'], $this->sphinx);
                 $this->pager->setPage(1);
                 $this->pager->init();
@@ -212,6 +212,12 @@ class postActions extends sfActions {
         $post = Doctrine::getTable('Post')->find(array($request->getParameter('id')));
         $this->forward404Unless($post);
         return $this->renderPartial('post/post_comments', array('post' => $post, 'showAddComment' => 1));
+    }
+    
+    public function executeShare(sfWebRequest $request) {
+        $post = Doctrine::getTable('Post')->find(array($request->getParameter('id')));
+        $this->forward404Unless($post);
+        return $this->renderPartial('post/post_share', array('post' => $post));
     }
 
     public function executeCreate(sfWebRequest $request) {

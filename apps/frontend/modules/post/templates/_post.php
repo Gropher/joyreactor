@@ -41,7 +41,12 @@
             <? echo user_time($post->getCreatedAt()) ?>
         </span>
         <span class="manage">
-	        &nbsp;<? echo link_to(__('поделиться'), 'post/show?id='.$post->getId(), array('id' => 'post_share_link'.$post->getId(), 'title' => __('поделиться ссылкой на пост с друзьями'), 'class'=>'link', 'onclick' => '$j("#post_share_form'.$post->getId().'").toggle("fast");return false;')) ?>&nbsp;
+	        &nbsp;<? echo link_to(__('поделиться'), 
+	                              'post/show?id='.$post->getId(), 
+	                              array('id' => 'post_share_link'.$post->getId(), 
+	                                    'title' => __('поделиться ссылкой на пост с друзьями'), 
+	                                    'class'=>'link', 
+	                                    'onclick' => '$j("#post_share_form'.$post->getId().'").toggle("fast").load("'.url_for("post/share?id=".$post->getId()).'");return false;')) ?>&nbsp;
             <? if($sf_user->isAuthenticated() && ($sf_user->getGuardUser() == $post->getUser() || $sf_user->getGuardUser()->getIsSuperAdmin())): ?>
                 <? echo link_to(__('удалить'), 'post/delete?id='.$post->getId(), array('title' => __('удалить пост'), 'class'=>"delete", 'onclick' => "return confirm('".__('Действительно удалить пост?')."')")) ?>&nbsp;
                 <? echo link_to(__('теги'), 'post/show?id='.$post->getId(), array('id' => 'post_settag_link'.$post->getId(), 'title' => __('изменить теги'), 'class'=>'link', 'onclick' => '$j("#post_settag_form'.$post->getId().'").toggle("fast");return false;')) ?>&nbsp;
@@ -86,22 +91,7 @@
             </form>
         </span>
         <?endif?>
-	    <span style="display:none;margin-top:10;" id="post_share_form<?echo $post->getId()?>">
-		    <span style="float:left;">
-		    <script type="text/javascript">
-			    document.write(VK.Share.button({url: "<?echo url_for('post/show?id='.$post->getId(), array('absolute' => true))?>"},{type: "link", text: "Сохранить"}));
-		    </script>
-		    </span>&nbsp;
-		    <iframe src="http://www.facebook.com/plugins/like.php?href=<?echo url_for('post/show?id='.$post->getId(), array('absolute' => true))?>&amp;layout=button_count&amp;show_faces=true&amp;width=110&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:21px;" allowTransparency="true"></iframe>&nbsp;
-		    <iframe allowtransparency="true" frameborder="0" scrolling="no"
-            src="http://platform.twitter.com/widgets/tweet_button.html?url=<?echo urlencode(url_for('post/show?id='.$post->getId(), array('absolute' => true)))?>"
-            style="width:130px; height:21px;"></iframe>
-            <br/>
-            <label for='share-blog'><?echo __('Код для блога:')?></label>
-            <input value='<?echo $post->getBlogCode()?>' name='share-blog' readonly='true' />
-            <label for='share-forum'><?echo __('Код для форума:')?></label>
-            <input value='<?echo $post->getForumCode()?>' name='share-forum' readonly='true' />
-	    </span>
+	    <span style="display:none;" id="post_share_form<?echo $post->getId()?>"></span>
         <div id="post_comment_list<?echo $post->getId()?>" <?if(!$show_comments):?>style="display:none;"<?endif?>>
             <?if($show_comments):?>
                 <?include_partial('post/post_comments', array('post' => $post, 'showAddComment' => $showAddComment))?>

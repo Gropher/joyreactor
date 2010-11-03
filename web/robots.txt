@@ -1,2 +1,8 @@
+User-agent: Yandex
+Disallow: /user/*/line/*
+Disallow: /user/*/line$
+Disallow: /user/*/friendline/*
+Disallow: /user/*/friendline$
+
 User-agent: *
-Disallow: /user/
+Disallow: /frontend_dev.php/

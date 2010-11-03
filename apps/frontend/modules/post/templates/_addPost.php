@@ -3,7 +3,7 @@
     <?// echo form_tag('post/create', array('method' => 'post', 'id' => 'add_post', 'enctype' => 'multipart/form-data', 'onkeypress' => "ctrlEnter(event, this);", 'onsubmit' => "return AIM.submit(this, {'onStart' : startCallback, 'onComplete' : completeCallback})") ) ?>
 <?//else:?>
     <? echo form_tag('post/create', array('method' => 'post', 'id' => 'add_post', 'enctype' => 'multipart/form-data', 'onkeypress' => "ctrlEnter(event, this);", 'onsubmit' => '$j("#submit").attr("disabled", true);') ) ?>
-    <? echo input_hidden_tag('noajax', $noajax) ?>
+    <? echo input_hidden_tag('noajax', isset($noajax) ? $noajax : false) ?>
 <?//endif?>
     <div>
 	<b><label for="text"><? echo __('Как дела? Что новенького?') ?></label></b><br/>
