@@ -133,7 +133,12 @@ class postActions extends sfActions {
 
     public function executeDelete(sfWebRequest $request) {
         $this->post = Doctrine::getTable('Post')->find(array($request->getParameter('id')));
-        $this->forward404Unless($this->post && $this->post->getUser() == $this->getUser()->getGuardUser());
+        $this->forward404Unless($this->post && 
+                                (
+                                 (!$this->post->isOld() && $this->post->getUser() == $this->getUser()->getGuardUser()) ||
+                                 $this->getUser()->getGuardUser()->getIsSuperAdmin()
+                                )
+                                 );
         $this->post->delete();
         $this->redirect('post/user');
     }

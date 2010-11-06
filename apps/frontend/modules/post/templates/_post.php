@@ -47,8 +47,10 @@
 	                                    'title' => __('поделиться ссылкой на пост с друзьями'), 
 	                                    'class'=>'link', 
 	                                    'onclick' => '$j("#post_share_form'.$post->getId().'").toggle("fast").load("'.url_for("post/share?id=".$post->getId()).'");return false;')) ?>&nbsp;
-            <? if($sf_user->isAuthenticated() && ($sf_user->getGuardUser() == $post->getUser() || $sf_user->getGuardUser()->getIsSuperAdmin())): ?>
+            <? if($sf_user->isAuthenticated() && ((!$post->isOld() && $sf_user->getGuardUser() == $post->getUser()) || $sf_user->getGuardUser()->getIsSuperAdmin())): ?>
                 <? echo link_to(__('удалить'), 'post/delete?id='.$post->getId(), array('title' => __('удалить пост'), 'class'=>"delete", 'onclick' => "return confirm('".__('Действительно удалить пост?')."')")) ?>&nbsp;
+            <? endif ?>
+            <? if($sf_user->isAuthenticated() && ($sf_user->getGuardUser() == $post->getUser() || $sf_user->getGuardUser()->getIsSuperAdmin())): ?>
                 <? echo link_to(__('теги'), 'post/show?id='.$post->getId(), array('id' => 'post_settag_link'.$post->getId(), 'title' => __('изменить теги'), 'class'=>'link', 'onclick' => '$j("#post_settag_form'.$post->getId().'").toggle("fast");return false;')) ?>&nbsp;
             <? endif ?>
             <? if($sf_user->isAuthenticated() && $sf_user->getGuardUser() != $post->getUser() && !$sf_user->getGuardUser()->getIsSuperAdmin()): ?>
