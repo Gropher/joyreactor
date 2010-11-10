@@ -4,6 +4,8 @@
         <? include_http_metas() ?>
         <? include_metas() ?>
         <? include_title() ?>
+        <? include_stylesheets() ?>
+        <? include_javascripts() ?>
         <!--[if lte IE 7]>
                 <script type="text/javascript" src="/js/unitpngfix.js"></script>
 		<link rel="stylesheet" href="/css/lte7.css" type="text/css" media="screen" />

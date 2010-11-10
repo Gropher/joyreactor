@@ -1,0 +1,45 @@
+# sfProtoculousPlugin
+## Description
+sfProtoculousPlugin was removed from Symfony core plugins since version 1.4.0. This plugin allows you to install it manually as a separate plugin and use all it's helpers.
+This plugin provides simple way for adding Ajax functionality into your project using Prototype and Script.aculo.us frameworks. All it's helpers allows you to generate javascript code using native PHP interface.
+
+Installation
+------------
+
+  * Install the plugin
+
+        $ symfony plugin:install sfProtoculousPlugin
+		
+  * Publish assets
+
+        $ symfony publish:assets		
+		
+		
+Usage
+-----
+For reference read [Defenitive Guide to Symfony](http://www.symfony-project.org/book/1_2/11-Ajax-Integration).
+
+In order to use Prototype-based ajax helpers you need to add 'Javascript' helper into your template. 
+
+        [php]
+        <?php use_helper('Javascript') ?>
+		
+It provides this functions:
+
+  * link_to_remote   
+  * form_remote_tag
+  * submit_to_remote
+  * submit_image_to_remote
+  * periodically_call_remote
+  * remote_function
+  * observe_field
+  * observe_form
+  * button_to_remote
+  * draggable_element
+  * drop_receiving_element
+  * input_auto_complete_tag
+  * input_in_place_editor_tag
+  * sortable_element
+  * visual_effect
+  
+All additional documentation can be found in the source code.

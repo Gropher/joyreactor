@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?> 
 <h1 id="mood_question"><? echo __('Как настроение?') ?></h1>
 <span id= "hint" style="color: #999;">(выбери подходящий смайлик)&nbsp;</span>
 <? echo form_tag('post/index', array('method' => 'post') ) ?>

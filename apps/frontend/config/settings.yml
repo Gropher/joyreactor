@@ -1,14 +1,14 @@
 prod:
   .settings:
-    no_script_name:         on
-    logging_enabled:        off
+    no_script_name:         true
+    logging_enabled:        false
 
 dev:
   .settings:
     error_reporting:        <? echo (E_ALL | E_STRICT)."\n" ?>
     web_debug:              on
     cache:                  off
-    no_script_name:         off
+    no_script_name:         false
     etag:                   off
 
 test:
@@ -35,7 +35,7 @@ all:
     escaping_strategy:      true            # Determines how variables are made available to templates. Accepted values: on, off.
     escaping_method:        ESC_SPECIALCHARS # Function or helper used for escaping. Accepted values: ESC_RAW, ESC_ENTITIES, ESC_JS, ESC_JS_NO_ENTITIES, and ESC_SPECIALCHARS.
 
-    standard_helpers: [I18N, Partial, Form, Javascript]
+    standard_helpers: [I18N, Partial, Url, Javascript]
 
     i18n:                   on
     default_culture:        ru_RU

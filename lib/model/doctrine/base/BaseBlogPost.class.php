@@ -11,10 +11,21 @@
  * @property Blog $Blog
  * @property Post $Post
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer  getId()      Returns the current record's "id" value
+ * @method integer  getBlogId()  Returns the current record's "blog_id" value
+ * @method integer  getPostId()  Returns the current record's "post_id" value
+ * @method Blog     getBlog()    Returns the current record's "Blog" value
+ * @method Post     getPost()    Returns the current record's "Post" value
+ * @method BlogPost setId()      Sets the current record's "id" value
+ * @method BlogPost setBlogId()  Sets the current record's "blog_id" value
+ * @method BlogPost setPostId()  Sets the current record's "post_id" value
+ * @method BlogPost setBlog()    Sets the current record's "Blog" value
+ * @method BlogPost setPost()    Sets the current record's "Post" value
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseBlogPost extends sfDoctrineRecord
 {
@@ -25,17 +36,17 @@ abstract class BaseBlogPost extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('blog_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('post_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
 
 
@@ -74,6 +85,7 @@ abstract class BaseBlogPost extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasOne('Blog', array(
              'local' => 'blog_id',
              'foreign' => 'id',

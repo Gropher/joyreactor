@@ -17,10 +17,33 @@
  * @property PostComment $Parent
  * @property Doctrine_Collection $Comments
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer             getId()        Returns the current record's "id" value
+ * @method integer             getUserId()    Returns the current record's "user_id" value
+ * @method integer             getPostId()    Returns the current record's "post_id" value
+ * @method integer             getParentId()  Returns the current record's "parent_id" value
+ * @method string              getComment()   Returns the current record's "comment" value
+ * @method integer             getPower()     Returns the current record's "power" value
+ * @method boolean             getIsNew()     Returns the current record's "isNew" value
+ * @method sfGuardUser         getUser()      Returns the current record's "User" value
+ * @method Post                getPost()      Returns the current record's "Post" value
+ * @method PostComment         getParent()    Returns the current record's "Parent" value
+ * @method Doctrine_Collection getComments()  Returns the current record's "Comments" collection
+ * @method PostComment         setId()        Sets the current record's "id" value
+ * @method PostComment         setUserId()    Sets the current record's "user_id" value
+ * @method PostComment         setPostId()    Sets the current record's "post_id" value
+ * @method PostComment         setParentId()  Sets the current record's "parent_id" value
+ * @method PostComment         setComment()   Sets the current record's "comment" value
+ * @method PostComment         setPower()     Sets the current record's "power" value
+ * @method PostComment         setIsNew()     Sets the current record's "isNew" value
+ * @method PostComment         setUser()      Sets the current record's "User" value
+ * @method PostComment         setPost()      Sets the current record's "Post" value
+ * @method PostComment         setParent()    Sets the current record's "Parent" value
+ * @method PostComment         setComments()  Sets the current record's "Comments" collection
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasePostComment extends sfDoctrineRecord
 {
@@ -31,33 +54,33 @@ abstract class BasePostComment extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('user_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('post_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('parent_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => false,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('comment', 'string', 2147483647, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '2147483647',
+             'length' => 2147483647,
              ));
         $this->hasColumn('power', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
              'default' => 0,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('isNew', 'boolean', null, array(
              'type' => 'boolean',
@@ -114,6 +137,7 @@ abstract class BasePostComment extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasOne('sfGuardUser as User', array(
              'local' => 'user_id',
              'foreign' => 'id',

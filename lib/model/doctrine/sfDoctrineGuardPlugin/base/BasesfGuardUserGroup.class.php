@@ -10,10 +10,19 @@
  * @property sfGuardUser $sfGuardUser
  * @property sfGuardGroup $sfGuardGroup
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer          getUserId()       Returns the current record's "user_id" value
+ * @method integer          getGroupId()      Returns the current record's "group_id" value
+ * @method sfGuardUser      getSfGuardUser()  Returns the current record's "sfGuardUser" value
+ * @method sfGuardGroup     getSfGuardGroup() Returns the current record's "sfGuardGroup" value
+ * @method sfGuardUserGroup setUserId()       Sets the current record's "user_id" value
+ * @method sfGuardUserGroup setGroupId()      Sets the current record's "group_id" value
+ * @method sfGuardUserGroup setSfGuardUser()  Sets the current record's "sfGuardUser" value
+ * @method sfGuardUserGroup setSfGuardGroup() Sets the current record's "sfGuardGroup" value
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasesfGuardUserGroup extends sfDoctrineRecord
 {
@@ -23,12 +32,12 @@ abstract class BasesfGuardUserGroup extends sfDoctrineRecord
         $this->hasColumn('user_id', 'integer', 4, array(
              'type' => 'integer',
              'primary' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('group_id', 'integer', 4, array(
              'type' => 'integer',
              'primary' => true,
-             'length' => '4',
+             'length' => 4,
              ));
 
         $this->option('type', 'MYISAM');
@@ -38,6 +47,7 @@ abstract class BasesfGuardUserGroup extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasOne('sfGuardUser', array(
              'local' => 'user_id',
              'foreign' => 'id',
@@ -48,7 +58,8 @@ abstract class BasesfGuardUserGroup extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable();
+        $timestampable0 = new Doctrine_Template_Timestampable(array(
+             ));
         $this->actAs($timestampable0);
     }
 }

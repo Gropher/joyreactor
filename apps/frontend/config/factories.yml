@@ -30,6 +30,16 @@ all:
     param:
       generate_shortest_url:            true
       extra_parameters_as_query_string: true
+  mailer:
+    param:
+      transport:
+        class: Swift_MailTransport
+        param:
+          host:       smtp.gmail.com
+          port:       465
+          encryption: ssl
+          username: "em@joyreactor.ru"
+          password: "FPN2GAI[<2"
 
 #all:
 #  controller:

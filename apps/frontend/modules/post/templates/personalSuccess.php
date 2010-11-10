@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?>
 <? if($sf_user->isAuthenticated()): ?>
     <p>
         <? include_partial('addPost', array('noajax' => true)) ?>

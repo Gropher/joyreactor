@@ -43,7 +43,5 @@ all:
       success_signout_url:     '@homepage'
   mailer:
     defaults:
-      connection:
-        type: native
       from:                  'noreply@joyreactor.ru'
       subject-template:      "Joyreactor -  %s"

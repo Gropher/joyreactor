@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?>
 <? slot('menu2') ?>
     <b><?echo __('Новые')?></b>&nbsp;&nbsp;|&nbsp;&nbsp;<?echo link_to(__('Самые болтливые'),'people/top')?>
 <? end_slot() ?>

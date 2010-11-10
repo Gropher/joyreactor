@@ -1,4 +1,3 @@
-<? use_helper('Javascript'); ?>
 <? if($sf_user->isAuthenticated()):  ?>
 <span class="hidden_link" id="hidden_link<? echo $post->getId() ?>">
         <? if(!$sf_user->getGuardUser()->isHidden($post)): ?>

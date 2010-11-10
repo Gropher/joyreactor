@@ -12,10 +12,23 @@
  * @property sfGuardUser $User
  * @property sfGuardUser $Friend
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer     getId()        Returns the current record's "id" value
+ * @method integer     getUserId()    Returns the current record's "user_id" value
+ * @method integer     getFriendId()  Returns the current record's "friend_id" value
+ * @method boolean     getIsNew()     Returns the current record's "isNew" value
+ * @method sfGuardUser getUser()      Returns the current record's "User" value
+ * @method sfGuardUser getFriend()    Returns the current record's "Friend" value
+ * @method Friend      setId()        Sets the current record's "id" value
+ * @method Friend      setUserId()    Sets the current record's "user_id" value
+ * @method Friend      setFriendId()  Sets the current record's "friend_id" value
+ * @method Friend      setIsNew()     Sets the current record's "isNew" value
+ * @method Friend      setUser()      Sets the current record's "User" value
+ * @method Friend      setFriend()    Sets the current record's "Friend" value
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseFriend extends sfDoctrineRecord
 {
@@ -26,17 +39,17 @@ abstract class BaseFriend extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('user_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('friend_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('isNew', 'boolean', null, array(
              'type' => 'boolean',
@@ -86,6 +99,7 @@ abstract class BaseFriend extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasOne('sfGuardUser as User', array(
              'local' => 'user_id',
              'foreign' => 'id',

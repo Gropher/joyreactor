@@ -1,4 +1,4 @@
-<? use_helper('Javascript', 'Text', 'Form', 'Parse', 'UserTime', 'DeltaCount'); ?>
+<? use_helper('Text', 'Parse', 'UserTime', 'DeltaCount'); ?>
 <span>
     <a target='_blank' style='text-decoration:none;' href='http://vkontakte.ru/share.php?url=<?echo url_for('post/show?id='.$post->getId(), array('absolute' => true))?>'>
         <image src='http://vk.com/images/vk16.png' />&nbsp;ВКонтакте

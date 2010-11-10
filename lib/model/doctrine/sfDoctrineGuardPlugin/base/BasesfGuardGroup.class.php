@@ -13,10 +13,25 @@
  * @property Doctrine_Collection $sfGuardGroupPermission
  * @property Doctrine_Collection $sfGuardUserGroup
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer             getId()                     Returns the current record's "id" value
+ * @method string              getName()                   Returns the current record's "name" value
+ * @method string              getDescription()            Returns the current record's "description" value
+ * @method Doctrine_Collection getUsers()                  Returns the current record's "users" collection
+ * @method Doctrine_Collection getPermissions()            Returns the current record's "permissions" collection
+ * @method Doctrine_Collection getSfGuardGroupPermission() Returns the current record's "sfGuardGroupPermission" collection
+ * @method Doctrine_Collection getSfGuardUserGroup()       Returns the current record's "sfGuardUserGroup" collection
+ * @method sfGuardGroup        setId()                     Sets the current record's "id" value
+ * @method sfGuardGroup        setName()                   Sets the current record's "name" value
+ * @method sfGuardGroup        setDescription()            Sets the current record's "description" value
+ * @method sfGuardGroup        setUsers()                  Sets the current record's "users" collection
+ * @method sfGuardGroup        setPermissions()            Sets the current record's "permissions" collection
+ * @method sfGuardGroup        setSfGuardGroupPermission() Sets the current record's "sfGuardGroupPermission" collection
+ * @method sfGuardGroup        setSfGuardUserGroup()       Sets the current record's "sfGuardUserGroup" collection
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasesfGuardGroup extends sfDoctrineRecord
 {
@@ -27,16 +42,16 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('name', 'string', 255, array(
              'type' => 'string',
              'unique' => true,
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('description', 'string', 1000, array(
              'type' => 'string',
-             'length' => '1000',
+             'length' => 1000,
              ));
 
         $this->option('type', 'MYISAM');
@@ -46,6 +61,7 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasMany('sfGuardUser as users', array(
              'refClass' => 'sfGuardUserGroup',
              'local' => 'group_id',
@@ -64,7 +80,8 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'group_id'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable();
+        $timestampable0 = new Doctrine_Template_Timestampable(array(
+             ));
         $this->actAs($timestampable0);
     }
 }

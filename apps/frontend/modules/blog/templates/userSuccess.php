@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?>
 <h2><? echo $blog->getName() ?> / <? echo $user->getUsername()?></h2>
 <div id="post_list">
     <? include_partial('post/postList', array('posts' => $blog->getUserLine($user, $sf_request->getParameter('page')))); ?>

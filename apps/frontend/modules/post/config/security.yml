@@ -1,13 +1,13 @@
 create:
   is_secure:   on
+
 discussion:
   is_secure:   on
+
 settag:
   is_secure:   on
 
 delete:
   is_secure:   on
 
-all:
-  is_secure:   off
 

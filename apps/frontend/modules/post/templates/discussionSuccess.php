@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?> 
 <p>
     <? include_partial('addPost') ?>
 </p>

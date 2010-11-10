@@ -10,10 +10,19 @@
  * @property sfGuardGroup $sfGuardGroup
  * @property sfGuardPermission $sfGuardPermission
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer                getGroupId()           Returns the current record's "group_id" value
+ * @method integer                getPermissionId()      Returns the current record's "permission_id" value
+ * @method sfGuardGroup           getSfGuardGroup()      Returns the current record's "sfGuardGroup" value
+ * @method sfGuardPermission      getSfGuardPermission() Returns the current record's "sfGuardPermission" value
+ * @method sfGuardGroupPermission setGroupId()           Sets the current record's "group_id" value
+ * @method sfGuardGroupPermission setPermissionId()      Sets the current record's "permission_id" value
+ * @method sfGuardGroupPermission setSfGuardGroup()      Sets the current record's "sfGuardGroup" value
+ * @method sfGuardGroupPermission setSfGuardPermission() Sets the current record's "sfGuardPermission" value
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasesfGuardGroupPermission extends sfDoctrineRecord
 {
@@ -23,12 +32,12 @@ abstract class BasesfGuardGroupPermission extends sfDoctrineRecord
         $this->hasColumn('group_id', 'integer', 4, array(
              'type' => 'integer',
              'primary' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('permission_id', 'integer', 4, array(
              'type' => 'integer',
              'primary' => true,
-             'length' => '4',
+             'length' => 4,
              ));
 
         $this->option('type', 'MYISAM');
@@ -38,6 +47,7 @@ abstract class BasesfGuardGroupPermission extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasOne('sfGuardGroup', array(
              'local' => 'group_id',
              'foreign' => 'id',
@@ -48,7 +58,8 @@ abstract class BasesfGuardGroupPermission extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable();
+        $timestampable0 = new Doctrine_Template_Timestampable(array(
+             ));
         $this->actAs($timestampable0);
     }
 }

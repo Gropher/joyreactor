@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?> 
 <h2><? echo __("Записи без тега") ?></h2>
 <div id="post_list">
     <? include_partial('post/postList', array('posts' => Blog::getNoBlogLine($sf_request->getParameter('page')))); ?>

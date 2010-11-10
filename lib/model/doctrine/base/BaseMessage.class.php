@@ -15,10 +15,29 @@
  * @property string $text
  * @property sfGuardUser $User
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer     getId()        Returns the current record's "id" value
+ * @method integer     getUserId()    Returns the current record's "user_id" value
+ * @method integer     getObjectId()  Returns the current record's "object_id" value
+ * @method string      getDirection() Returns the current record's "direction" value
+ * @method string      getType()      Returns the current record's "type" value
+ * @method string      getProtocol()  Returns the current record's "protocol" value
+ * @method string      getStatus()    Returns the current record's "status" value
+ * @method string      getText()      Returns the current record's "text" value
+ * @method sfGuardUser getUser()      Returns the current record's "User" value
+ * @method Message     setId()        Sets the current record's "id" value
+ * @method Message     setUserId()    Sets the current record's "user_id" value
+ * @method Message     setObjectId()  Sets the current record's "object_id" value
+ * @method Message     setDirection() Sets the current record's "direction" value
+ * @method Message     setType()      Sets the current record's "type" value
+ * @method Message     setProtocol()  Sets the current record's "protocol" value
+ * @method Message     setStatus()    Sets the current record's "status" value
+ * @method Message     setText()      Sets the current record's "text" value
+ * @method Message     setUser()      Sets the current record's "User" value
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseMessage extends sfDoctrineRecord
 {
@@ -29,42 +48,42 @@ abstract class BaseMessage extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('user_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('object_id', 'integer', 4, array(
              'type' => 'integer',
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('direction', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('type', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('protocol', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('status', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
              'default' => 'not sent',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('text', 'string', 2147483647, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '2147483647',
+             'length' => 2147483647,
              ));
 
 
@@ -131,6 +150,7 @@ abstract class BaseMessage extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasOne('sfGuardUser as User', array(
              'local' => 'user_id',
              'foreign' => 'id'));

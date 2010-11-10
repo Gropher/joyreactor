@@ -1,13 +1,16 @@
-<?
+<?php
 
 /**
  * sfGuardUserGroup form base class.
  *
- * @package    form
- * @subpackage sf_guard_user_group
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @method sfGuardUserGroup getObject() Returns the current form's model object
+ *
+ * @package    Empaty
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-class BasesfGuardUserGroupForm extends BaseFormDoctrine
+abstract class BasesfGuardUserGroupForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -19,8 +22,8 @@ class BasesfGuardUserGroupForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'user_id'    => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUserGroup', 'column' => 'user_id', 'required' => false)),
-      'group_id'   => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUserGroup', 'column' => 'group_id', 'required' => false)),
+      'user_id'    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('user_id')), 'empty_value' => $this->getObject()->get('user_id'), 'required' => false)),
+      'group_id'   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('group_id')), 'empty_value' => $this->getObject()->get('group_id'), 'required' => false)),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),
     ));
@@ -28,6 +31,8 @@ class BasesfGuardUserGroupForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('sf_guard_user_group[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

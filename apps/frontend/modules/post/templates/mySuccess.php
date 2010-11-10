@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?> 
 <p>
 	<? include_partial('addPost', array('mypage' => true)) ?>
 </p>
@@ -15,7 +14,7 @@
                     <p><b><?echo __("Теперь ты можешь")?>:</b></p>
                     <ol>
                         <li style="margin-left:20px; list-style-type:decimal;"><p><?echo link_to(__("Почитать"), "post/new")." ".__("что пишет народ, покомментировать. Настроение поднимется гарантированно!")?></p></li>
-                        <li style="margin-left:20px; list-style-type:decimal;"><p><?echo __("Рассказать шутки или показать сиськи.")?></p></li>
+                        <li style="margin-left:20px; list-style-type:decimal;"><p><?echo __("Рассказать нам, как у тебя дела и как у тебя настроение. Нам правда интересно!")?></p></li>
                     </ol>
                 </div>
             </div>

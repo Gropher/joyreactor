@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?> 
 <? if($sf_user->isAuthenticated()): ?>
     <? include_partial('post/addPost', array('noajax' => true, 'tag' => '#'.$blog->getTag(ESC_RAW).' ')) ?>
 <? endif; ?>

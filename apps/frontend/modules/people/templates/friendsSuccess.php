@@ -1,5 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?>
-
 <? if($sf_user->isAuthenticated() && $user == $sf_user->getGuardUser()): ?>
     <h1><? echo __('Мои друзья') ?></h1>
     <? include_partial('global/myLeftMenu') ?>

@@ -1,4 +1,4 @@
-<? use_helper('Javascript', 'Text', 'Parse'); ?> 
+<? use_helper('Text', 'Parse'); ?> 
 <div id="comment<? echo $comment->getId() ?>">
         <nobr><? echo $comment->getCreatedAt().' GMT' ?></nobr>
     <? echo link_to($comment->getUser()->getUsername().':', 'user/'.$comment->getUser()->getUsername(),'absolute=true') ?>

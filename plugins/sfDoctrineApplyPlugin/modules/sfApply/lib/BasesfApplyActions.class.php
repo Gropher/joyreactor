@@ -29,19 +29,20 @@ class BasesfApplyActions extends sfActions
         {
           // Create the mailer and message objects
           $mailer = $this->getMailer();
-          $message = new Swift_Message(
-            sfConfig::get('app_sfApplyPlugin_apply_subject',
-              "Активация аккаунта на сайте " . $request->getHost()));
          
           // Render message parts
           $profile = $this->form->getObject();
           $mailContext = array('name' => $profile->getFullname(),
             'validate' => $profile->getValidate(), 'partnerId' => $this->partnerId);
-          $message->attach(new Swift_Message_Part($this->getPartial('sfApply/sendValidateNew', $mailContext), 'text/html'));
-          $message->attach(new Swift_Message_Part($this->getPartial('sfApply/sendValidateNewText', $mailContext), 'text/plain'));
-          $address = $this->getFromAddress();
-          $mailer->send($message, $profile->getEmail(), $address);
-          $mailer->disconnect();
+
+          $message = Swift_Message::newInstance();
+          $from = sfConfig::get('app_sfApplyPlugin_from');
+          $message->setFrom($from['email'], $from['fullname']);
+          $message->setTo($profile->getEmail(), $profile->getUser()->getUsername());
+          $message->setSubject(sfConfig::get('app_sfApplyPlugin_apply_subject', "Активация аккаунта на сайте " . $request->getHost()));
+          $message->setBody($this->getPartial('sfApply/sendValidateNew', $mailContext), 'text/html');
+          $message->addPart($this->getPartial('sfApply/sendValidateNewText', $mailContext), 'text/plain');
+          $mailer->send($message);
           return 'After';
         }
         catch (Exception $e)
@@ -66,9 +67,6 @@ class BasesfApplyActions extends sfActions
         {
           // Create the mailer and message objects
           $mailer = $this->getMailer();
-          $message = new Swift_Message(
-            sfConfig::get('app_sfApplyPlugin_apply_subject',
-              "Активация аккаунта на сайте " . $request->getHost()));
 
           // Render message parts
           $profile = $user->getProfile();
@@ -76,11 +74,15 @@ class BasesfApplyActions extends sfActions
           $profile->save();
           $mailContext = array('name' => $profile->getFullname(),
             'validate' => $profile->getValidate());
-          $message->attach(new Swift_Message_Part($this->getPartial('sfApply/sendValidateNew', $mailContext), 'text/html'));
-          $message->attach(new Swift_Message_Part($this->getPartial('sfApply/sendValidateNewText', $mailContext), 'text/plain'));
-          $address = $this->getFromAddress();
-          $mailer->send($message, $profile->getEmail(), $address);
-          $mailer->disconnect();
+
+          $message = Swift_Message::newInstance();
+          $from = sfConfig::get('app_sfApplyPlugin_from');
+          $message->setFrom($from['email'], $from['fullname']);
+          $message->setTo($profile->getEmail(), $profile->getUser()->getUsername());
+          $message->setSubject(sfConfig::get('app_sfApplyPlugin_apply_subject', "Активация аккаунта на сайте " . $request->getHost()));
+          $message->setBody($this->getPartial('sfApply/sendValidateNew', $mailContext), 'text/html');
+          $message->addPart($this->getPartial('sfApply/sendValidateNewText', $mailContext), 'text/plain');
+          $mailer->send($message);
           return 'After';
         }
         catch (Exception $e)
@@ -129,29 +131,20 @@ class BasesfApplyActions extends sfActions
     $profile->save();
     // Create the mailer and message objects
     $mailer = $this->getMailer();
-    $message = new Swift_Message(
-      sfConfig::get('app_sfApplyPlugin_reset_subject',"Изменение пароля на сайте " . 
-        $this->getRequest()->getHost()));
+
     // Render message parts
     $mailContext = array('name' => $profile->getFullname(),
       'validate' => $profile->getValidate());
-    $message->attach(new Swift_Message_Part($this->getPartial('sfApply/sendValidateReset', $mailContext), 'text/html'));
-    $message->attach(new Swift_Message_Part($this->getPartial('sfApply/sendValidateResetText', $mailContext), 'text/plain'));
-    $address = $this->getFromAddress();
-    $mailer->send($message, $profile->getEmail(), $this->getFromAddress());
-    $mailer->disconnect();
-    return 'After';
-  }
 
-  protected function getFromAddress()
-  {
-    $from = sfConfig::get('app_sfApplyPlugin_from', false);
-    if (!$from)
-    {
-      throw new Exception('app_sfApplyPlugin_from is not set');
-    }
-    $address = new Swift_Address($from['email'], $from['fullname']);
-    return $address;
+    $message = Swift_Message::newInstance();
+    $from = sfConfig::get('app_sfApplyPlugin_from');
+    $message->setFrom($from['email'], $from['fullname']);
+    $message->setTo($profile->getEmail(), $profile->getUser()->getUsername());
+    $message->setSubject(sfConfig::get('app_sfApplyPlugin_reset_subject',"Изменение пароля на сайте " . $this->getRequest()->getHost()));
+    $message->setBody($this->getPartial('sfApply/sendValidateReset', $mailContext), 'text/html');
+    $message->addPart($this->getPartial('sfApply/sendValidateResetText', $mailContext), 'text/plain');
+    $mailer->send($message);
+    return 'After';
   }
 
   public function executeConfirm(sfRequest $request)
@@ -284,47 +277,6 @@ class BasesfApplyActions extends sfActions
     {
       return sfView::NONE;
     }
-  }
-
-  // There's a lot here. Symfony could benefit from a standard convenience
-  // class with a method like this one.
-  protected function getMailer()
-  {
-    $type = sfConfig::get('app_sfApplyPlugin_mailer_type', 'NativeMail');
-    $class = 'Swift_Connection_' . $type;
-    $connection = new $class;
-    if ($type === 'SMTP')
-    {
-      $encryption = sfConfig::get('app_sfApplyPlugin_mailer_smtp_encryption', false);
-      if ($encryption === 'tls')
-      {
-        $encryption = Swift_Connection_SMTP::ENC_TLS;
-      }
-      elseif($encryption === 'ssl')
-      {
-      	$encryption = Swift_Connection_SMTP::ENC_SSL;
-      }
-      else
-      {
-        $encryption = null;
-      }
-      $connection = new Swift_Connection_SMTP(
-        sfConfig::get('app_sfApplyPlugin_mailer_host', null),
-        sfConfig::get('app_sfApplyPlugin_mailer_port', null),
-        $encryption);
-    }
-    $username = sfConfig::get('app_sfApplyPlugin_mailer_smtp_username', false);
-    $password = sfConfig::get('app_sfApplyPlugin_mailer_smtp_password', false);
-    if ($username !== false)
-    {
-      $connection->setUsername($username);
-    }
-    if ($password !== false)
-    {
-      $connection->setPassword($password);
-    }
-    $mailer = new Swift($connection);
-    return $mailer;
   }
 
   // A convenience method to instantiate a form of the
