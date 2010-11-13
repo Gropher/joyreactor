@@ -32,8 +32,9 @@ all:
       extra_parameters_as_query_string: true
   mailer:
     param:
+      delivery_strategy: realtime
       transport:
-        class: Swift_MailTransport
+        class: Swift_SmtpTransport
         param:
           host:       smtp.gmail.com
           port:       465
