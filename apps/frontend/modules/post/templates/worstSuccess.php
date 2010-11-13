@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?> 
 <h2><? echo __('Худшие записи') ?></h2>
 <div id="post_list">
     <? include_partial('postList', array('posts' => Post::getWorstLine($sf_request->getParameter('page')))); ?>

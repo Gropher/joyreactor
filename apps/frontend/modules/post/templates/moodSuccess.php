@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?> 
 <h2><? echo $title ?></h2>
 <div id="post_list">
     <? include_partial('postList', array('posts' => Post::getMoodLine($sf_request->getParameter('mood'), $sf_request->getParameter('page')))); ?>

@@ -1,4 +1,3 @@
-<? use_helper('Javascript') ?> 
 <? if($itemsCount): ?>
 <div id="Pagination" class="pagination">
         <?

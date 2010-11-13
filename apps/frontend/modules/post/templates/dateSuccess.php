@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?> 
 <!--<?echo link_to(__('Главная'),'post/index')?>&nbsp;|&nbsp;<b><?echo __('Лучшее')?></b></br></br>-->
 <h2><? echo __('Записи за ').strftime('%d %B %Y, %A', strtotime($sf_request->getParameter('date'))) ?></h2>
 <div id="post_list">

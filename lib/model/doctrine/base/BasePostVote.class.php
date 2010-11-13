@@ -14,10 +14,27 @@
  * @property sfGuardUser $User
  * @property Post $Post
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer     getId()      Returns the current record's "id" value
+ * @method integer     getUserId()  Returns the current record's "user_id" value
+ * @method integer     getPostId()  Returns the current record's "post_id" value
+ * @method string      getComment() Returns the current record's "comment" value
+ * @method integer     getPower()   Returns the current record's "power" value
+ * @method boolean     getIsNew()   Returns the current record's "isNew" value
+ * @method sfGuardUser getUser()    Returns the current record's "User" value
+ * @method Post        getPost()    Returns the current record's "Post" value
+ * @method PostVote    setId()      Sets the current record's "id" value
+ * @method PostVote    setUserId()  Sets the current record's "user_id" value
+ * @method PostVote    setPostId()  Sets the current record's "post_id" value
+ * @method PostVote    setComment() Sets the current record's "comment" value
+ * @method PostVote    setPower()   Sets the current record's "power" value
+ * @method PostVote    setIsNew()   Sets the current record's "isNew" value
+ * @method PostVote    setUser()    Sets the current record's "User" value
+ * @method PostVote    setPost()    Sets the current record's "Post" value
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasePostVote extends sfDoctrineRecord
 {
@@ -28,27 +45,27 @@ abstract class BasePostVote extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('user_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('post_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('comment', 'string', 2147483647, array(
              'type' => 'string',
-             'length' => '2147483647',
+             'length' => 2147483647,
              ));
         $this->hasColumn('power', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
              'default' => 0,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('isNew', 'boolean', null, array(
              'type' => 'boolean',
@@ -98,6 +115,7 @@ abstract class BasePostVote extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasOne('sfGuardUser as User', array(
              'local' => 'user_id',
              'foreign' => 'id'));

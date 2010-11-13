@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?> 
 <!--<b><?echo __('Главная')?></b>&nbsp;|&nbsp;<?echo link_to(__('Лучшее'),'post/best')?><br/>-->
 <? if(!$sf_user->isAuthenticated()): ?>
     <? include_partial('global/welcome', array('form' => $form)) ?>

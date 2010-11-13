@@ -27,10 +27,53 @@
  * @property boolean $isNew
  * @property sfGuardUser $User
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer            getId()                  Returns the current record's "id" value
+ * @method integer            getUserId()              Returns the current record's "user_id" value
+ * @method string             getEmail()               Returns the current record's "email" value
+ * @method string             getFullname()            Returns the current record's "fullname" value
+ * @method string             getIcq()                 Returns the current record's "icq" value
+ * @method string             getJabber()              Returns the current record's "jabber" value
+ * @method boolean            getCommentsToJabber()    Returns the current record's "commentsToJabber" value
+ * @method boolean            getCommentsToIcq()       Returns the current record's "commentsToIcq" value
+ * @method boolean            getCommentsToMail()      Returns the current record's "commentsToMail" value
+ * @method boolean            getCollectJabberStatus() Returns the current record's "collectJabberStatus" value
+ * @method boolean            getCollectIcqStatus()    Returns the current record's "collectIcqStatus" value
+ * @method boolean            getUseCrossposting()     Returns the current record's "useCrossposting" value
+ * @method boolean            getNotifyFriendline()    Returns the current record's "notifyFriendline" value
+ * @method string             getLjlogin()             Returns the current record's "ljlogin" value
+ * @method string             getLjpassword()          Returns the current record's "ljpassword" value
+ * @method string             getAvatar()              Returns the current record's "avatar" value
+ * @method string             getAbout()               Returns the current record's "about" value
+ * @method float              getRating()              Returns the current record's "rating" value
+ * @method string             getValidate()            Returns the current record's "validate" value
+ * @method boolean            getIsNew()               Returns the current record's "isNew" value
+ * @method sfGuardUser        getUser()                Returns the current record's "User" value
+ * @method sfGuardUserProfile setId()                  Sets the current record's "id" value
+ * @method sfGuardUserProfile setUserId()              Sets the current record's "user_id" value
+ * @method sfGuardUserProfile setEmail()               Sets the current record's "email" value
+ * @method sfGuardUserProfile setFullname()            Sets the current record's "fullname" value
+ * @method sfGuardUserProfile setIcq()                 Sets the current record's "icq" value
+ * @method sfGuardUserProfile setJabber()              Sets the current record's "jabber" value
+ * @method sfGuardUserProfile setCommentsToJabber()    Sets the current record's "commentsToJabber" value
+ * @method sfGuardUserProfile setCommentsToIcq()       Sets the current record's "commentsToIcq" value
+ * @method sfGuardUserProfile setCommentsToMail()      Sets the current record's "commentsToMail" value
+ * @method sfGuardUserProfile setCollectJabberStatus() Sets the current record's "collectJabberStatus" value
+ * @method sfGuardUserProfile setCollectIcqStatus()    Sets the current record's "collectIcqStatus" value
+ * @method sfGuardUserProfile setUseCrossposting()     Sets the current record's "useCrossposting" value
+ * @method sfGuardUserProfile setNotifyFriendline()    Sets the current record's "notifyFriendline" value
+ * @method sfGuardUserProfile setLjlogin()             Sets the current record's "ljlogin" value
+ * @method sfGuardUserProfile setLjpassword()          Sets the current record's "ljpassword" value
+ * @method sfGuardUserProfile setAvatar()              Sets the current record's "avatar" value
+ * @method sfGuardUserProfile setAbout()               Sets the current record's "about" value
+ * @method sfGuardUserProfile setRating()              Sets the current record's "rating" value
+ * @method sfGuardUserProfile setValidate()            Sets the current record's "validate" value
+ * @method sfGuardUserProfile setIsNew()               Sets the current record's "isNew" value
+ * @method sfGuardUserProfile setUser()                Sets the current record's "User" value
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasesfGuardUserProfile extends sfDoctrineRecord
 {
@@ -41,28 +84,28 @@ abstract class BasesfGuardUserProfile extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('user_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('email', 'string', 80, array(
              'type' => 'string',
-             'length' => '80',
+             'length' => 80,
              ));
         $this->hasColumn('fullname', 'string', 80, array(
              'type' => 'string',
-             'length' => '80',
+             'length' => 80,
              ));
         $this->hasColumn('icq', 'string', 15, array(
              'type' => 'string',
-             'length' => '15',
+             'length' => 15,
              ));
         $this->hasColumn('jabber', 'string', 80, array(
              'type' => 'string',
-             'length' => '80',
+             'length' => 80,
              ));
         $this->hasColumn('commentsToJabber', 'boolean', null, array(
              'type' => 'boolean',
@@ -101,19 +144,19 @@ abstract class BasesfGuardUserProfile extends sfDoctrineRecord
              ));
         $this->hasColumn('ljlogin', 'string', 128, array(
              'type' => 'string',
-             'length' => '128',
+             'length' => 128,
              ));
         $this->hasColumn('ljpassword', 'string', 128, array(
              'type' => 'string',
-             'length' => '128',
+             'length' => 128,
              ));
         $this->hasColumn('avatar', 'string', 128, array(
              'type' => 'string',
-             'length' => '128',
+             'length' => 128,
              ));
         $this->hasColumn('about', 'string', 65536, array(
              'type' => 'string',
-             'length' => '65536',
+             'length' => 65536,
              ));
         $this->hasColumn('rating', 'float', null, array(
              'type' => 'float',
@@ -122,7 +165,7 @@ abstract class BasesfGuardUserProfile extends sfDoctrineRecord
              ));
         $this->hasColumn('validate', 'string', 17, array(
              'type' => 'string',
-             'length' => '17',
+             'length' => 17,
              ));
         $this->hasColumn('isNew', 'boolean', null, array(
              'type' => 'boolean',
@@ -200,6 +243,7 @@ abstract class BasesfGuardUserProfile extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasOne('sfGuardUser as User', array(
              'local' => 'user_id',
              'foreign' => 'id',

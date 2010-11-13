@@ -1,4 +1,4 @@
-<? use_helper('Javascript', 'Text', 'Form'); ?>
+<? use_helper('Text'); ?>
 <? if(!isset($parent))$parent = '' ?>
 <? echo form_tag('post_comment/create?post_id='.$post->getId(), array('id' => 'add_comment_form'.$post->getId()."_".$parent, 'method' => 'post', 'onkeypress' => "ctrlEnter(event, this);", 'onsubmit' => "return AIM.submit(this, {'onStart' : startAddComment".$post->getId()."_".$parent.", 'onComplete' : completeAddComment".$post->getId()."_".$parent."})") ) ?>
     <? if($parent): ?>

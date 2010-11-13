@@ -13,10 +13,25 @@
  * @property Doctrine_Collection $Users
  * @property Doctrine_Collection $sfGuardUserPermission
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer             getId()                     Returns the current record's "id" value
+ * @method string              getName()                   Returns the current record's "name" value
+ * @method string              getDescription()            Returns the current record's "description" value
+ * @method Doctrine_Collection getGroups()                 Returns the current record's "Groups" collection
+ * @method Doctrine_Collection getSfGuardGroupPermission() Returns the current record's "sfGuardGroupPermission" collection
+ * @method Doctrine_Collection getUsers()                  Returns the current record's "Users" collection
+ * @method Doctrine_Collection getSfGuardUserPermission()  Returns the current record's "sfGuardUserPermission" collection
+ * @method sfGuardPermission   setId()                     Sets the current record's "id" value
+ * @method sfGuardPermission   setName()                   Sets the current record's "name" value
+ * @method sfGuardPermission   setDescription()            Sets the current record's "description" value
+ * @method sfGuardPermission   setGroups()                 Sets the current record's "Groups" collection
+ * @method sfGuardPermission   setSfGuardGroupPermission() Sets the current record's "sfGuardGroupPermission" collection
+ * @method sfGuardPermission   setUsers()                  Sets the current record's "Users" collection
+ * @method sfGuardPermission   setSfGuardUserPermission()  Sets the current record's "sfGuardUserPermission" collection
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasesfGuardPermission extends sfDoctrineRecord
 {
@@ -27,16 +42,16 @@ abstract class BasesfGuardPermission extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('name', 'string', 255, array(
              'type' => 'string',
              'unique' => true,
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('description', 'string', 1000, array(
              'type' => 'string',
-             'length' => '1000',
+             'length' => 1000,
              ));
 
         $this->option('type', 'MYISAM');
@@ -46,6 +61,7 @@ abstract class BasesfGuardPermission extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasMany('sfGuardGroup as Groups', array(
              'refClass' => 'sfGuardGroupPermission',
              'local' => 'permission_id',
@@ -64,7 +80,8 @@ abstract class BasesfGuardPermission extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'permission_id'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable();
+        $timestampable0 = new Doctrine_Template_Timestampable(array(
+             ));
         $this->actAs($timestampable0);
     }
 }

@@ -10,6 +10,6 @@ all:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: 'mysql:host=localhost;dbname=empaty'
+      dsn: 'mysql:host=localhost;dbname=empaty_test'
       username: empaty
       password: empaty

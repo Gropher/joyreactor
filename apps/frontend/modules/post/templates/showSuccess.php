@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?>
 <?if (!isset($show_comments)) $show_comments = 0 ?>
 <?if (!isset($showAddComment)) $showAddComment = 0 ?>
 <h1 class="post_description"><?echo $description?></h1>

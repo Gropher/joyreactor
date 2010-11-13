@@ -15,10 +15,29 @@
  * @property Doctrine_Collection $InFavorite
  * @property Doctrine_Collection $Posts
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer             getId()         Returns the current record's "id" value
+ * @method integer             getUserId()     Returns the current record's "user_id" value
+ * @method string              getName()       Returns the current record's "name" value
+ * @method string              getTag()        Returns the current record's "tag" value
+ * @method integer             getRating()     Returns the current record's "rating" value
+ * @method sfGuardUser         getUser()       Returns the current record's "User" value
+ * @method Doctrine_Collection getBlogPosts()  Returns the current record's "BlogPosts" collection
+ * @method Doctrine_Collection getInFavorite() Returns the current record's "InFavorite" collection
+ * @method Doctrine_Collection getPosts()      Returns the current record's "Posts" collection
+ * @method Blog                setId()         Sets the current record's "id" value
+ * @method Blog                setUserId()     Sets the current record's "user_id" value
+ * @method Blog                setName()       Sets the current record's "name" value
+ * @method Blog                setTag()        Sets the current record's "tag" value
+ * @method Blog                setRating()     Sets the current record's "rating" value
+ * @method Blog                setUser()       Sets the current record's "User" value
+ * @method Blog                setBlogPosts()  Sets the current record's "BlogPosts" collection
+ * @method Blog                setInFavorite() Sets the current record's "InFavorite" collection
+ * @method Blog                setPosts()      Sets the current record's "Posts" collection
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseBlog extends sfDoctrineRecord
 {
@@ -29,29 +48,29 @@ abstract class BaseBlog extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('user_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('name', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('tag', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
              'default' => 'dev',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('rating', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
              'default' => 0,
-             'length' => '4',
+             'length' => 4,
              ));
 
 
@@ -97,6 +116,7 @@ abstract class BaseBlog extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasOne('sfGuardUser as User', array(
              'local' => 'user_id',
              'foreign' => 'id',

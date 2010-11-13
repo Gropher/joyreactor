@@ -30,10 +30,59 @@
  * @property Doctrine_Collection $Posts
  * @property Doctrine_Collection $Messages
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer             getId()                    Returns the current record's "id" value
+ * @method string              getUsername()              Returns the current record's "username" value
+ * @method string              getAlgorithm()             Returns the current record's "algorithm" value
+ * @method string              getSalt()                  Returns the current record's "salt" value
+ * @method string              getPassword()              Returns the current record's "password" value
+ * @method boolean             getIsActive()              Returns the current record's "is_active" value
+ * @method boolean             getIsSuperAdmin()          Returns the current record's "is_super_admin" value
+ * @method timestamp           getLastLogin()             Returns the current record's "last_login" value
+ * @method Doctrine_Collection getGroups()                Returns the current record's "groups" collection
+ * @method Doctrine_Collection getPermissions()           Returns the current record's "permissions" collection
+ * @method Doctrine_Collection getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
+ * @method Doctrine_Collection getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
+ * @method sfGuardRememberKey  getRememberKeys()          Returns the current record's "RememberKeys" value
+ * @method sfGuardUserProfile  getProfile()               Returns the current record's "Profile" value
+ * @method Doctrine_Collection getCookies()               Returns the current record's "Cookies" collection
+ * @method Doctrine_Collection getPostComments()          Returns the current record's "PostComments" collection
+ * @method Doctrine_Collection getPostVotes()             Returns the current record's "PostVotes" collection
+ * @method Doctrine_Collection getFriends()               Returns the current record's "Friends" collection
+ * @method Doctrine_Collection getInFriends()             Returns the current record's "InFriends" collection
+ * @method Doctrine_Collection getBlogs()                 Returns the current record's "Blogs" collection
+ * @method Doctrine_Collection getFavoritePosts()         Returns the current record's "FavoritePosts" collection
+ * @method Doctrine_Collection getFavoriteBlogs()         Returns the current record's "FavoriteBlogs" collection
+ * @method Doctrine_Collection getPosts()                 Returns the current record's "Posts" collection
+ * @method Doctrine_Collection getMessages()              Returns the current record's "Messages" collection
+ * @method sfGuardUser         setId()                    Sets the current record's "id" value
+ * @method sfGuardUser         setUsername()              Sets the current record's "username" value
+ * @method sfGuardUser         setAlgorithm()             Sets the current record's "algorithm" value
+ * @method sfGuardUser         setSalt()                  Sets the current record's "salt" value
+ * @method sfGuardUser         setPassword()              Sets the current record's "password" value
+ * @method sfGuardUser         setIsActive()              Sets the current record's "is_active" value
+ * @method sfGuardUser         setIsSuperAdmin()          Sets the current record's "is_super_admin" value
+ * @method sfGuardUser         setLastLogin()             Sets the current record's "last_login" value
+ * @method sfGuardUser         setGroups()                Sets the current record's "groups" collection
+ * @method sfGuardUser         setPermissions()           Sets the current record's "permissions" collection
+ * @method sfGuardUser         setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
+ * @method sfGuardUser         setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
+ * @method sfGuardUser         setRememberKeys()          Sets the current record's "RememberKeys" value
+ * @method sfGuardUser         setProfile()               Sets the current record's "Profile" value
+ * @method sfGuardUser         setCookies()               Sets the current record's "Cookies" collection
+ * @method sfGuardUser         setPostComments()          Sets the current record's "PostComments" collection
+ * @method sfGuardUser         setPostVotes()             Sets the current record's "PostVotes" collection
+ * @method sfGuardUser         setFriends()               Sets the current record's "Friends" collection
+ * @method sfGuardUser         setInFriends()             Sets the current record's "InFriends" collection
+ * @method sfGuardUser         setBlogs()                 Sets the current record's "Blogs" collection
+ * @method sfGuardUser         setFavoritePosts()         Sets the current record's "FavoritePosts" collection
+ * @method sfGuardUser         setFavoriteBlogs()         Sets the current record's "FavoriteBlogs" collection
+ * @method sfGuardUser         setPosts()                 Sets the current record's "Posts" collection
+ * @method sfGuardUser         setMessages()              Sets the current record's "Messages" collection
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasesfGuardUser extends sfDoctrineRecord
 {
@@ -44,31 +93,31 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('username', 'string', 128, array(
              'type' => 'string',
              'notnull' => true,
              'unique' => true,
-             'length' => '128',
+             'length' => 128,
              ));
         $this->hasColumn('algorithm', 'string', 128, array(
              'type' => 'string',
              'default' => 'sha1',
              'notnull' => true,
-             'length' => '128',
+             'length' => 128,
              ));
         $this->hasColumn('salt', 'string', 128, array(
              'type' => 'string',
-             'length' => '128',
+             'length' => 128,
              ));
         $this->hasColumn('password', 'string', 128, array(
              'type' => 'string',
-             'length' => '128',
+             'length' => 128,
              ));
         $this->hasColumn('is_active', 'boolean', null, array(
              'type' => 'boolean',
-             'default' => '1',
+             'default' => 1,
              ));
         $this->hasColumn('is_super_admin', 'boolean', null, array(
              'type' => 'boolean',
@@ -92,6 +141,7 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasMany('sfGuardGroup as groups', array(
              'refClass' => 'sfGuardUserGroup',
              'local' => 'user_id',
@@ -158,7 +208,8 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'user_id'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable();
+        $timestampable0 = new Doctrine_Template_Timestampable(array(
+             ));
         $this->actAs($timestampable0);
     }
 }

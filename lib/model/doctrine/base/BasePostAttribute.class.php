@@ -13,10 +13,25 @@
  * @property string $comment
  * @property Post $Post
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer       getId()      Returns the current record's "id" value
+ * @method integer       getPostId()  Returns the current record's "post_id" value
+ * @method enum          getType()    Returns the current record's "type" value
+ * @method string        getValue()   Returns the current record's "value" value
+ * @method string        getOrigin()  Returns the current record's "origin" value
+ * @method string        getComment() Returns the current record's "comment" value
+ * @method Post          getPost()    Returns the current record's "Post" value
+ * @method PostAttribute setId()      Sets the current record's "id" value
+ * @method PostAttribute setPostId()  Sets the current record's "post_id" value
+ * @method PostAttribute setType()    Sets the current record's "type" value
+ * @method PostAttribute setValue()   Sets the current record's "value" value
+ * @method PostAttribute setOrigin()  Sets the current record's "origin" value
+ * @method PostAttribute setComment() Sets the current record's "comment" value
+ * @method PostAttribute setPost()    Sets the current record's "Post" value
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasePostAttribute extends sfDoctrineRecord
 {
@@ -27,12 +42,12 @@ abstract class BasePostAttribute extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('post_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('type', 'enum', 10, array(
              'type' => 'enum',
@@ -44,22 +59,22 @@ abstract class BasePostAttribute extends sfDoctrineRecord
               3 => 'video',
              ),
              'notnull' => true,
-             'length' => '10',
+             'length' => 10,
              ));
         $this->hasColumn('value', 'string', 2147483647, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '2147483647',
+             'length' => 2147483647,
              ));
         $this->hasColumn('origin', 'string', 1024, array(
              'type' => 'string',
              'notnull' => true,
              'default' => '',
-             'length' => '1024',
+             'length' => 1024,
              ));
         $this->hasColumn('comment', 'string', 2147483647, array(
              'type' => 'string',
-             'length' => '2147483647',
+             'length' => 2147483647,
              ));
 
 
@@ -98,6 +113,7 @@ abstract class BasePostAttribute extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasOne('Post', array(
              'local' => 'post_id',
              'foreign' => 'id',

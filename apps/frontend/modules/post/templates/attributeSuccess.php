@@ -1,4 +1,4 @@
-<? use_helper('Parse', 'I18N'); ?>
+<? use_helper('Parse'); ?>
 <h1 style="font-size: 11px;"><?echo $description?></h1>
 <? echo image_tag($attr->getValue(), array(
 "alt"=>$attr->getComment(),

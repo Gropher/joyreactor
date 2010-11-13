@@ -1,4 +1,4 @@
-<? use_helper('Javascript', 'Form'); ?>
+<? use_helper('Javascript'); ?>
 <h1>Наши тематические подборки</h1>
 <table>
 <tbody>
@@ -73,4 +73,3 @@
         }
     })
 </script>
-

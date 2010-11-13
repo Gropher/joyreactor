@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?> 
 <h2><? echo __('Лучшие записи') ?></h2>
 <div id="post_list">
     <? include_partial('postList', array('posts' => Post::getBestLine($sf_request->getParameter('page')))); ?>

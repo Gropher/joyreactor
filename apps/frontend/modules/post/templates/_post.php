@@ -1,4 +1,4 @@
-<? use_helper('Javascript', 'Text', 'Form', 'Parse', 'UserTime', 'DeltaCount'); ?>
+<? use_helper('Text', 'Parse', 'UserTime', 'DeltaCount'); ?>
 <?if(!isset($show_comments)) $show_comments=0 ?>
 <?if(!isset($showAddComment)) $showAddComment=0 ?>
 <div class="article post-<? echo $post->getMoodName() ?>">

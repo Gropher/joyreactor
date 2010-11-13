@@ -12,10 +12,23 @@
  * @property string $comment
  * @property Post $Message
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer           getId()         Returns the current record's "id" value
+ * @method integer           getMessageId()  Returns the current record's "message_id" value
+ * @method enum              getType()       Returns the current record's "type" value
+ * @method string            getValue()      Returns the current record's "value" value
+ * @method string            getComment()    Returns the current record's "comment" value
+ * @method Post              getMessage()    Returns the current record's "Message" value
+ * @method MessageAttachment setId()         Sets the current record's "id" value
+ * @method MessageAttachment setMessageId()  Sets the current record's "message_id" value
+ * @method MessageAttachment setType()       Sets the current record's "type" value
+ * @method MessageAttachment setValue()      Sets the current record's "value" value
+ * @method MessageAttachment setComment()    Sets the current record's "comment" value
+ * @method MessageAttachment setMessage()    Sets the current record's "Message" value
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseMessageAttachment extends sfDoctrineRecord
 {
@@ -26,12 +39,12 @@ abstract class BaseMessageAttachment extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('message_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('type', 'enum', 10, array(
              'type' => 'enum',
@@ -43,16 +56,16 @@ abstract class BaseMessageAttachment extends sfDoctrineRecord
               3 => 'video',
              ),
              'notnull' => true,
-             'length' => '10',
+             'length' => 10,
              ));
         $this->hasColumn('value', 'string', 2147483647, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '2147483647',
+             'length' => 2147483647,
              ));
         $this->hasColumn('comment', 'string', 2147483647, array(
              'type' => 'string',
-             'length' => '2147483647',
+             'length' => 2147483647,
              ));
 
 
@@ -91,6 +104,7 @@ abstract class BaseMessageAttachment extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasOne('Post as Message', array(
              'local' => 'message_id',
              'foreign' => 'id',

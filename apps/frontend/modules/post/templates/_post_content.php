@@ -1,4 +1,4 @@
-<? use_helper('Javascript', 'Text', 'Parse'); ?> 
+<? use_helper('Text', 'Parse'); ?> 
 <div>
     <?if($post->getBlogs()->count() != 0):?>
     <span style="display:block; color:#666;">

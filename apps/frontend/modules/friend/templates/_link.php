@@ -1,5 +1,3 @@
-<? use_helper('Javascript'); ?>
-
 <? if($sf_user->isAuthenticated()):  ?>
 	<span id="friend_link">
 		<? if($sf_user->getGuardUser()->hasFriend($user)): ?>

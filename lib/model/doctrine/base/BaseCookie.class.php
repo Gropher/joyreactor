@@ -12,10 +12,23 @@
  * @property timestamp $expires
  * @property sfGuardUser $User
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer     getId()      Returns the current record's "id" value
+ * @method integer     getUserId()  Returns the current record's "user_id" value
+ * @method string      getName()    Returns the current record's "name" value
+ * @method string      getValue()   Returns the current record's "value" value
+ * @method timestamp   getExpires() Returns the current record's "expires" value
+ * @method sfGuardUser getUser()    Returns the current record's "User" value
+ * @method Cookie      setId()      Sets the current record's "id" value
+ * @method Cookie      setUserId()  Sets the current record's "user_id" value
+ * @method Cookie      setName()    Sets the current record's "name" value
+ * @method Cookie      setValue()   Sets the current record's "value" value
+ * @method Cookie      setExpires() Sets the current record's "expires" value
+ * @method Cookie      setUser()    Sets the current record's "User" value
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseCookie extends sfDoctrineRecord
 {
@@ -26,22 +39,22 @@ abstract class BaseCookie extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('user_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('name', 'string', 128, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '128',
+             'length' => 128,
              ));
         $this->hasColumn('value', 'string', 128, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '128',
+             'length' => 128,
              ));
         $this->hasColumn('expires', 'timestamp', null, array(
              'type' => 'timestamp',
@@ -91,6 +104,7 @@ abstract class BaseCookie extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasOne('sfGuardUser as User', array(
              'local' => 'user_id',
              'foreign' => 'id',

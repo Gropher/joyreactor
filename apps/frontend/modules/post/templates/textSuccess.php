@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?> 
 <h2><? echo __('Комиксы, демотиваторы, цитаты') ?></h2>
 <? include_partial('global/paging', array('pageLen' =>sfConfig::get('app_posts_per_page') * 5,
                                           'itemsCount' => Post::getTextLine('count'),

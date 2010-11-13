@@ -1,4 +1,3 @@
-<? use_helper('Javascript'); ?> 
 <h2><? echo __('Записи').' '.$user->getUsername()?></h2>
 <div id="post_list">
     <? include_partial('postList', array('posts' => $user->getLine($sf_request->getParameter('page')))); ?>

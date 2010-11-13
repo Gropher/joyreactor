@@ -12,10 +12,23 @@
  * @property sfGuardUser $User
  * @property Blog $Blog
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer      getId()      Returns the current record's "id" value
+ * @method integer      getUserId()  Returns the current record's "user_id" value
+ * @method integer      getBlogId()  Returns the current record's "blog_id" value
+ * @method integer      getValue()   Returns the current record's "value" value
+ * @method sfGuardUser  getUser()    Returns the current record's "User" value
+ * @method Blog         getBlog()    Returns the current record's "Blog" value
+ * @method FavoriteBlog setId()      Sets the current record's "id" value
+ * @method FavoriteBlog setUserId()  Sets the current record's "user_id" value
+ * @method FavoriteBlog setBlogId()  Sets the current record's "blog_id" value
+ * @method FavoriteBlog setValue()   Sets the current record's "value" value
+ * @method FavoriteBlog setUser()    Sets the current record's "User" value
+ * @method FavoriteBlog setBlog()    Sets the current record's "Blog" value
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseFavoriteBlog extends sfDoctrineRecord
 {
@@ -26,23 +39,23 @@ abstract class BaseFavoriteBlog extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('user_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('blog_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('value', 'integer', 1, array(
              'type' => 'integer',
              'notnull' => true,
-             'default' => '1',
-             'length' => '1',
+             'default' => 1,
+             'length' => 1,
              ));
 
 
@@ -88,6 +101,7 @@ abstract class BaseFavoriteBlog extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasOne('sfGuardUser as User', array(
              'local' => 'user_id',
              'foreign' => 'id',

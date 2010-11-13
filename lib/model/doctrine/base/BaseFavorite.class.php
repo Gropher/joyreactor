@@ -11,10 +11,21 @@
  * @property sfGuardUser $User
  * @property Post $Post
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 5845 2009-06-09 07:36:57Z jwage $
+ * @method integer     getId()      Returns the current record's "id" value
+ * @method integer     getUserId()  Returns the current record's "user_id" value
+ * @method integer     getPostId()  Returns the current record's "post_id" value
+ * @method sfGuardUser getUser()    Returns the current record's "User" value
+ * @method Post        getPost()    Returns the current record's "Post" value
+ * @method Favorite    setId()      Sets the current record's "id" value
+ * @method Favorite    setUserId()  Sets the current record's "user_id" value
+ * @method Favorite    setPostId()  Sets the current record's "post_id" value
+ * @method Favorite    setUser()    Sets the current record's "User" value
+ * @method Favorite    setPost()    Sets the current record's "Post" value
+ * 
+ * @package    Empaty
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseFavorite extends sfDoctrineRecord
 {
@@ -25,17 +36,17 @@ abstract class BaseFavorite extends sfDoctrineRecord
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('user_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('post_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
 
 
@@ -74,6 +85,7 @@ abstract class BaseFavorite extends sfDoctrineRecord
 
     public function setUp()
     {
+        parent::setUp();
         $this->hasOne('sfGuardUser as User', array(
              'local' => 'user_id',
              'foreign' => 'id',

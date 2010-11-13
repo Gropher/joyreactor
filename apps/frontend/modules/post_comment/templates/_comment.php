@@ -1,4 +1,4 @@
-<? use_helper('Javascript', 'Text', 'Parse', 'UserTime', 'DeltaCount'); ?>
+<? use_helper('Text', 'Parse', 'UserTime', 'DeltaCount'); ?>
 <div name="comment<? echo $comment->getId() ?>" id="comment<? echo $comment->getId() ?>" class="comment <?if(isNew($sf_user, $comment->getCreatedAt(), "comments".$comment->getPost()->getId()."Time")) echo ' commentnew'?>">
     <? if(!isset($level)) $level = 0; ?>
     <div class="avatar"><img src="/images/comments.gif" title="<? echo user_time($comment->getCreatedAt()) ?>" /></div>

@@ -1,4 +1,3 @@
-<? use_helper('Javascript', 'Form'); ?>
 <h1><? echo __('Мой профиль') ?></h1>
 <div id="user_profile">
     <? include_partial('userProfile', array('user' => $user)); ?>
