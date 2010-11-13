@@ -10,29 +10,38 @@
  * @property string $name
  * @property string $tag
  * @property integer $rating
+ * @property integer $best
+ * @property integer $count
+ * @property string $description
  * @property sfGuardUser $User
  * @property Doctrine_Collection $BlogPosts
  * @property Doctrine_Collection $InFavorite
  * @property Doctrine_Collection $Posts
  * 
- * @method integer             getId()         Returns the current record's "id" value
- * @method integer             getUserId()     Returns the current record's "user_id" value
- * @method string              getName()       Returns the current record's "name" value
- * @method string              getTag()        Returns the current record's "tag" value
- * @method integer             getRating()     Returns the current record's "rating" value
- * @method sfGuardUser         getUser()       Returns the current record's "User" value
- * @method Doctrine_Collection getBlogPosts()  Returns the current record's "BlogPosts" collection
- * @method Doctrine_Collection getInFavorite() Returns the current record's "InFavorite" collection
- * @method Doctrine_Collection getPosts()      Returns the current record's "Posts" collection
- * @method Blog                setId()         Sets the current record's "id" value
- * @method Blog                setUserId()     Sets the current record's "user_id" value
- * @method Blog                setName()       Sets the current record's "name" value
- * @method Blog                setTag()        Sets the current record's "tag" value
- * @method Blog                setRating()     Sets the current record's "rating" value
- * @method Blog                setUser()       Sets the current record's "User" value
- * @method Blog                setBlogPosts()  Sets the current record's "BlogPosts" collection
- * @method Blog                setInFavorite() Sets the current record's "InFavorite" collection
- * @method Blog                setPosts()      Sets the current record's "Posts" collection
+ * @method integer             getId()          Returns the current record's "id" value
+ * @method integer             getUserId()      Returns the current record's "user_id" value
+ * @method string              getName()        Returns the current record's "name" value
+ * @method string              getTag()         Returns the current record's "tag" value
+ * @method integer             getRating()      Returns the current record's "rating" value
+ * @method integer             getBest()        Returns the current record's "best" value
+ * @method integer             getCount()       Returns the current record's "count" value
+ * @method string              getDescription() Returns the current record's "description" value
+ * @method sfGuardUser         getUser()        Returns the current record's "User" value
+ * @method Doctrine_Collection getBlogPosts()   Returns the current record's "BlogPosts" collection
+ * @method Doctrine_Collection getInFavorite()  Returns the current record's "InFavorite" collection
+ * @method Doctrine_Collection getPosts()       Returns the current record's "Posts" collection
+ * @method Blog                setId()          Sets the current record's "id" value
+ * @method Blog                setUserId()      Sets the current record's "user_id" value
+ * @method Blog                setName()        Sets the current record's "name" value
+ * @method Blog                setTag()         Sets the current record's "tag" value
+ * @method Blog                setRating()      Sets the current record's "rating" value
+ * @method Blog                setBest()        Sets the current record's "best" value
+ * @method Blog                setCount()       Sets the current record's "count" value
+ * @method Blog                setDescription() Sets the current record's "description" value
+ * @method Blog                setUser()        Sets the current record's "User" value
+ * @method Blog                setBlogPosts()   Sets the current record's "BlogPosts" collection
+ * @method Blog                setInFavorite()  Sets the current record's "InFavorite" collection
+ * @method Blog                setPosts()       Sets the current record's "Posts" collection
  * 
  * @package    Empaty
  * @subpackage model
@@ -71,6 +80,22 @@ abstract class BaseBlog extends sfDoctrineRecord
              'notnull' => true,
              'default' => 0,
              'length' => 4,
+             ));
+        $this->hasColumn('best', 'integer', 1, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'default' => 0,
+             'length' => 1,
+             ));
+        $this->hasColumn('count', 'integer', 4, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'default' => 0,
+             'length' => 4,
+             ));
+        $this->hasColumn('description', 'string', 4096, array(
+             'type' => 'string',
+             'length' => 4096,
              ));
 
 

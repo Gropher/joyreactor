@@ -46,7 +46,6 @@ class Blog extends BaseBlog {
      * @return array список тэгов
      */
     public static function getTags() {
-        sfApplicationConfiguration::getActive()->loadHelpers(array('I18N'));
         $query = Doctrine_Query::create()
             ->select('b.tag, count(p.id) cnt')
             ->from('Blog b, b.Posts p')

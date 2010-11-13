@@ -439,6 +439,16 @@ Blog:
       type: integer(4)
       notnull: true
       default: 0
+    best:
+      type: integer(1)
+      notnull: true
+      default: 0
+    count:
+      type: integer(4)
+      notnull: true
+      default: 0
+    description:
+      type: string(4096)
   indexes:
     user_id:
       fields: [user_id]
@@ -455,6 +465,10 @@ Blog:
     updated_at:
       fields: [updated_at]
       type: ~
+    best:
+      fields: [best, count]
+    count:
+      fields: [count]
   relations:
     User:
       class: sfGuardUser

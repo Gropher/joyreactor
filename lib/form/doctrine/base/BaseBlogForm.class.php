@@ -15,25 +15,31 @@ abstract class BaseBlogForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'         => new sfWidgetFormInputHidden(),
-      'user_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => false)),
-      'name'       => new sfWidgetFormInputText(),
-      'tag'        => new sfWidgetFormInputText(),
-      'rating'     => new sfWidgetFormInputText(),
-      'created_at' => new sfWidgetFormDateTime(),
-      'updated_at' => new sfWidgetFormDateTime(),
-      'posts_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Post')),
+      'id'          => new sfWidgetFormInputHidden(),
+      'user_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => false)),
+      'name'        => new sfWidgetFormInputText(),
+      'tag'         => new sfWidgetFormInputText(),
+      'rating'      => new sfWidgetFormInputText(),
+      'best'        => new sfWidgetFormInputText(),
+      'count'       => new sfWidgetFormInputText(),
+      'description' => new sfWidgetFormTextarea(),
+      'created_at'  => new sfWidgetFormDateTime(),
+      'updated_at'  => new sfWidgetFormDateTime(),
+      'posts_list'  => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Post')),
     ));
 
     $this->setValidators(array(
-      'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'user_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'))),
-      'name'       => new sfValidatorString(array('max_length' => 255)),
-      'tag'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'rating'     => new sfValidatorInteger(array('required' => false)),
-      'created_at' => new sfValidatorDateTime(),
-      'updated_at' => new sfValidatorDateTime(),
-      'posts_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Post', 'required' => false)),
+      'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'user_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'))),
+      'name'        => new sfValidatorString(array('max_length' => 255)),
+      'tag'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'rating'      => new sfValidatorInteger(array('required' => false)),
+      'best'        => new sfValidatorInteger(array('required' => false)),
+      'count'       => new sfValidatorInteger(array('required' => false)),
+      'description' => new sfValidatorString(array('max_length' => 4096, 'required' => false)),
+      'created_at'  => new sfValidatorDateTime(),
+      'updated_at'  => new sfValidatorDateTime(),
+      'posts_list'  => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Post', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('blog[%s]');

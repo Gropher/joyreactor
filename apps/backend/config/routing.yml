@@ -1,3 +1,12 @@
+blog:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Blog
+    module:               Blog
+    prefix_path:          /Blog
+    column:               id
+    with_wildcard_routes: true
+
 post_comment:
   class: sfDoctrineRouteCollection
   options:
