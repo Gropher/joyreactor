@@ -6,18 +6,18 @@ prod:
 dev:
   .settings:
     error_reporting:        <? echo (E_ALL | E_STRICT)."\n" ?>
-    web_debug:              on
-    cache:                  off
+    web_debug:              true
+    cache:                  false
     no_script_name:         false
-    etag:                   off
+    etag:                   false
 
 test:
   .settings:
     error_reporting:        <? echo ((E_ALL | E_STRICT) ^ E_NOTICE)."\n" ?>
-    cache:                  off
-    web_debug:              off
-    no_script_name:         off
-    etag:                   off
+    cache:                  false
+    web_debug:              false
+    no_script_name:         false
+    etag:                   false
 
 all:
   .settings:
