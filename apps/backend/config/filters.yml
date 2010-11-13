@@ -2,9 +2,8 @@ rendering: ~
 security: ~
 
 # insert your own filters here
-remember:
-  class:   sfGuardBasicSecurityFilter
+remember_me:
+  class:   sfGuardRememberMeFilter
 
 cache:     ~
-common:    ~
 execution: ~

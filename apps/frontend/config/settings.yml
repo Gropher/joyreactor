@@ -7,7 +7,7 @@ dev:
   .settings:
     error_reporting:        <? echo (E_ALL | E_STRICT)."\n" ?>
     web_debug:              true
-    cache:                  false
+    cache:                  true
     no_script_name:         false
     etag:                   false
 

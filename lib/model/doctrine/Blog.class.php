@@ -40,6 +40,11 @@ class Blog extends BaseBlog {
     }
 
     // *****Static Methods*****
+    /**
+     * Возвращает массив со списком наиболее популярных тэгов
+     *
+     * @return array список тэгов
+     */
     public static function getTags() {
         sfApplicationConfiguration::getActive()->loadHelpers(array('I18N'));
         $query = Doctrine_Query::create()
@@ -50,12 +55,29 @@ class Blog extends BaseBlog {
             ->groupBy('b.id')
             ->limit(20)
             ->execute();
-        $res = '';
+        $res = array();
+        $res['tags'] = array();
+        $res['max'] = false;
+        $res['min'] = false;
         foreach($query as $row) {
-            if($row['cnt'] > 0)
-                $res .= '{tag: "'.$row['tag'].'", count: '.$row['cnt'].'},';
+            if($row['cnt'] <= 0)
+              continue;
+
+            $res['tags'][] = array('tag' => $row['tag'], 'count' => $row['cnt']);
+            if(!$res['max'] || $res['max'] < $row['cnt'])
+            {
+              $res['max'] = $row['cnt'];
+            }
+            if(!$res['min'] || $res['min'] > $row['cnt'])
+            {
+              $res['min'] = $row['cnt'];
+            }
         }
-        return substr($res, 0, strlen($res)-1);
+
+        // небольшой хак, чтобы не глючило если они одинаковые
+        if($res['max'] == $res['min'])
+          $res['max']++;
+        return $res;
     }
 
     public static function getByTag($tag) {
