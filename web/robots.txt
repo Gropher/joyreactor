@@ -3,6 +3,9 @@ Disallow: /user/*/line/*
 Disallow: /user/*/line$
 Disallow: /user/*/friendline/*
 Disallow: /user/*/friendline$
+Disallow: /frontend_dev.php/
+Disallow: /post_vote/create/
 
 User-agent: *
 Disallow: /frontend_dev.php/
+Disallow: /post_vote/create/

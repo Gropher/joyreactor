@@ -15,3 +15,4 @@ $manager->setAttribute(Doctrine::ATTR_RESULT_CACHE, $cacheDriver);
 
 sfContext::createInstance($configuration)->dispatch();
 $web_optimizer->finish();
+?>

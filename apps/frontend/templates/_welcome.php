@@ -1,3 +1,30 @@
+<? use_helper('Javascript'); ?>
+<h1>Наши тематические подборки</h1>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="http://www.joyreactor.ru/tag/смешные+советские+плакаты"><img width="263" src="http://www.joyreactor.ru/images/sov.jpg"/></a>
+</td>
+<td>
+<a href="http://www.joyreactor.ru/tag/комиксы+Wulff%26Morgenthaler"><img width="263" src="http://www.joyreactor.ru/images/wulf.jpg"/></a>
+</td>
+<td>
+<a href="http://www.joyreactor.ru/tag/демотиваторы+про+девушек"><img width="263" src="http://www.joyreactor.ru/images/dev.jpg"/></a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="http://www.joyreactor.ru/tag/смешные+советские+плакаты"><strong>Пародии на советские плакаты</strong></a>
+</td>
+<td>
+<a href="http://www.joyreactor.ru/tag/комиксы+Wulff%26Morgenthaler"><strong>Комиксы Wulff&Morgenthaller</strong></a>
+</td>
+<td>
+<a href="http://www.joyreactor.ru/tag/демотиваторы+про+девушек"><strong>Демотиваторы про девушек<strong/></strong></a>
+</td>
+</tr></tbody></table>
+<br/>
 <h1 id="mood_question"><? echo __('Как настроение?') ?></h1>
 <span id= "hint" style="color: #999;">(выбери подходящий смайлик)&nbsp;</span>
 <? echo form_tag('post/index', array('method' => 'post') ) ?>
