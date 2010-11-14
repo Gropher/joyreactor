@@ -11,7 +11,9 @@
 class blogActions extends sfActions {
 
     public function executeIndex(sfWebRequest $request) {
-        $this->blog_list = Blog::getList();
+      $this->page = $request->getParameter('page');
+      $this->count = Blog::getList('count');
+      $this->blog_list = Blog::getList($this->page);
     }
     
     public function executeShow(sfWebRequest $request) {

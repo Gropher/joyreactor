@@ -12,6 +12,7 @@
             </a>
           <?php endforeach ?>
         </div>
+        <?php echo link_to('Все тэги', '@list-tags'); ?>
     </div>
 </li>
 <li>

@@ -115,11 +115,17 @@ class Blog extends BaseBlog {
             return $query->count();
     }
 
-    public static function getList() {
+    public static function getList($page = 1) {
         $query = Doctrine_Query::create()
-            ->select('b.*')
+            ->select()
             ->from('Blog b')
-            ->orderBy('b.created_at desc');
-        return $query->execute();
+            ->orderBy('b.best desc, b.count desc');
+
+        if($page !== 'count') {
+            $query = new Doctrine_Pager($query,$page,sfConfig::get('app_blogs_per_page'));
+            return $query->execute();
+        }
+        else
+            return $query->count();
     }
 }

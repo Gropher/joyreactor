@@ -22,7 +22,7 @@ all:
   blog_favorite_rating: 1
 
   posts_per_page: 10
-  blogs_per_page: 10
+  blogs_per_page: 40
   users_per_page: 10
 
   post_title_length: 100

@@ -51,6 +51,16 @@ mood:
   param: { module: post, action: mood, page: 1 }
   requirements: { page: \d+ }
 
+#blogs (tags) module
+list-tags:
+  url:  /tags/:page
+  param:
+    module: blog
+    action: index
+    page: 1
+  requirements:
+    page: \d+
+    
 tag:
   url:  /tag/:name/:page
   param: { module: blog, action: show, page: 1 }
