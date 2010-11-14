@@ -9,9 +9,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css]
+  stylesheets:    [style.css, ../sfAdminDashPlugin/css/default.css]
 
-  javascripts:    []
+  javascripts:    [jquery.min.js, ../sfAdminDashPlugin/js/sf_admin_dash.js]
 
   has_layout:     on
   layout:         layout

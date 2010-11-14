@@ -1,35 +1,34 @@
-<?
-
-require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
+<?php
 
 /**
  * Post filter form base class.
  *
- * @package    filters
- * @subpackage Post *
- * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 11675 2008-09-19 15:21:38Z fabien $
+ * @package    Empaty
+ * @subpackage filter
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
-class BasePostFormFilter extends BaseFormFilterDoctrine
+abstract class BasePostFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
     $this->setWidgets(array(
-      'user_id'        => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'text'           => new sfWidgetFormFilterInput(),
+      'user_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
+      'text'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'header'         => new sfWidgetFormFilterInput(),
-      'rating'         => new sfWidgetFormFilterInput(),
-      'comments_count' => new sfWidgetFormFilterInput(),
+      'rating'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'comments_count' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'mood'           => new sfWidgetFormFilterInput(),
       'type'           => new sfWidgetFormFilterInput(),
       'isNew'          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'lj'             => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'created_at'     => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'     => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'blogs_list'     => new sfWidgetFormDoctrineChoiceMany(array('model' => 'Blog')),
+      'blogs_list'     => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Blog')),
     ));
 
     $this->setValidators(array(
-      'user_id'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
+      'user_id'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
       'text'           => new sfValidatorPass(array('required' => false)),
       'header'         => new sfValidatorPass(array('required' => false)),
       'rating'         => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
@@ -38,14 +37,16 @@ class BasePostFormFilter extends BaseFormFilterDoctrine
       'type'           => new sfValidatorPass(array('required' => false)),
       'isNew'          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'lj'             => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'created_at'     => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
-      'updated_at'     => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
-      'blogs_list'     => new sfValidatorDoctrineChoiceMany(array('model' => 'Blog', 'required' => false)),
+      'created_at'     => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'updated_at'     => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'blogs_list'     => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Blog', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('post_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }
@@ -62,8 +63,10 @@ class BasePostFormFilter extends BaseFormFilterDoctrine
       return;
     }
 
-    $query->leftJoin('r.BlogPost BlogPost')
-          ->andWhereIn('BlogPost.blog_id', $values);
+    $query
+      ->leftJoin($query->getRootAlias().'.BlogPost BlogPost')
+      ->andWhereIn('BlogPost.blog_id', $values)
+    ;
   }
 
   public function getModelName()

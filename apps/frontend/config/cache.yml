@@ -2,3 +2,6 @@ default:
   enabled:     false
   with_layout: false
   lifetime:    86400
+
+_tagcloud:
+  enabled:      true

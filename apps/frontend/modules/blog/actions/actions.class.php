@@ -11,7 +11,9 @@
 class blogActions extends sfActions {
 
     public function executeIndex(sfWebRequest $request) {
-        $this->blog_list = Blog::getList();
+      $this->page = $request->getParameter('page');
+      $this->count = Blog::getList('count');
+      $this->blog_list = Blog::getList($this->page);
     }
     
     public function executeShow(sfWebRequest $request) {
@@ -23,6 +25,7 @@ class blogActions extends sfActions {
         $this->forward404Unless($this->blog);
         $this->title = $this->blog->getName()." / ";
         $this->getResponse()->setTitle($this->title . __("JoyReactor – твое хорошее настроние. Картинки, приколы, видео, демотиваторы."));
+        $this->getResponse()->addMeta('description', strip_tags($this->blog->getDescription()));
     }
     
     public function executeNotag(sfWebRequest $request) {

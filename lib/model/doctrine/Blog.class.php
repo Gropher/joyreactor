@@ -40,32 +40,49 @@ class Blog extends BaseBlog {
     }
 
     // *****Static Methods*****
+    /**
+     * Возвращает массив со списком наиболее популярных тэгов
+     *
+     * @return array список тэгов
+     */
     public static function getTags() {
-        sfApplicationConfiguration::getActive()->loadHelpers(array('I18N'));
         $query = Doctrine_Query::create()
-            ->select('b.tag, count(p.id) cnt')
-            ->from('Blog b, b.Posts p')
-            ->where('p.type = ?', "post")
-            ->orderBy('cnt desc')
-            ->groupBy('b.id')
+            ->select('b.tag, b.count')
+            ->from('Blog b')
+            ->orderBy('b.best desc, b.count desc')
             ->limit(20)
             ->execute();
-        $res = '';
+        $res = array();
+        $res['tags'] = array();
+        $res['max'] = false;
+        $res['min'] = false;
         foreach($query as $row) {
-            if($row['cnt'] > 0)
-                $res .= '{tag: "'.$row['tag'].'", count: '.$row['cnt'].'},';
+            if($row['count'] <= 0)
+              continue;
+
+            $res['tags'][] = array('tag' => $row['tag'], 'count' => $row['count']);
+            if(!$res['max'] || $res['max'] < $row['count'])
+            {
+              $res['max'] = $row['count'];
+            }
+            if(!$res['min'] || $res['min'] > $row['count'])
+            {
+              $res['min'] = $row['count'];
+            }
         }
-        return substr($res, 0, strlen($res)-1);
+
+        // небольшой хак, чтобы не глючило если они одинаковые
+        if($res['max'] == $res['min'])
+          $res['max']++;
+        return $res;
     }
 
     public static function getByTag($tag) {
         $query = Doctrine_Query::create()
-            ->select('b.*')
+            ->select()
             ->from('Blog b')
-            ->where('b.tag = ?', $tag)
-            ->limit(1)
-            ->execute();
-        return count($query) > 0 ? $query->getFirst() : null;
+            ->where('b.tag = ?', $tag);
+        return $query->fetchOne();
     }
 
     public static function getOrCreateByTag($tag, $user=null) {
@@ -98,11 +115,17 @@ class Blog extends BaseBlog {
             return $query->count();
     }
 
-    public static function getList() {
+    public static function getList($page = 1) {
         $query = Doctrine_Query::create()
-            ->select('b.*')
+            ->select()
             ->from('Blog b')
-            ->orderBy('b.created_at desc');
-        return $query->execute();
+            ->orderBy('b.best desc, b.count desc');
+
+        if($page !== 'count') {
+            $query = new Doctrine_Pager($query,$page,sfConfig::get('app_blogs_per_page'));
+            return $query->execute();
+        }
+        else
+            return $query->count();
     }
 }

@@ -11,7 +11,7 @@ class BlogForm extends BaseBlogForm
 {
   public function configure()
   {
-  	unset($this['created_at'], $this['updated_at'], $this['rating']);
+  	unset($this['created_at'], $this['updated_at'], $this['rating'], $this['posts_list'], $this['count']);
   	$this->setWidget('user_id', new sfWidgetFormInputHidden());
 	$this->widgetSchema->setLabels(array(
       'name' => 'Название:'));

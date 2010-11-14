@@ -12,6 +12,8 @@ all:
             url:    post
           Post Comments:
             url:    post_comment
+          Blog:
+            url:    blog
   sfApplyPlugin:
        from:
          email: "mail@explore-it.ru"

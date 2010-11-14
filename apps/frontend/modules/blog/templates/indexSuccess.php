@@ -1,10 +1,12 @@
-<h2><? echo __('Коллективные блоги') ?></h2>
-    <? foreach ($blog_list as $blog): ?>
-    <div>
-    	<a href="<? echo url_for('blog/show?id='.$blog->getId()) ?>"><? echo $blog->getName() ?></a>
-    </div>
-    <? endforeach; ?>
-<hr/>
-<? if($sf_user->isAuthenticated()):?>
-	<a href="<? echo url_for('blog/new') ?>"><? echo __('Новый блог') ?></a>
-<? endif; ?>
+<h2><? echo __('Список тэгов') ?></h2>
+<? foreach ($blog_list as $blog): ?>
+  <div>
+  	<a href="<? echo url_for('@tag?name='.$blog->getTag()) ?>"><? echo $blog->getName() ?></a>
+  </div>
+<? endforeach; ?>
+
+<? include_partial('global/paging', array('pageLen' =>sfConfig::get('app_blogs_per_page'),
+                                            'itemsCount' => $count,
+                                            'pageNo' => $page,
+                                            'updateUrl' =>url_for('@list-tags').'/')) ?>
+
