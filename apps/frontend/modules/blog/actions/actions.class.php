@@ -24,7 +24,7 @@ class blogActions extends sfActions {
             $this->blog = Blog::getByTag($request->getParameter('name'));
         $this->forward404Unless($this->blog);
         $this->title = $this->blog->getName()." / ";
-        $this->getResponse()->setTitle($this->title . __("JoyReactor – твое хорошее настроние. Картинки, приколы, видео, демотиваторы."));
+        $this->getResponse()->setTitle($this->title . __("JoyReactor – твое хорошее настроние. Смешные картинки, приколы, видео, лучшие демотиваторы со смыслом и по-русски, много комиксов."));
         $this->getResponse()->addMeta('description', strip_tags($this->blog->getDescription()));
     }
     

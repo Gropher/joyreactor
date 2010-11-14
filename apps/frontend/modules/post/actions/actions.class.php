@@ -110,7 +110,7 @@ class postActions extends sfActions {
         $this->tagnames = $this->post->getTagNames();
         if($this->tagnames)
             $this->title .= $this->tagnames." / ";
-        $this->getResponse()->setTitle($this->title.__("JoyReactor – твое хорошее настроние. Картинки, приколы, видео, демотиваторы."));
+        $this->getResponse()->setTitle($this->title.__("JoyReactor – твое хорошее настроние. Смешные картинки, приколы, видео, лучшие демотиваторы со смыслом и по-русски, много комиксов."));
         $this->getResponse()->addMeta('description', $this->description);
         $this->getResponse()->addMeta('keywords', wordlist($this->description));
         $attr = $this->post->Attributes;
