@@ -11,5 +11,6 @@ class BlogFormFilter extends BaseBlogFormFilter
 {
   public function configure()
   {
+    unset($this['posts_list']);
   }
 }

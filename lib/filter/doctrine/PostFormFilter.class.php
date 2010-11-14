@@ -11,5 +11,6 @@ class PostFormFilter extends BasePostFormFilter
 {
   public function configure()
   {
+    unset($this['blogs_list'], $this['user_id']);
   }
 }

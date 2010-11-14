@@ -33,6 +33,15 @@ EOF;
     $databaseManager = new sfDatabaseManager($this->configuration);
     $connection = $databaseManager->getDatabase($options['connection'])->getConnection();
 
-    // add your code here
+    // Доктрина не переваривает данный запрос - будет переваривать только с версии 2.0. Поэтому пусть будет так
+    $query = 'UPDATE blog b LEFT JOIN 
+      (SELECT blog_post.blog_id, count(blog_post.id) as cnt
+        FROM blog_post
+        LEFT JOIN post ON post.id=blog_post.post_id
+        WHERE post.type="post"
+        GROUP BY blog_post.blog_id
+      ) b2 ON b.id = b2.blog_id
+      SET b.count = b2.cnt ';
+    Doctrine_Manager::connection()->execute($query);
   }
 }

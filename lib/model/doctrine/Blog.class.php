@@ -47,11 +47,9 @@ class Blog extends BaseBlog {
      */
     public static function getTags() {
         $query = Doctrine_Query::create()
-            ->select('b.tag, count(p.id) cnt')
-            ->from('Blog b, b.Posts p')
-            ->where('p.type = ?', "post")
-            ->orderBy('cnt desc')
-            ->groupBy('b.id')
+            ->select('b.tag, b.count')
+            ->from('Blog b')
+            ->orderBy('b.best desc, b.count desc')
             ->limit(20)
             ->execute();
         $res = array();
@@ -59,17 +57,17 @@ class Blog extends BaseBlog {
         $res['max'] = false;
         $res['min'] = false;
         foreach($query as $row) {
-            if($row['cnt'] <= 0)
+            if($row['count'] <= 0)
               continue;
 
-            $res['tags'][] = array('tag' => $row['tag'], 'count' => $row['cnt']);
-            if(!$res['max'] || $res['max'] < $row['cnt'])
+            $res['tags'][] = array('tag' => $row['tag'], 'count' => $row['count']);
+            if(!$res['max'] || $res['max'] < $row['count'])
             {
-              $res['max'] = $row['cnt'];
+              $res['max'] = $row['count'];
             }
-            if(!$res['min'] || $res['min'] > $row['cnt'])
+            if(!$res['min'] || $res['min'] > $row['count'])
             {
-              $res['min'] = $row['cnt'];
+              $res['min'] = $row['count'];
             }
         }
 
