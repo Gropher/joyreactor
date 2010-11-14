@@ -1,7 +1,7 @@
 <h2><? echo __('Список тэгов') ?></h2>
 <? foreach ($blog_list as $blog): ?>
   <div>
-  	<a href="<? echo url_for('@tag?name='.$blog->getTag()) ?>"><? echo $blog->getName() ?></a> <?php echo $blog->getDescription(ESC_RAW); ?>
+  	<a href="<? echo url_for('@tag?name='.$blog->getTag()) ?>"><? echo $blog->getName() ?></a>
   </div>
 <? endforeach; ?>
 
