@@ -35,6 +35,14 @@ class sfGuardRememberMeFilter extends sfFilter
   {
     $cookieName = sfConfig::get('app_sf_guard_plugin_remember_cookie_name', 'sfRemember');
 
+    if(!$this->context->getUser()->isAnonymous())
+    {
+      // записываем в last_login последнюю активность
+      $user = $this->context->getUser()->getGuardUser();
+      $user->setLastLogin(date('Y-m-d H:i:s'));
+      $user->save();
+    }
+
     if (
       $this->isFirstCall()
       &&
