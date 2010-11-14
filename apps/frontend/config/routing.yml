@@ -1,73 +1,91 @@
 about:
   url:  /about
   param: { module: page, action: index }
+
 profile:
   url:  /people/show/:username
   param: { module: people, action: show }
+
 friendLine:
   url:  /user/:username/friendline/:page
   param: { module: post, action: friends, page: 1 }
   requirements: { page: \d+ }
+
 discussionLine:
   url:  /discussion/:page
   param: { module: post, action: discussion, page: 1 }
   requirements: { page: \d+ }
+
 personalLine:
   url:  /user/:username/line/:page
   param: { module: post, action: personal, page: 1 }
   requirements: { page: \d+ }
+
 userDateFilter:
   url:  /user/:username/date/:date/:page
   param: { module: post, action: userdate, page: 1 }
   requirements: { page: \d+ }
+
 dateFilter:
   url:  /date/:date/:page
   param: { module: post, action: date, page: 1 }
   requirements: { page: \d+ }
+
 favorite:
   url:  /user/:username/favorite/:page
   param: { module: post, action: favorite, page: 1 }
   requirements: { page: \d+ }
+
 best:
   url:  /best/:page
   param: { module: post, action: best, page: 1 }
   requirements: { page: \d+ }
+
 worst:
   url:  /worst/:page
   param: { module: post, action: worst, page: 1 }
   requirements: { page: \d+ }
+
 mood:
   url:  /mood/:mood/:page
   param: { module: post, action: mood, page: 1 }
   requirements: { page: \d+ }
+
 tag:
   url:  /tag/:name/:page
   param: { module: blog, action: show, page: 1 }
   requirements: { page: \d+ }
+
 usertag:
   url:  /user/:username/tag/:name/:page
   param: { module: blog, action: user, page: 1 }
   requirements: { page: \d+ }
+
 notag:
   url:  /notag/:page
   param: { module: blog, action: notag, page: 1 }
   requirements: { page: \d+ }
+
 user:
   url:  /user/:username/:page
   param: { module: post, action: user, page: 1 }
   requirements: { page: \d+ }
+
 people:
   url:  /people/:page
   param: { module: people, action: index, page: 1 }
   requirements: { page: \d+ }
+
 peopleTop:
   url:  /people/top/:page
   param: { module: people, action: top, page: 1 }
   requirements: { page: \d+ }
+
 peopleFriends:
   url:  /user/:username/friends/:page
   param: { module: people, action: friends, page: 1 }
   requirements: { page: \d+ }
+  
 post:
   url:  /post/:id/:partnerId
   param: { module: post, action: show, partnerId: 0  }

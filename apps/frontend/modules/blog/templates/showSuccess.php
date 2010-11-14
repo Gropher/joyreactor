@@ -2,6 +2,7 @@
     <? include_partial('post/addPost', array('noajax' => true, 'tag' => '#'.$blog->getTag(ESC_RAW).' ')) ?>
 <? endif; ?>
 <h2><? echo $blog->getName() ?></h2>
+<?php echo $blog->getDescription(ESC_RAW); ?>
 <div id="post_list">
     <? include_partial('post/postList', array('posts' => $blog->getLine($sf_request->getParameter('page')))); ?>
 </div>

@@ -79,12 +79,10 @@ class Blog extends BaseBlog {
 
     public static function getByTag($tag) {
         $query = Doctrine_Query::create()
-            ->select('b.*')
+            ->select()
             ->from('Blog b')
-            ->where('b.tag = ?', $tag)
-            ->limit(1)
-            ->execute();
-        return count($query) > 0 ? $query->getFirst() : null;
+            ->where('b.tag = ?', $tag);
+        return $query->fetchOne();
     }
 
     public static function getOrCreateByTag($tag, $user=null) {

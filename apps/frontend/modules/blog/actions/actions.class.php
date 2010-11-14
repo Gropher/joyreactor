@@ -23,6 +23,7 @@ class blogActions extends sfActions {
         $this->forward404Unless($this->blog);
         $this->title = $this->blog->getName()." / ";
         $this->getResponse()->setTitle($this->title . __("JoyReactor – твое хорошее настроние. Картинки, приколы, видео, демотиваторы."));
+        $this->getResponse()->addMeta('description', strip_tags($this->blog->getDescription()));
     }
     
     public function executeNotag(sfWebRequest $request) {
