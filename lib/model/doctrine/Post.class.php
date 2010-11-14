@@ -119,7 +119,7 @@ class Post extends BasePost {
     }
 
     public function getMoodNameI18N() {
-        sfLoader::loadHelpers('I18N');
+	sfApplicationConfiguration::getActive()->loadHelpers('I18N');
         switch($this->getMood()) {
             case -1:
                 return __('Плохое');
