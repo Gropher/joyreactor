@@ -449,6 +449,8 @@ Blog:
       default: 0
     description:
       type: string(4096)
+    synonyms:
+      type: string(4096)
   indexes:
     user_id:
       fields: [user_id]

@@ -13,6 +13,7 @@
  * @property integer $best
  * @property integer $count
  * @property string $description
+ * @property string $synonyms
  * @property sfGuardUser $User
  * @property Doctrine_Collection $BlogPosts
  * @property Doctrine_Collection $InFavorite
@@ -26,6 +27,7 @@
  * @method integer             getBest()        Returns the current record's "best" value
  * @method integer             getCount()       Returns the current record's "count" value
  * @method string              getDescription() Returns the current record's "description" value
+ * @method string              getSynonyms()    Returns the current record's "synonyms" value
  * @method sfGuardUser         getUser()        Returns the current record's "User" value
  * @method Doctrine_Collection getBlogPosts()   Returns the current record's "BlogPosts" collection
  * @method Doctrine_Collection getInFavorite()  Returns the current record's "InFavorite" collection
@@ -38,6 +40,7 @@
  * @method Blog                setBest()        Sets the current record's "best" value
  * @method Blog                setCount()       Sets the current record's "count" value
  * @method Blog                setDescription() Sets the current record's "description" value
+ * @method Blog                setSynonyms()    Sets the current record's "synonyms" value
  * @method Blog                setUser()        Sets the current record's "User" value
  * @method Blog                setBlogPosts()   Sets the current record's "BlogPosts" collection
  * @method Blog                setInFavorite()  Sets the current record's "InFavorite" collection
@@ -97,6 +100,10 @@ abstract class BaseBlog extends sfDoctrineRecord
              'type' => 'string',
              'length' => 4096,
              ));
+        $this->hasColumn('synonyms', 'string', 4096, array(
+             'type' => 'string',
+             'length' => 4096,
+             ));
 
 
         $this->index('user_id', array(
@@ -133,6 +140,19 @@ abstract class BaseBlog extends sfDoctrineRecord
               0 => 'updated_at',
              ),
              'type' => NULL,
+             ));
+        $this->index('best', array(
+             'fields' => 
+             array(
+              0 => 'best',
+              1 => 'count',
+             ),
+             ));
+        $this->index('count', array(
+             'fields' => 
+             array(
+              0 => 'count',
+             ),
              ));
         $this->option('type', 'MYISAM');
         $this->option('collate', 'utf8_unicode_ci');
