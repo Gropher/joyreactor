@@ -218,5 +218,3 @@ abstract class PluginsfGuardUser extends BasesfGuardUser
     }
   }
 }
-
-class FixturesfGuardUser extends BasesfGuardUser{}
