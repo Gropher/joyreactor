@@ -32,8 +32,8 @@ all:
   sphinx_index: 'empaty_seo_content'
   sphinx_results_per_page: 5
   
-#  sfThumbnailPlugin:
-#    adapter: 'sfImageMagickAdapter'
+  sfThumbnailPlugin:
+    adapter: 'sfImageMagickAdapter'
   sfApplyPlugin:
     from:
       email: 'em@joyreactor.ru'
