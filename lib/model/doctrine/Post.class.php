@@ -108,13 +108,13 @@ class Post extends BasePost {
     public function getTagNames() {
         $res = '';
         foreach($this->Blogs as $blog) {
-            if($blog->getName())
-                $res .= $blog->getName()." ";
-            else
-                $res .= $blog->getTag()." ";
+          $res .= $blog->getName() ? $blog->getName() : $blog->getTag();
+          if($blog->getSynonyms())
+            $res .= '(' . $blog->getSynonyms() . ')';
+          $res .= ' ';
         }
-	if(!$res && !$this->getText() && $this->Attributes->count())
-	    $res = 'Прикольные картинки ';
+        if(!$res && !$this->getText() && $this->Attributes->count())
+          $res = 'Прикольные картинки ';
         return substr($res, 0, -1);
     }
 

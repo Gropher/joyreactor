@@ -3,6 +3,7 @@
 <? endif; ?>
 <h2><? echo $blog->getName() ?></h2>
 <?php echo $blog->getDescription(ESC_RAW); ?>
+<h3><?php echo $blog->getSynonyms(); ?></h3>
 <div id="post_list">
     <? include_partial('post/postList', array('posts' => $blog->getLine($sf_request->getParameter('page')))); ?>
 </div>
