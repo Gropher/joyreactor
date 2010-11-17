@@ -23,7 +23,7 @@ class blogActions extends sfActions {
         else
             $this->blog = Blog::getByTag($request->getParameter('name'));
         $this->forward404Unless($this->blog);
-        $this->title = $this->blog->getName()." / ";
+        $this->title = $this->blog->getName(). '(' . $this->blog->getSynonyms() . ')' . " / ";
         $this->getResponse()->setTitle($this->title . __("JoyReactor – твое хорошее настроние. Смешные картинки, приколы, видео, лучшие демотиваторы со смыслом и по-русски, много комиксов."));
         $this->getResponse()->addMeta('description', strip_tags($this->blog->getDescription()));
     }
