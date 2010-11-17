@@ -9,7 +9,7 @@ class Blog extends BaseBlog {
             ->select('p.*')
             ->from('Post p, p.BlogPosts b')
             ->where('b.blog_id = ?', $this->getId())
-            ->andWhere('p.type = ?', "post")
+            ->andWhereIn('p.type', array("post", 'seo-content'))
             ->orderBy('b.created_at desc');
         if(sfContext::getInstance()->getUser()->isAnonymous())
             $query->addWhere('p.rating  >= ?', sfConfig::get('app_post_worstpage_threshold'));
