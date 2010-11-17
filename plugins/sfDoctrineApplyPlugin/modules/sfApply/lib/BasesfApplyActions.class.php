@@ -115,7 +115,7 @@ class BasesfApplyActions extends sfActions
         if ($this->form->isValid())
         {
           $user = sfGuardUserTable::retrieveByUsername(
-            $this->form->getValue('username'));
+            $this->form->getValue('username'), 'any');
           return $this->resetRequestBody($user);
         }
       }

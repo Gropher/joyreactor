@@ -6,10 +6,12 @@ class PluginsfGuardUserTable extends Doctrine_Table
 {
   public static function retrieveByUsername($username, $isActive = true)
   {
-    return Doctrine_Query::create()
+    $query = Doctrine_Query::create()
             ->from('sfGuardUser u')
-            ->where('u.username = ?', $username)
-            ->addWhere('u.is_active = ?', $isActive)
-            ->fetchOne();
+            ->where('u.username = ?', $username);
+
+    if($isActive != 'any')
+      $query = $query->addWhere('u.is_active = ?', $isActive);
+    return $query->fetchOne();
   }
 }
