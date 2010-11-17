@@ -120,6 +120,10 @@ class postActions extends sfActions {
                     'limit'   => sfConfig::get('app_sphinx_results_per_page'),
                     'offset'  => 0,
                     'mode'    => sfSphinxClient::SPH_MATCH_ANY,
+                    'weights' => array(
+                      'tags' => 3,
+                      'comment' => 1
+                    ),
                 );
                 $this->sphinx = new sfSphinxClient($options);
                 $res = $this->sphinx->Query($this->title, sfConfig::get('app_sphinx_index'));
