@@ -13,4 +13,29 @@ require_once dirname(__FILE__).'/../lib/BlogGeneratorHelper.class.php';
  */
 class BlogActions extends autoBlogActions
 {
+  /**
+   * Сливает даный блог с другим, удаляя текущий
+   */
+  public function executeListMerge(sfWebRequest $request)
+  {
+    $this->blog = $this->getRoute()->getObject();
+    $this->newBlog = Doctrine::getTable('Blog')->find($request->getParameter('newBlog'));
+
+    if(!$this->newBlog)
+    {
+      $this->blogs = Doctrine::getTable('Blog')->findAll();
+      return;
+    }
+
+    if($this->newBlog->getId() == $this->blog->getId())
+    {
+      $this->getUser()->setFlash('notice', 'Нельзя слить с самим собой');
+      $this->blogs = Doctrine::getTable('Blog')->findAll();
+      return;
+    }
+
+    $this->blog->MergeBlogs($this->newBlog);
+    $this->getUser()->setFlash('notice', 'Блоги успешно слиты');
+    $this->redirect('@blog');
+  }
 }

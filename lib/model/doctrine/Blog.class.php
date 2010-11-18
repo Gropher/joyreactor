@@ -39,6 +39,34 @@ class Blog extends BaseBlog {
             return $query->count();
     }
 
+    /**
+     * Объединяет два блога. Текущий удаляется
+     *
+     * @param Blog $newBlog тэг, в который слить текущий
+     */
+    public function MergeBlogs($newBlog)
+    {
+      if($this->getId() == $newBlog->getId())
+        return;
+        
+      // удаляем все записи из блога, которые уже есть в новом блоге
+      $query = "DELETE bp1
+        FROM blog_post bp1
+        LEFT JOIN blog_post bp2 ON bp1.post_id = bp2.post_id
+        WHERE bp1.blog_id = " . $this->getId() . "
+        AND bp2.blog_id = " . $newBlog->getId();
+      Doctrine_Manager::connection()->execute($query);
+
+      // меняем все записи на новый блог
+      Doctrine_Query::create()
+        ->update('BlogPost')
+        ->set('blog_id', $newBlog->getId())
+        ->where('blog_id = ?', $this->getId())->execute();
+
+      // удаляем нас
+      $this->delete();
+    }
+
     // *****Static Methods*****
     /**
      * Возвращает массив со списком наиболее популярных тэгов
