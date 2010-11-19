@@ -41,14 +41,3 @@
 <div id="comment_list<?echo $comment->getPost()->getId()."_".$comment->getId()?>" style="margin-left:<? echo  ($level+1)*20?>px;">
     <? include_partial('post_comment/commentList', array('comments' => $comment->getComments(), 'level' => $level+1)) ?>
 </div>
-<script type="text/javascript">
-$j(function(){
-    $j(".comment").hover(
-    function(){
-        $j(this).css("background","#ebebeb");
-    },
-    function(){
-        $j(this).css("background","none");
-    }
-);});
-</script>

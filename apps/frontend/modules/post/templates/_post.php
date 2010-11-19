@@ -1,4 +1,6 @@
 <? use_helper('Text', 'Parse', 'UserTime', 'DeltaCount'); ?>
+<?php use_javascript('comments'); ?>
+
 <?if(!isset($show_comments)) $show_comments=0 ?>
 <?if(!isset($showAddComment)) $showAddComment=0 ?>
 <div class="article post-<? echo $post->getMoodName() ?>">
@@ -68,7 +70,15 @@
         </span>
         <? if(!isset($noCommentsLinks) || !$noCommentsLinks): ?>
         <span class="comments">
-            <? echo link_to($post->getCommentsCount(), 'post/show?id='.$post->getId(), array('title' => __('количество комментариев'), 'class'=>'commentnum', 'onclick' => '$j("#post_comment_list'.$post->getId().'").toggle("fast").load("'.url_for("post/comments?id=".$post->getId()).'");return false;')) ?>
+            <? echo link_to($post->getCommentsCount(),
+                'post/show?id='.$post->getId(),
+                array('title' => __('количество комментариев'),
+                  'class'=>'commentnum',
+                  'onclick' => '$j("#post_comment_list'.$post->getId().'")
+                      .toggle("fast")
+                      .load("'.url_for("post/comments?id=".$post->getId()).'", function() {UpdateCommentsCss();}
+                    );
+                    return false;')) ?>
             <?if(getDeltaCount($sf_user, $post->getCommentsCount(), "comments".$post->getId()) > 0):?>
                 <span class="commentnumDelta" title="колличество новых комментариев">
                     <? echo "+".getDeltaCount($sf_user, $post->getCommentsCount(), "comments".$post->getId()) ?>

@@ -1,4 +1,6 @@
 <? use_helper('Text', 'Parse', 'UserTime', 'DeltaCount'); ?>
+<?php use_javascript('comments'); ?>
+
 <div id="comment_list<?echo $post->getId()?>_">
     <? include_partial('post_comment/commentList', array('comments' => $post->getComments())) ?>
     <?if($post->getAllComments('count') == 0):?>

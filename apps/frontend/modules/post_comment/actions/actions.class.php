@@ -27,15 +27,26 @@ class post_commentActions extends sfActions {
         $this->parent = Doctrine::getTable('PostComment')->find(array($request->getParameter('parent_id')));
         $user = $this->getUser()->getGuardUser();
         if($this->getUser()->isAuthenticated() && $this->post && $request->getParameter('comment_text') !== null && trim($request->getParameter('comment_text')) !== '') {
+            $text = $request->getParameter('comment_text');
+            if($request->isMethod("GET"))
+              $text = urldecode($text);
+
+            if($this->getRequestParameter('comment_picture_url')) {
+                $filename = pathinfo($this->getRequestParameter('comment_picture_url'));
+                $extension = $filename["extension"] ? $filename["extension"] : "jpg";
+                $filename = time().rand(1, 999999).".".$extension;
+                $thumbnail = new sfThumbnail(811, 0, true, false, 100, sfConfig::get('app_sfThumbnailPlugin_adapter','sfGDAdapter'));
+                $thumbnail->loadFile($this->getRequestParameter('comment_picture_url'));
+                $thumbnail->save(sfConfig::get('sf_upload_dir').'/'.$filename);
+                $text .= "<br/><img src='/uploads/" . $filename . "' />";
+            }
+            
             $comment = new PostComment();
             $comment->setUser($user);
             $comment->setPost($this->post);
             if($this->parent)
                 $comment->setParent($this->parent);
-            if($request->isMethod("GET"))
-                $comment->setComment(urldecode($request->getParameter('comment_text')));
-            else
-                $comment->setComment($request->getParameter('comment_text'));
+            $comment->setComment($text);
             $comment->save();
 //            try {
 //                if($this->parent)
