@@ -23,14 +23,14 @@ class BlogActions extends autoBlogActions
 
     if(!$this->newBlog)
     {
-      $this->blogs = Doctrine::getTable('Blog')->findAll();
+      $this->blogs = Doctrine::getTable('Blog')->getAllSorted();
       return;
     }
 
     if($this->newBlog->getId() == $this->blog->getId())
     {
       $this->getUser()->setFlash('notice', 'Нельзя слить с самим собой');
-      $this->blogs = Doctrine::getTable('Blog')->findAll();
+      $this->blogs = Doctrine::getTable('Blog')->getAllSorted();
       return;
     }
 

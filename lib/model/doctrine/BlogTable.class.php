@@ -4,5 +4,12 @@
  */
 class BlogTable extends Doctrine_Table
 {
-
+  /*
+   * Возвращает все тэги отсортированными
+   */
+  public function getAllSorted()
+  {
+    $query = $this->createQuery()->select()->orderBy('Name');
+    return $query->execute();
+  }
 }
