@@ -1,6 +1,11 @@
 <? use_helper('Text'); ?>
 <? if(!isset($parent))$parent = '' ?>
-<? echo form_tag('post_comment/create?post_id='.$post->getId(), array('id' => 'add_comment_form'.$post->getId()."_".$parent, 'method' => 'post', 'onkeypress' => "ctrlEnter(event, this);", 'onsubmit' => "return AIM.submit(this, {'onStart' : startAddComment".$post->getId()."_".$parent.", 'onComplete' : completeAddComment".$post->getId()."_".$parent."})") ) ?>
+<? echo form_tag('post_comment/create?post_id='.$post->getId(),
+                array('id' => 'add_comment_form'.$post->getId()."_".$parent,
+                  'method' => 'post',
+                  'onkeypress' => "ctrlEnter(event, this);",
+                  'onsubmit' => "return AIM.submit(this, {'onStart' : startAddComment".$post->getId()."_".$parent.",
+                  'onComplete' : completeAddComment".$post->getId()."_".$parent."})") ) ?>
     <? if($parent): ?>
         <? echo input_hidden_tag('parent_id', $parent->getId()) ?>
     <? endif ?>
@@ -24,6 +29,10 @@
         $j('#comment_list<? echo $post->getId()."_".$parent ?>').html(response);
         $j('.submit_add_comment<? echo $post->getId()."_".$parent ?>').removeAttr("disabled");
         $j('#add_comment_form<? echo $post->getId()."_".$parent ?> :input[type=textarea]').each(function(){
-        $j(this).val('');});
+          $j(this).val('');
+        });
+        $j('#add_comment_form<? echo $post->getId()."_".$parent ?> input#comment_picture_url').each(function(){
+          $j(this).val('');
+        });
     }
 </script>
