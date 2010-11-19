@@ -260,7 +260,7 @@ class postActions extends sfActions {
                     $useMoodNo = true;
                 }
                 if (substr($text, 0, 1) == "#" || substr($text, 0, 1) == "*") {
-                    $tags = split("[,;:| \n]", $text);
+                    $tags = split("[,;:|\n]", $text);
                     $blog = Blog::getOrCreateByTag(trim(substr($tags[0], 1)), $user);
                     if ($blog) {
                         $text = trim(substr($text, strlen($tags[0])+1));
