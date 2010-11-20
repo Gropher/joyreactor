@@ -451,6 +451,8 @@ Blog:
       type: string(4096)
     synonyms:
       type: string(4096)
+    avatar:
+      type: string(4096)
   indexes:
     user_id:
       fields: [user_id]

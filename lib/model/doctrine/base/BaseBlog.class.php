@@ -14,6 +14,7 @@
  * @property integer $count
  * @property string $description
  * @property string $synonyms
+ * @property string $avatar
  * @property sfGuardUser $User
  * @property Doctrine_Collection $BlogPosts
  * @property Doctrine_Collection $InFavorite
@@ -28,6 +29,7 @@
  * @method integer             getCount()       Returns the current record's "count" value
  * @method string              getDescription() Returns the current record's "description" value
  * @method string              getSynonyms()    Returns the current record's "synonyms" value
+ * @method string              getAvatar()      Returns the current record's "avatar" value
  * @method sfGuardUser         getUser()        Returns the current record's "User" value
  * @method Doctrine_Collection getBlogPosts()   Returns the current record's "BlogPosts" collection
  * @method Doctrine_Collection getInFavorite()  Returns the current record's "InFavorite" collection
@@ -41,6 +43,7 @@
  * @method Blog                setCount()       Sets the current record's "count" value
  * @method Blog                setDescription() Sets the current record's "description" value
  * @method Blog                setSynonyms()    Sets the current record's "synonyms" value
+ * @method Blog                setAvatar()      Sets the current record's "avatar" value
  * @method Blog                setUser()        Sets the current record's "User" value
  * @method Blog                setBlogPosts()   Sets the current record's "BlogPosts" collection
  * @method Blog                setInFavorite()  Sets the current record's "InFavorite" collection
@@ -101,6 +104,10 @@ abstract class BaseBlog extends sfDoctrineRecord
              'length' => 4096,
              ));
         $this->hasColumn('synonyms', 'string', 4096, array(
+             'type' => 'string',
+             'length' => 4096,
+             ));
+        $this->hasColumn('avatar', 'string', 4096, array(
              'type' => 'string',
              'length' => 4096,
              ));
