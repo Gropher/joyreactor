@@ -5,5 +5,4 @@
  */
 class PostAttribute extends BasePostAttribute
 {
-
 }

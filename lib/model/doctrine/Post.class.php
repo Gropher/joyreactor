@@ -105,6 +105,23 @@ class Post extends BasePost {
         return substr($res, 0, -1);
     }
 
+    /**
+     * Возвращает стоку с тэгами и их синонимами через запятую
+     *
+     * @return string тэглайн
+     */
+    public function getFullTagline(){
+        $res = '';
+        foreach($this->Blogs as $blog) {
+            $res .= $blog->getName().",";
+            if($blog->getSynonyms())
+            {
+              $res .= $blog->getSynonyms().",";
+            }
+        }
+        return substr($res, 0, -1);
+    }
+
     public function getTagNames() {
         $res = '';
         foreach($this->Blogs as $blog) {
