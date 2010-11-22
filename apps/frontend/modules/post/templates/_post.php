@@ -1,5 +1,6 @@
 <? use_helper('Text', 'Parse', 'UserTime', 'DeltaCount'); ?>
 <?php use_javascript('comments'); ?>
+<?php use_javascript('teazer'); ?>
 
 <?if(!isset($show_comments)) $show_comments=0 ?>
 <?if(!isset($showAddComment)) $showAddComment=0 ?>
@@ -106,6 +107,9 @@
 	    <span style="display:none;" id="post_share_form<?echo $post->getId()?>"></span>
         <div id="post_comment_list<?echo $post->getId()?>" <?if(!$show_comments):?>style="display:none;"<?endif?>>
             <?if($show_comments):?>
+                <? if(!$sf_user->isAuthenticated()): ?>
+                  <div id="bn_35VfKN0KS5S5DkmXjB25">загрузка...</div>
+                <? endif ?>
                 <?include_partial('post/post_comments', array('post' => $post, 'showAddComment' => $showAddComment))?>
             <?endif?>
         </div>
