@@ -90,7 +90,7 @@
         <?if($sf_user->getGuardUser() && $sf_user->getGuardUser()->getIsSuperAdmin()):?>
         <span style="display:none;" id="post_header_form<?echo $post->getId()?>">
             <?echo form_remote_tag(array( 'url' => "post/setheader?id=".$post->getId(), 'update' => 'postContainer'.$post->getId()))?>
-                <?echo input_tag("post_header",$post->getSeoDescription())?>
+                <?echo input_tag("post_header",$post->getSeoDescription(), array('size' => 100))?>
                 <?echo submit_tag(__("Сохранить"))?>
             </form>
         </span>
@@ -99,7 +99,7 @@
         <span style="display:none;" id="post_settag_form<?echo $post->getId()?>">
             <?echo form_remote_tag(array( 'url' => "post/settag?id=".$post->getId(), 'update' => 'postContainer'.$post->getId()))?>
                 <?if($post->getBlogs()->count() != 0 && ($sf_user->getGuardUser() == $post->getUser() || $sf_user->getGuardUser()->getIsSuperAdmin())) $tag = $post->getTagline(); else $tag="";?>
-                <?echo input_tag("tag",$tag)?>
+                <?echo input_tag("tag",$tag, array('size' => 100))?>
                 <?echo submit_tag(__("Сохранить"))?>
             </form>
         </span>
