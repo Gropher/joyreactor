@@ -55,13 +55,7 @@ class post_commentActions extends sfActions {
           $text = urldecode($text);
 
         if($this->getRequestParameter('comment_picture_url')) {
-            $filename = pathinfo($this->getRequestParameter('comment_picture_url'));
-            $extension = $filename["extension"] ? $filename["extension"] : "jpg";
-            $filename = time().rand(1, 999999).".".$extension;
-            $thumbnail = new sfThumbnail(811, 0, true, false, 100, sfConfig::get('app_sfThumbnailPlugin_adapter','sfGDAdapter'));
-            $thumbnail->loadFile($this->getRequestParameter('comment_picture_url'));
-            $thumbnail->save(sfConfig::get('sf_upload_dir').'/'.$filename);
-
+            $filename = jrFileUploader::UploadRemote($request->getParameter('comment_picture_url'));
             if($text)
               $text .= "<br/>";
             $text .= "<img src='/uploads/" . $filename . "' />";

@@ -277,14 +277,8 @@ class postActions extends sfActions {
                 $post->setMoodName($this->getRequestParameter('mood'));
             $post->setUser($user);
             if($this->getRequestParameter('picture_url')) {
-                $filename = pathinfo($this->getRequestParameter('picture_url'));
-                $extension = $filename["extension"] ? $filename["extension"] : "jpg";
-                $filename = time().rand(1, 999999).".".$extension;
-                $thumbnail = new sfThumbnail(811, 0, true, false, 100, sfConfig::get('app_sfThumbnailPlugin_adapter','sfGDAdapter'));
-                $thumbnail->loadFile($this->getRequestParameter('picture_url'));
-                $thumbnail->save(sfConfig::get('sf_upload_dir').'/'.$filename);
-                $pictures[] = array('value' => '/uploads/'.$filename,
-                    'origin' => $this->getRequestParameter('picture_url'));
+                $filename = jrFileUploader::UploadRemote($request->getParameter('picture_url'));
+                $pictures[] = array('value' => '/uploads/'.$filename, 'origin' => $request->getParameter('picture_url'));
             }
             $uploaded_file = $request->getFiles('picture');
             if($uploaded_file['tmp_name']) {
@@ -321,10 +315,10 @@ class postActions extends sfActions {
             }
             else
                 $this->redirect(url_for('post/new'));*/
-	    if($this->getRequestParameter('mypage'))
-		$this->redirect(url_for('post/user'));
-	    else
-		$this->redirect(url_for('post/new'));
+              if($this->getRequestParameter('mypage'))
+            $this->redirect(url_for('post/user'));
+              else
+            $this->redirect(url_for('post/new'));
         } catch (Exception $e) {
             echo "Возникла ошибка при создании поста.<br/>\n";
             if($this->getRequestParameter('text')) {
