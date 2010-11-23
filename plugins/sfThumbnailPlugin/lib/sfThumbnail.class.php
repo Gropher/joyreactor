@@ -71,7 +71,7 @@ class sfThumbnail
    */
   public function loadFile($image)
   {
-    if (eregi('http(s)?://', $image))
+    if (preg_match('#http(s)?\://#', $image))
     {
       if (class_exists('sfWebBrowser'))
       {
@@ -144,9 +144,6 @@ class sfThumbnail
   public function save($thumbDest, $targetMime = null)
   {
     $this->adapter->save($this, $thumbDest, $targetMime);
-    if (!is_null($this->tempFile)) {
-      unlink($this->tempFile);
-    }
   }
 
   /**

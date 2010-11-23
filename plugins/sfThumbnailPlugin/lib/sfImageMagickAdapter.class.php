@@ -355,12 +355,9 @@ class sfImageMagickAdapter
     $output = (is_null($thumbDest))?'-':$thumbDest;
     $output = (($mime = array_search($targetMime, $this->mimeMap))?$mime.':':'').$output;
 
-    $tempFile = tempnam('/tmp', 'sfThumbnailPlugin');
-    $cmd = $this->magickCommands['convert'].' '.escapeshellarg($this->image).' -coalesce '.escapeshellarg($tempFile);
+    $cmd = $this->magickCommands['convert'].' '.$command.' '.escapeshellarg($this->image).$extract.' '.escapeshellarg($output);
+
     (is_null($thumbDest))?passthru($cmd):exec($cmd);
-    $cmd = $this->magickCommands['convert'].' '.$command.' '.escapeshellarg($tempFile).$extract.' '.escapeshellarg($output);
-    (is_null($thumbDest))?passthru($cmd):exec($cmd);
-    unlink($tempFile);
   }
 
   public function freeSource()
