@@ -19,11 +19,16 @@ class apiActions extends sfActions {
         $this->filename = '';
         if($uploaded_file) {
             try {
-                $filename = time().$uploaded_file['name'];
+                $pathinfo = pathinfo($uploaded_file['name']);
+                $name = time().rand(1, 999999);
+                $extension = $pathinfo["extension"] ? $pathinfo["extension"] : "jpg";
+                $filename = $name.".".$extension;
+                $origin = $name."_origin.".$extension;
                 $thumbnail = new sfThumbnail(811, 0, true, false, 100, sfConfig::get('app_sfThumbnailPlugin_adapter','sfGDAdapter'));
                 $thumbnail->loadFile($uploaded_file['tmp_name']);
                 $thumbnail->save(sfConfig::get('sf_upload_dir').'/'.$filename);
-                $this->filename =  'http://'.$_SERVER['HTTP_HOST'].'/uploads/'.$filename;
+                move_uploaded_file($uploaded_file['tmp_name'], sfConfig::get('sf_upload_dir').'/'.$origin);
+                $this->filename =  'http://'.$request->getHost().'/uploads/'.$filename;
             }catch(Exception $e) {
             }
         }
@@ -32,14 +37,10 @@ class apiActions extends sfActions {
 
     public function executeUploadUrl(sfWebRequest $request) {
         $this->filename = '';
-        if($this->getRequestParameter('picture_url') != null) {
+        if($request->getParameter('picture_url') != null) {
             try {
-                $filename = explode('/',$this->getRequestParameter('picture_url'));
-                $filename = time().$filename[count($filename)-1];
-                $thumbnail = new sfThumbnail(811, 0, true, false, 100, sfConfig::get('app_sfThumbnailPlugin_adapter','sfGDAdapter'));
-                $thumbnail->loadFile($this->getRequestParameter('picture_url'));
-                $thumbnail->save(sfConfig::get('sf_upload_dir').'/'.$filename);
-                $this->filename =  'http://'.$_SERVER['HTTP_HOST'].'/uploads/'.$filename;
+                $filename = jrFileUploader::UploadRemote($request->getParameter('picture_url'));
+                $this->filename =  'http://'.$request->getHost().'/uploads/'.$filename;
             }catch(Exception $e) {
             }
         }

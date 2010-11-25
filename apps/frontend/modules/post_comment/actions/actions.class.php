@@ -58,7 +58,7 @@ class post_commentActions extends sfActions {
             $filename = jrFileUploader::UploadRemote($request->getParameter('comment_picture_url'));
             if($text)
               $text .= "<br/>";
-            $text .= "<img src='/uploads/" . $filename . "' />";
+            $text .= "<img src='http://".$request->getHost()."/uploads/" . $filename . "' />";
         }
 
         if(!trim($text))
