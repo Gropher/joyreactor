@@ -345,6 +345,7 @@ class sfGuardUser extends PluginsfGuardUser {
         $query = Doctrine_Query::create()
             ->select('u.*')
             ->from('sfGuardUser u')
+            ->where('u.is_active = ?', true)
             ->orderBy('u.created_at desc');
         if($page !== 'count') {
             $query = new Doctrine_Pager($query,$page,sfConfig::get('app_users_per_page', 10));
@@ -359,6 +360,7 @@ class sfGuardUser extends PluginsfGuardUser {
             ->useResultCache(true, 1800)
             ->select('u.*')
             ->from('sfGuardUser u, u.Profile p')
+            ->where('u.is_active = ?', true)
             ->orderBy('p.rating desc');
         if($page !== 'count') {
             $query = new Doctrine_Pager($query,$page,sfConfig::get('app_users_per_page', 10));

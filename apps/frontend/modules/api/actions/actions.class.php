@@ -48,7 +48,7 @@ class apiActions extends sfActions {
     }
 
     public function executePostInsertTrigger(sfWebRequest $request) {
-        sfLoader::loadHelpers('Partial');
+        sfApplicationConfiguration::getActive()->loadHelpers(array('Partial'));
         $this->filename = 'error';
         $post = Doctrine::getTable('Post')->find(array($this->getRequestParameter('post_id')));
         $admin = sfGuardUser::getAdminUser();
@@ -66,7 +66,7 @@ class apiActions extends sfActions {
     }
 
     public function executeMainPageTrigger(sfWebRequest $request) {
-        sfLoader::loadHelpers('Partial');
+        sfApplicationConfiguration::getActive()->loadHelpers(array('Partial'));
         $this->filename = 'error';
         $post = Doctrine::getTable('Post')->find(array($this->getRequestParameter('post_id')));
         $admin = sfGuardUser::getAdminUser();
