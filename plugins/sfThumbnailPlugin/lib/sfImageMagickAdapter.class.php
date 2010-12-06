@@ -355,7 +355,10 @@ class sfImageMagickAdapter
     $output = (is_null($thumbDest))?'-':$thumbDest;
     $output = (($mime = array_search($targetMime, $this->mimeMap))?$mime.':':'').$output;
 
-    $cmd = $this->magickCommands['convert'].' '.$command.' '.escapeshellarg($this->image).$extract.' '.escapeshellarg($output);
+    $tempFile = tempnam('/tmp', '');
+    exec($this->magickCommands['convert'].' -coalesce '.escapeshellarg($this->image).' '.$tempFile);
+
+    $cmd = $this->magickCommands['convert'].' '.$command.' '.$tempFile.$extract.' '.escapeshellarg($output);
 
     (is_null($thumbDest))?passthru($cmd):exec($cmd);
   }
