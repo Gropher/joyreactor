@@ -239,6 +239,16 @@ public class Post implements Serializable {
         return tagline;
     }
 
+    public String getMoodName() {
+        switch((int)Math.round(getMood())) {
+            case 1:
+                return "Отличное";
+            case -1:
+                return "Плохое";
+            default:
+                return "Нормальное";
+        }
+    }
 
     @Override
     public int hashCode() {

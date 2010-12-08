@@ -96,9 +96,22 @@ public class MessageFacade {
                     "@c|<номер поста>|<номер комментария> - ответить на комменарий к посту, например: @c|123|54321\n" +
                     "@d|p|<номер поста> - удалить пост, например: @d|p|123\n" +
                     "@d|c|<номер комментария> - удалить комментарий, например: @d|c|54321\n" +
+                    "@whoami - показать ваш логин на "+context.SITE_NAME+".\n" +
                     "@h - вывести этот список.";
         }
         Message message = new Message(user, "outgoing", "help", protocol, "new", address, text);
+        context.getEntityManager().persist(message);
+        context.getEntityManager().flush();
+    }
+
+    public void createWhoAmI(SfGuardUser user, String protocol, String address) {
+        String text;
+        if (protocol.equalsIgnoreCase("smtp")) {
+            text = "Ты - <a href='"+context.SITE_URL+"/user/"+user.getUsername()+"'>"+user.getUsername()+"</a>.";
+        } else {
+            text = "Ты - "+user.getUsername()+" ("+context.SITE_URL+"/user/"+user.getUsername()+").";
+        }
+        Message message = new Message(user, "outgoing", "whoami", protocol, "new", address, text);
         context.getEntityManager().persist(message);
         context.getEntityManager().flush();
     }

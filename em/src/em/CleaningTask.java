@@ -33,7 +33,7 @@ public class CleaningTask implements Runnable {
 
     private void doWork() {
         if (context.beginTransaction()) {
-            System.out.println("Cleaning: begin transaction");
+            System.out.println("Cleaning: start");
             try {
                 context.getMessageFacade().removeOldMessages();
                 context.getSfGuardUserFacade().removeOldInactiveUsers();
@@ -41,9 +41,9 @@ public class CleaningTask implements Runnable {
                 Logger.getLogger(WatchDog.class.getName()).log(Level.SEVERE, null, ex);
             }
             context.commitTransaction();
-            System.out.println("Cleaning: commit transaction");
+            System.out.println("Cleaning: end");
         } else {
-            System.out.println("Cleaning: waiting transaction");
+            System.out.println("Cleaning: WAIT");
         }
     }
 
