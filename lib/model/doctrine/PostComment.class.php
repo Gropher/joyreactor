@@ -9,8 +9,6 @@ class PostComment extends BasePostComment
     {
         if($this->Post->getUserId() != $this->getUserId()) {
             $this->Post->setRating($this->Post->getRating() + sfConfig::get('app_post_comment_rating', 1));
-            $this->Post->setCommentsCount($this->Post->getCommentsCount() + 1);
-            $this->Post->save();
 
             $this->Post->User->getProfile()->setRating($this->Post->User->getProfile()->getRating() + sfConfig::get('app_post_comment_rating', 1));
             $this->Post->User->save();
@@ -18,6 +16,8 @@ class PostComment extends BasePostComment
             $this->User->getProfile()->setRating($this->User->getProfile()->getRating() + sfConfig::get('app_user_comment_rating', 1));
             $this->User->save();
         }
+        $this->Post->setCommentsCount($this->Post->getCommentsCount() + 1);
+        $this->Post->save();
     }
 
     public function preDelete($event)
