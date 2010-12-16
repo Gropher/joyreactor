@@ -1,4 +1,6 @@
 em/build
 em/dist
+em/src/em/Context.java
+em/src/META-INF/persistence.xml
 em/nbproject/private
 nbproject/private
