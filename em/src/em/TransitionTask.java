@@ -155,7 +155,7 @@ public class TransitionTask implements Runnable {
                 doWork = true;
             }
             if (text.startsWith("#") || text.startsWith("*")) {
-                String[] parts = text.split("[,;:| \n]");
+                String[] parts = text.split("[,;:|\n]");
                 Blog blog = context.getBlogFacade().findByTagOrCreate(parts[0].substring(1), message.getUserId());
                 if (blog != null) {
                     text = text.substring(parts[0].length() + 1).trim();
@@ -164,6 +164,8 @@ public class TransitionTask implements Runnable {
                 }
             }
         } while (doWork);
+        if(text.isEmpty())
+            return;
         Post post = new Post(message.getUserId(), text, moodNo, message.getType());
         post = context.getPostFacade().create(post);
         for (Blog blog : blogs) {
@@ -186,12 +188,14 @@ public class TransitionTask implements Runnable {
 
     private void postToMessage(Post post) {
         for (Friend f : post.getUserId().getFriendCollection1()) {
-            SfGuardUserProfile profile = f.getUserId().getProfile();
-            if (profile.getNotifyFriendline()) {
-                List<String> protocols = profile.getCommentsProtocols();
-                for (String protocol : protocols) {
-                    Message message = new Message(f.getUserId(), "outgoing", "post_comment", protocol, "new", f.getUserId().getAddress(protocol), getPostMessageText(post, protocol), post.getId());
-                    context.getMessageFacade().create(message);
+            if(f.getUserId() != null) {
+                SfGuardUserProfile profile = f.getUserId().getProfile();
+                if (profile.getNotifyFriendline()) {
+                    List<String> protocols = profile.getCommentsProtocols();
+                    for (String protocol : protocols) {
+                        Message message = new Message(f.getUserId(), "outgoing", "post_comment", protocol, "new", f.getUserId().getAddress(protocol), getPostMessageText(post, protocol), post.getId());
+                        context.getMessageFacade().create(message);
+                    }
                 }
             }
         }
