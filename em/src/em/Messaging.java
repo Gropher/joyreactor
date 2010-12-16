@@ -98,7 +98,7 @@ public class Messaging {
         public void presenceChanged(Presence packet) {
             try {
                 org.jivesoftware.smack.packet.Presence prs = (org.jivesoftware.smack.packet.Presence) packet;
-                if(!prs.getFrom().split("@")[1].equalsIgnoreCase(context.ICQ_TRANSPORT))
+                if(!prs.getFrom().equalsIgnoreCase(context.ICQ_TRANSPORT) && !prs.getFrom().split("@")[1].equalsIgnoreCase(context.ICQ_TRANSPORT))
                     jabberPresence.add(prs);
             } catch (Exception ex) {
                 Logger.getLogger(Messaging.class.getName()).log(Level.SEVERE, null, ex);
@@ -294,7 +294,7 @@ public class Messaging {
             icqConnection = new XMPPConnection(context.ICQ_HOST);
             icqConnection.connect();
             SASLAuthentication.supportSASLMechanism("PLAIN", 0);
-            icqConnection.login(context.ICQ_LOGIN, context.ICQ_PASS);
+            icqConnection.login(context.ICQ_LOGIN, context.ICQ_PASS, "icqbot");
             icqConnection.getRoster().addRosterListener(icqRosterListener);
             icqConnection.addPacketListener(icqListener, filter);
         } catch (Exception ex) {
@@ -320,7 +320,8 @@ public class Messaging {
             config.setNotMatchingDomainCheckEnabled(false);
             connection = new XMPPConnection(config);
             connection.connect();
-            connection.login(context.JABBER_LOGIN, context.JABBER_PASS);
+            SASLAuthentication.supportSASLMechanism("PLAIN", 0);
+            connection.login(context.JABBER_LOGIN, context.JABBER_PASS, "jabberbot");
             connection.getRoster().addRosterListener(rosterListener);
             Presence presence = new Presence(Presence.Type.available, statusText, 1, Presence.Mode.available);
             connection.sendPacket(presence);

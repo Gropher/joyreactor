@@ -35,7 +35,7 @@ public class ReceivingTask implements Runnable {
 
     public void doWork() {
         if (context.beginTransaction()) {
-            System.out.println("Receiving: begin transaction");
+            System.out.println("Receiving: start");
             try {
                 if(context.USE_MAIL)
                     receiveMail();
@@ -67,9 +67,9 @@ public class ReceivingTask implements Runnable {
                 Logger.getLogger(ReceivingTask.class.getName()).log(Level.SEVERE, null, ex);
             }
             context.commitTransaction();
-            System.out.println("Receiving: commit transaction");
+            System.out.println("Receiving: end");
         } else {
-            System.out.println("Receiving: waiting transaction");
+            System.out.println("Receiving: WAIT");
         }
     }
 

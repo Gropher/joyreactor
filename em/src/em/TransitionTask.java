@@ -30,7 +30,7 @@ public class TransitionTask implements Runnable {
 
     public void doWork() {
         if (context.beginTransaction()) {
-            System.out.println("Transition: begin transaction");
+            System.out.println("Transition: start");
             try {
                 transferMessages();
             } catch (Exception ex) {
@@ -39,9 +39,9 @@ public class TransitionTask implements Runnable {
                 Logger.getLogger(TransitionTask.class.getName()).log(Level.SEVERE, null, ex);
             }
             context.commitTransaction();
-            System.out.println("Transition: commit transaction");
+            System.out.println("Transition: end");
         } else {
-            System.out.println("Transition: waiting transaction");
+            System.out.println("Transition: WAIT");
         }
     }
 
@@ -119,6 +119,8 @@ public class TransitionTask implements Runnable {
                 }
             } else if (text.startsWith("@list") || text.startsWith("@help") || text.startsWith("@l") || text.startsWith("@h")) {
                 context.getMessageFacade().createHelp(message.getUserId(), message.getReplyProtocol(), message.getAddress());
+            } else if (text.startsWith("@whoami")) {
+                context.getMessageFacade().createWhoAmI(message.getUserId(), message.getReplyProtocol(), message.getAddress());
             } else {
                 throw new Exception("Syntax error in command");
             }
@@ -153,7 +155,7 @@ public class TransitionTask implements Runnable {
                 doWork = true;
             }
             if (text.startsWith("#") || text.startsWith("*")) {
-                String[] parts = text.split("[,;:| \n]");
+                String[] parts = text.split("[,;:|\n]");
                 Blog blog = context.getBlogFacade().findByTagOrCreate(parts[0].substring(1), message.getUserId());
                 if (blog != null) {
                     text = text.substring(parts[0].length() + 1).trim();
@@ -162,6 +164,8 @@ public class TransitionTask implements Runnable {
                 }
             }
         } while (doWork);
+        if(text.equalsIgnoreCase(""))
+            return;
         Post post = new Post(message.getUserId(), text, moodNo, message.getType());
         post = context.getPostFacade().create(post);
         for (Blog blog : blogs) {
@@ -184,12 +188,14 @@ public class TransitionTask implements Runnable {
 
     private void postToMessage(Post post) {
         for (Friend f : post.getUserId().getFriendCollection1()) {
-            SfGuardUserProfile profile = f.getUserId().getProfile();
-            if (profile.getNotifyFriendline()) {
-                List<String> protocols = profile.getCommentsProtocols();
-                for (String protocol : protocols) {
-                    Message message = new Message(f.getUserId(), "outgoing", "post_comment", protocol, "new", f.getUserId().getAddress(protocol), getPostMessageText(post, protocol), post.getId());
-                    context.getMessageFacade().create(message);
+            if(f.getUserId() != null) {
+                SfGuardUserProfile profile = f.getUserId().getProfile();
+                if (profile.getNotifyFriendline()) {
+                    List<String> protocols = profile.getCommentsProtocols();
+                    for (String protocol : protocols) {
+                        Message message = new Message(f.getUserId(), "outgoing", "post_comment", protocol, "new", f.getUserId().getAddress(protocol), getPostMessageText(post, protocol), post.getId());
+                        context.getMessageFacade().create(message);
+                    }
                 }
             }
         }
@@ -226,6 +232,7 @@ public class TransitionTask implements Runnable {
         if (protocol.equalsIgnoreCase("smtp")) {
             String res = "Ваш друг, пользователь <a href='" + context.SITE_URL + "/user/" + post.getUserId().getUsername() + "'>" + post.getUserId().getUsername() + "</a>" +
                          ", создал новый <a href='" + context.SITE_URL + "/post/" + post.getId() + "'>пост №" + post.getId() + "</a><br/>\n";
+            res += "Настроение: " + post.getMoodName() + "<br/>\n";
             if(!post.getTagLine().equalsIgnoreCase(""))
                 res += "Теги: " + post.getTagLine() + "<br/>\n";
             if(!post.getText().equalsIgnoreCase(""))
@@ -244,6 +251,7 @@ public class TransitionTask implements Runnable {
         } else if (protocol.equalsIgnoreCase("xmpp") || protocol.equalsIgnoreCase("icq")) {
             String res = "Ваш друг, пользователь " + post.getUserId().getUsername() +
                          ", создал новый пост №" + post.getId() + "\n";
+            res += "Настроение: " + post.getMoodName() + "\n";
             if(!post.getTagLine().equalsIgnoreCase(""))
                 res += "Теги: " + post.getTagLine() + "\n";
             if(!post.getText().equalsIgnoreCase(""))
@@ -270,6 +278,7 @@ public class TransitionTask implements Runnable {
         String res = "";
         if (comment.getParentId() == null) {
             res = "К Вашему посту №" + comment.getPostId().getId() + " " + context.SITE_URL + "/post/" + comment.getPostId().getId() + " добавили комментарий:\n";
+            res += "Настроение: " + comment.getPostId().getMoodName() + "\n";
             if(!comment.getPostId().getTagLine().equalsIgnoreCase(""))
                 res += "Теги: " + comment.getPostId().getTagLine() + "\n";
             if(!comment.getPostId().getText().equalsIgnoreCase(""))
@@ -279,6 +288,7 @@ public class TransitionTask implements Runnable {
         } else {
             if (!postAuthor) {
                 res = "Пришел ответ на Ваш комментарий к посту №" + comment.getPostId().getId() + " " + context.SITE_URL + "/post/" + comment.getPostId().getId() + "\n";
+                res += "Настроение: " + comment.getPostId().getMoodName() + "\n";
                 if(!comment.getPostId().getTagLine().equalsIgnoreCase(""))
                     res += "Теги: " + comment.getPostId().getTagLine() + "\n";
                 if(!comment.getPostId().getText().equalsIgnoreCase(""))
@@ -288,6 +298,7 @@ public class TransitionTask implements Runnable {
                        "Для ответа используйте команду: @c|" + comment.getPostId().getId() + "|" + comment.getId();
             } else {
                 res = "Пришел ответ на один из комментариев к Вашему посту №" + comment.getPostId().getId() + " " + context.SITE_URL + "/post/" + comment.getPostId().getId() + "\n";
+                res += "Настроение: " + comment.getPostId().getMoodName() + "\n";
                 if(!comment.getPostId().getTagLine().equalsIgnoreCase(""))
                     res += "Теги: " + comment.getPostId().getTagLine() + "\n";
                 if(!comment.getPostId().getText().equalsIgnoreCase(""))
@@ -305,6 +316,7 @@ public class TransitionTask implements Runnable {
         if (comment.getParentId() == null) {
             res = "К Вашему <a href='" + context.SITE_URL + "/post/" + comment.getPostId().getId() +
                     "'>посту №" + comment.getPostId().getId() + "</a> добавили комментарий:<br/>\n";
+            res += "Настроение: " + comment.getPostId().getMoodName() + "<br/>\n";
             if(!comment.getPostId().getTagLine().equalsIgnoreCase(""))
                 res += "Теги: " + comment.getPostId().getTagLine() + "<br/>\n";
             if(!comment.getPostId().getText().equalsIgnoreCase(""))
@@ -323,6 +335,7 @@ public class TransitionTask implements Runnable {
         } else {
             if (!postAuthor) {
                 res = "Пришел ответ на Ваш комментарий к <a href='" + context.SITE_URL + "/post/" + comment.getPostId().getId() + "'>посту №" + comment.getPostId().getId() + "</a>:<br/>\n";
+                res += "Настроение: " + comment.getPostId().getMoodName() + "<br/>\n";
                 if(!comment.getPostId().getTagLine().equalsIgnoreCase(""))
                     res += "Теги: " + comment.getPostId().getTagLine() + "<br/>\n";
                 if(!comment.getPostId().getText().equalsIgnoreCase(""))
@@ -342,6 +355,7 @@ public class TransitionTask implements Runnable {
                        "</form>";
             } else {
                 res = "Пришел ответ на один из комментариев к Вашему <a href='" + context.SITE_URL + "/post/" + comment.getPostId().getId() + "'>посту №" + comment.getPostId().getId() + "</a>:<br/>\n";
+                res += "Настроение: " + comment.getPostId().getMoodName() + "<br/>\n";
                 if(!comment.getPostId().getTagLine().equalsIgnoreCase(""))
                     res += "Теги: " + comment.getPostId().getTagLine() + "<br/>\n";
                 if(!comment.getPostId().getText().equalsIgnoreCase(""))

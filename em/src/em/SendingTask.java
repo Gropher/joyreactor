@@ -29,7 +29,7 @@ public class SendingTask implements Runnable {
 
     private void doWork() {
         if (context.beginTransaction()) {
-            System.out.println("Sending: begin transaction");
+            System.out.println("Sending: start");
             try {
                 if(context.USE_MAIL)
                     sendEmails(context.getMessageFacade().findAll(10, "outgoing", "new", "smtp"));
@@ -49,9 +49,9 @@ public class SendingTask implements Runnable {
                 Logger.getLogger(SendingTask.class.getName()).log(Level.SEVERE, null, ex);
             }
             context.commitTransaction();
-            System.out.println("Sending: commit transaction");
+            System.out.println("Sending: end");
         } else {
-            System.out.println("Sending: waiting transaction");
+            System.out.println("Sending: WAIT");
         }
     }
 
