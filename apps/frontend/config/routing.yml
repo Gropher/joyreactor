@@ -36,21 +36,6 @@ favorite:
   param: { module: post, action: favorite, page: 1 }
   requirements: { page: \d+ }
 
-best:
-  url:  /best/:page
-  param: { module: post, action: best, page: 1 }
-  requirements: { page: \d+ }
-
-worst:
-  url:  /worst/:page
-  param: { module: post, action: worst, page: 1 }
-  requirements: { page: \d+ }
-
-mood:
-  url:  /mood/:mood/:page
-  param: { module: post, action: mood, page: 1 }
-  requirements: { page: \d+ }
-
 #blogs (tags) module
 list-tags:
   url:  /tags/:page

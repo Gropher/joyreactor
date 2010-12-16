@@ -32,25 +32,6 @@ class postActions extends sfActions {
         }
     }
 
-    public function executeBest(sfWebRequest $request) {
-    }
-
-    public function executeWorst(sfWebRequest $request) {
-    }
-
-    public function executeText(sfWebRequest $request) {
-    }
-
-    public function executeMood(sfWebRequest $request) {
-        sfApplicationConfiguration::getActive()->loadHelpers(array('I18N'));
-        if($request->getParameter('mood') == 1)
-            $this->title = __('Веселое');
-        elseif($request->getParameter('mood') == -1)
-            $this->title = __('Грустное');
-        else
-            $this->title = __('Интересное');
-    }
-
     public function executeNew(sfWebRequest $request) {
         $this->curUser = $this->getUser()->getGuardUser();
         if($this->curUser) {
