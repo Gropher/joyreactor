@@ -164,8 +164,12 @@ public class TransitionTask implements Runnable {
                 }
             }
         } while (doWork);
-        if(text.equalsIgnoreCase(""))
+        if(text.equalsIgnoreCase("")) {
+            message.setStatus("empty");
+            context.getMessageFacade().edit(message);
+            System.out.println("Transition: empty post, nothing to do.");
             return;
+        }
         Post post = new Post(message.getUserId(), text, moodNo, message.getType());
         post = context.getPostFacade().create(post);
         for (Blog blog : blogs) {

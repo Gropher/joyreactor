@@ -55,6 +55,7 @@ public class Messaging {
                     jabberMessages.add(msg);
             } catch (Exception ex) {
                 Logger.getLogger(Messaging.class.getName()).log(Level.SEVERE, null, ex);
+                restartJabber();
             }
         }
     };
@@ -114,6 +115,7 @@ public class Messaging {
                    msg.getFrom().split("@")[1].equalsIgnoreCase(context.ICQ_TRANSPORT))
                     icqMessages.add(msg);
             } catch (Exception ex) {
+                restartIcq();
                 Logger.getLogger(Messaging.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

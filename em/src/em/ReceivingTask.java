@@ -146,7 +146,7 @@ public class ReceivingTask implements Runnable {
         for (org.jivesoftware.smack.packet.Message m : messages) {
             try {
                 SfGuardUser user = context.getSfGuardUserFacade().findByJabber(m.getFrom().split("/")[0].toLowerCase());
-                if (user != null && m.getBody() != null) {
+                if (user != null && m.getBody() != null && !m.getBody().equalsIgnoreCase("")) {
                     Message dbMessage = new Message(user, "incoming", "unknown", "xmpp", "new", m.getFrom(), m.getBody());
                     if (!context.getMessageFacade().isBounceMessage(dbMessage)) {
                         context.getMessageFacade().create(dbMessage);
@@ -168,7 +168,7 @@ public class ReceivingTask implements Runnable {
         for (org.jivesoftware.smack.packet.Presence m : messages) {
             try {
                 SfGuardUser user = context.getSfGuardUserFacade().findByJabber(m.getFrom().split("/")[0].toLowerCase());
-                if (user != null) {
+                if (user != null && m.getStatus() != null && !m.getStatus().equalsIgnoreCase("")) {
                     SfGuardUserProfile profile = user.getProfile();
                     if (profile.getCollectJabberStatus()) {
                         Message dbMessage = new Message(user, "incoming", "jabberStatus", "xmpp", "new", m.getFrom(), m.getStatus());
@@ -191,7 +191,7 @@ public class ReceivingTask implements Runnable {
             try {
                 String address = m.getFrom().split("@")[0].toLowerCase();
                 SfGuardUser user = context.getSfGuardUserFacade().findByIcq(address);
-                if (user != null && m.getBody() != null) {
+                if (user != null && m.getBody() != null && !m.getBody().equalsIgnoreCase("")) {
                     Message dbMessage = new Message(user, "incoming", "unknown", "icq", "new", address, m.getBody());
                     if (!context.getMessageFacade().isBounceMessage(dbMessage)) {
                         context.getMessageFacade().create(dbMessage);
@@ -214,7 +214,7 @@ public class ReceivingTask implements Runnable {
             try {
                 String address = m.getFrom().split("@")[0].toLowerCase();
                 SfGuardUser user = context.getSfGuardUserFacade().findByIcq(address);
-                if (user != null) {
+                if (user != null && m.getStatus() != null && !m.getStatus().equalsIgnoreCase("")) {
                     SfGuardUserProfile profile = user.getProfile();
                     if (profile.getCollectIcqStatus()) {
                         Message dbMessage = new Message(user, "incoming", "icqStatus", "icq", "new", address, m.getStatus());
