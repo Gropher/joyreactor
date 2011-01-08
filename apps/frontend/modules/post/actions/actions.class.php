@@ -98,6 +98,7 @@ class postActions extends sfActions {
         if($this->title) {
             try {
                 $options = array(
+		    'host'    => '192.168.10.4',
                     'limit'   => sfConfig::get('app_sphinx_results_per_page'),
                     'offset'  => 0,
                     'mode'    => sfSphinxClient::SPH_MATCH_ANY,
@@ -301,6 +302,7 @@ class postActions extends sfActions {
               else
             $this->redirect(url_for('post/new'));
         } catch (Exception $e) {
+	    //echo $e;
             echo "Возникла ошибка при создании поста.<br/>\n";
             if($this->getRequestParameter('text')) {
                 echo "Текст поста был такой:<br/>\n";
