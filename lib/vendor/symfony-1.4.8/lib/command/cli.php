@@ -17,6 +17,13 @@ try
   $logger = new sfCommandLogger($dispatcher);
 
   $application = new sfSymfonyCommandApplication($dispatcher, null, array('symfony_lib_dir' => realpath(dirname(__FILE__).'/..')));
+  
+  //enable Doctrine cache
+  $manager = Doctrine_Manager::getInstance();
+  $cacheDriver = new Doctrine_Cache_Apc();
+  $manager->setAttribute(Doctrine::ATTR_QUERY_CACHE, $cacheDriver);
+  $manager->setAttribute(Doctrine::ATTR_RESULT_CACHE, $cacheDriver);
+  
   $statusCode = $application->run();
 }
 catch (Exception $e)

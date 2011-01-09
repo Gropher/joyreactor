@@ -21,11 +21,13 @@ class postActions extends sfActions {
                 $post->save();
                 try {
                     $profile = $this->form->getObject();
-                    nahoMail::send(sfConfig::get('app_sfApplyPlugin_apply_subject',
-                        "Активация на сайте " . $request->getHost()),
-                        nahoMail::getBody('partial', 'global/sendValidateNew',
-                        array('name' => $profile->getFullname(), 'validate' => $profile->getValidate())),
-                        $profile->getEmail());
+                    
+                    sfContext::getInstance()->getMailer()
+                      ->composeAndSend(sfConfig::get('app_sfApplyPlugin_from_email'), 
+                                       $profile->getEmail(), 
+                                       sfConfig::get('app_sfApplyPlugin_apply_subject', "Активация на сайте " . $request->getHost()), 
+                                       $this->getPartial('global/sendValidateNew', array('name' => $profile->getFullname(), 'validate' => $profile->getValidate())));                       
+                        
                 }catch(Exception $e) {}
                 return 'After';
             }

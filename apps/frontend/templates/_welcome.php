@@ -1,16 +1,16 @@
 <? use_helper('Javascript'); ?>
 <h1>Наши тематические подборки</h1>
-<table>
+<table width="100%">
 <tbody>
 <tr>
 <td>
-<a href="http://www.joyreactor.ru/tag/смешные+советские+плакаты"><img width="263" src="http://www.joyreactor.ru/images/sov.jpg"/></a>
+<a href="http://www.joyreactor.ru/tag/смешные+советские+плакаты"><img width="228" src="http://www.joyreactor.ru/images/sov.jpg"/></a>
 </td>
 <td>
-<a href="http://www.joyreactor.ru/tag/комиксы+WulffMorgenthaler"><img width="263" src="http://www.joyreactor.ru/images/wulf.jpg"/></a>
+<a href="http://www.joyreactor.ru/tag/комиксы+WulffMorgenthaler"><img width="228" src="http://www.joyreactor.ru/images/wulf.jpg"/></a>
 </td>
 <td>
-<a href="http://www.joyreactor.ru/tag/демотиваторы+про+девушек"><img width="263" src="http://www.joyreactor.ru/images/dev.jpg"/></a>
+<a href="http://www.joyreactor.ru/tag/демотиваторы+про+девушек"><img width="228" src="http://www.joyreactor.ru/images/dev.jpg"/></a>
 </td>
 </tr>
 <tr>
