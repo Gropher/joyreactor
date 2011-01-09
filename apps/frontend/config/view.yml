@@ -11,7 +11,7 @@ default:
 
   stylesheets:    [style.css, jquery.rating.css, custom-form-elements.css]
 
-  javascripts:    [/sfProtoculousPlugin/js/prototype.js, excanvas.pack.js, custom-form-elements.js, webtoolkit.aim.js, jquery.min.js, jquery.flot.pack.js, jquery.cookie.js, jquery.rating.js, jquery.timers.js, CtrlEnter.js, TimeZoneOffset.js, jquery.tagcloud-2.js, date.format.js, 1024fix.js, externalLinks.js, commentsHighlight.js]
+  javascripts:    [/sfProtoculousPlugin/js/prototype.js, excanvas.pack.js, custom-form-elements.js, webtoolkit.aim.js, jquery.min.js, jquery.flot.pack.js, jquery.cookie.js, jquery.rating.js, jquery.timers.js, CtrlEnter.js, TimeZoneOffset.js, jquery.tagcloud-2.js, jquery.colorbox.js, date.format.js, 1024fix.js, externalLinks.js, commentsHighlight.js, main.js]
 
   has_layout:     on
   layout:         layout
