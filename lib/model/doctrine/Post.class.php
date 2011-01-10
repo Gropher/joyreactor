@@ -278,7 +278,7 @@ class Post extends BasePost {
             ->where('u.is_active = ?', 1)
             ->andWhere('p.type = ?', "post")
             ->andWhere('p.rating  >= ?', sfConfig::get('app_post_bestpage_threshold'))
-            ->orderBy('p.rating desc');
+            ->orderBy('p.created_at desc');
         if($page !== 'count') {
             $query = new Doctrine_Pager($query,$page,sfConfig::get('app_posts_per_page', 10));
             return $query->execute();
@@ -295,7 +295,7 @@ class Post extends BasePost {
             ->where('u.is_active = ?', 1)
             ->andWhere('p.type = ?', "post")
             ->andWhere('p.rating  < ?', sfConfig::get('app_post_worstpage_threshold'))
-            ->orderBy('p.rating');
+            ->orderBy('p.created_at desc');
         if($page !== 'count') {
             $query = new Doctrine_Pager($query,$page,sfConfig::get('app_posts_per_page', 10));
             return $query->execute();
