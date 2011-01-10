@@ -20,13 +20,18 @@ class postActions extends sfActions {
                     $post->setUser($this->form->getObject()->getUser());
                     $post->save();
                     try {
-                        $profile = $this->form->getObject();                    
-                        sfContext::getInstance()->getMailer()
-                          ->composeAndSend(sfConfig::get('app_sfApplyPlugin_from_email'), 
-                                           $profile->getEmail(), 
-                                           sfConfig::get('app_sfApplyPlugin_apply_subject', "Активация на сайте " . $request->getHost()), 
-                                           $this->getPartial('global/sendValidateNew', array('name' => $profile->getFullname(), 'validate' => $profile->getValidate())));                       
-                            
+                        $mailer = $this->getMailer();
+          		$profile = $this->form->getObject();
+          		$mailContext = array('name' => $profile->getFullname(),
+            			'validate' => $profile->getValidate(), 'partnerId' => $this->partnerId);
+          		$message = Swift_Message::newInstance();
+          		$from = sfConfig::get('app_sfApplyPlugin_from');
+          		$message->setFrom($from['email'], $from['fullname']);
+          		$message->setTo($profile->getEmail(), $profile->getUser()->getUsername());
+          		$message->setSubject(sfConfig::get('app_sfApplyPlugin_apply_subject', "Активация аккаунта на сайте " . $request->getHost()));
+          		$message->setBody($this->getPartial('global/sendValidateNew', $mailContext), 'text/html');
+          		$message->addPart($this->getPartial('global/sendValidateNewText', $mailContext), 'text/plain');
+	  	        $mailer->send($message); 
                     }catch(Exception $e) {}
                     return 'After';
                 }
