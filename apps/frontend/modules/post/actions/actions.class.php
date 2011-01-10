@@ -3,33 +3,33 @@ class postActions extends sfActions {
     public function executeIndex(sfWebRequest $request) {
         $this->curUser = $this->getUser()->getGuardUser();
         if($this->curUser) {
-            $request->addRequestParameters(array("username" => $this->curUser->getUsername()));
-            $this->forward("post", "new");
-        }
-        $this->form = $this->applyForm();
-        if($request->isMethod('post')) {
-            sfApplicationConfiguration::getActive()->loadHelpers(array('Guid'));
-            $this->form->bind($request->getParameter('sfApplyApply'));
-            if ($this->form->isValid()) {
-                $this->form->setValidate("n".createGuid());
-                $this->form->save();
-                $this->getUser()->signin($this->form->getObject()->getUser(), true);
-                $post = new Post();
-                $post->setText($this->getRequestParameter('text'));
-                $post->setMoodName($this->getRequestParameter('mood'));
-                $post->setUser($this->form->getObject()->getUser());
-                $post->save();
-                try {
-                    $profile = $this->form->getObject();
-                    
-                    sfContext::getInstance()->getMailer()
-                      ->composeAndSend(sfConfig::get('app_sfApplyPlugin_from_email'), 
-                                       $profile->getEmail(), 
-                                       sfConfig::get('app_sfApplyPlugin_apply_subject', "Активация на сайте " . $request->getHost()), 
-                                       $this->getPartial('global/sendValidateNew', array('name' => $profile->getFullname(), 'validate' => $profile->getValidate())));                       
-                        
-                }catch(Exception $e) {}
-                return 'After';
+            Cookie::setCookie($this->curUser, "index", Post::getNewLine('count'), time() + 24 * 60 * 60);
+            Cookie::setCookie($this->curUser, "indexTime", date("Y-m-d H:i:s"), time() + 24 * 60 * 60);
+        } else {
+            $this->form = $this->applyForm();
+            if($request->isMethod('post')) {
+                sfApplicationConfiguration::getActive()->loadHelpers(array('Guid'));
+                $this->form->bind($request->getParameter('sfApplyApply'));
+                if ($this->form->isValid()) {
+                    $this->form->setValidate("n".createGuid());
+                    $this->form->save();
+                    $this->getUser()->signin($this->form->getObject()->getUser(), true);
+                    $post = new Post();
+                    $post->setText($this->getRequestParameter('text'));
+                    $post->setMoodName($this->getRequestParameter('mood'));
+                    $post->setUser($this->form->getObject()->getUser());
+                    $post->save();
+                    try {
+                        $profile = $this->form->getObject();                    
+                        sfContext::getInstance()->getMailer()
+                          ->composeAndSend(sfConfig::get('app_sfApplyPlugin_from_email'), 
+                                           $profile->getEmail(), 
+                                           sfConfig::get('app_sfApplyPlugin_apply_subject', "Активация на сайте " . $request->getHost()), 
+                                           $this->getPartial('global/sendValidateNew', array('name' => $profile->getFullname(), 'validate' => $profile->getValidate())));                       
+                            
+                    }catch(Exception $e) {}
+                    return 'After';
+                }
             }
         }
     }
@@ -39,6 +39,14 @@ class postActions extends sfActions {
         if($this->curUser) {
             Cookie::setCookie($this->curUser, "new", Post::getNewLine('count'), time() + 24 * 60 * 60);
             Cookie::setCookie($this->curUser, "newTime", date("Y-m-d H:i:s"), time() + 24 * 60 * 60);
+        }
+    }
+    
+    public function executeBest(sfWebRequest $request) {
+        $this->curUser = $this->getUser()->getGuardUser();
+        if($this->curUser) {
+            Cookie::setCookie($this->curUser, "best", Post::getNewLine('count'), time() + 24 * 60 * 60);
+            Cookie::setCookie($this->curUser, "bestTime", date("Y-m-d H:i:s"), time() + 24 * 60 * 60);
         }
     }
 

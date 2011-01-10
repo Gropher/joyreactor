@@ -1,4 +1,18 @@
-<!--<b><?echo __('Главная')?></b>&nbsp;|&nbsp;<?echo link_to(__('Лучшее'),'post/best')?><br/>-->
+<? use_helper('DeltaCount'); ?>
+<? slot('menu2') ?>
+  <?if(getDeltaCount($sf_user, Post::getNewLine('count'), "new") > 0):?>
+    <?echo link_to(__('Все')." (+".getDeltaCount($sf_user, Post::getNewLine('count'), "new").")",'post/new')?>&nbsp;|&nbsp;
+  <?else:?>
+    <?echo link_to(__('Все'),'post/new')?>&nbsp;|&nbsp;
+  <?endif?>
+  <b><?echo __('Хорошее')?></b>&nbsp;|&nbsp;
+  <?if(getDeltaCount($sf_user, Post::getNewLine('count'), "best") > 0):?>
+    <?echo link_to(__('Лучшее')." (+".getDeltaCount($sf_user, Post::getNewLine('count'), "best").")",'post/best')?><br/>
+  <?else:?>
+    <?echo link_to(__('Лучшее'),'post/best')?><br/>
+  <?endif?>
+<? end_slot() ?>
+
 <? if(!$sf_user->isAuthenticated()): ?>
     <? include_partial('global/welcome', array('form' => $form)) ?>
 <? else: ?>

@@ -118,6 +118,11 @@ new:
   url:   /new/:page
   param: { module: post, action: new, page: 1 }
   requirements: { page: \d+ }
+best:
+  url:   /best/:page
+  param: { module: post, action: best, page: 1 }
+  requirements: { page: \d+ }
+
 
 default_index:
   url:   /:module
