@@ -1,5 +1,5 @@
 <? slot('menu2') ?>
-    <b><?echo __('Новые')?></b>&nbsp;&nbsp;|&nbsp;&nbsp;<?echo link_to(__('Самые болтливые'),'people/top')?>
+    <b><?echo link_to(__('Новые'),'people/index')?></b>&nbsp;&nbsp;|&nbsp;&nbsp;<?echo link_to(__('Самые болтливые'),'people/top')?>
 <? end_slot() ?>
 <div id="user_list">
     <? include_partial('userList', array('users' => sfGuardUser::getList($sf_request->getParameter('page')))); ?>
