@@ -5,14 +5,14 @@
         </div>
     </div>
 </li>
-<li>
+<!--<li>
     <h2><? echo __('Мета') ?></h2>
     &nbsp;<a href="/post/text" style="text-decoration: none"><?echo __("Комиксы, демотиваторы, цитаты")?></a>
     <div class="sidebarContent">
         <div id="metacloud" style="width:243px;">
         </div>
     </div>
-</li>
+</li>-->
 
 <script type="text/javascript">
     $j(function ()
