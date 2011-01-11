@@ -16,7 +16,7 @@ all:
   post_comment_rating: 0.3
   post_hide_rating: -0.3
   post_vote_rating: 1
-  post_mainpage_threshold: 1.0
+  post_mainpage_threshold: 0.0
   post_bestpage_threshold: 6.0
   post_worstpage_threshold: -1.0
   blog_favorite_rating: 1
