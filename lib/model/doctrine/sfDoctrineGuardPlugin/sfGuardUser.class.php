@@ -375,6 +375,7 @@ class sfGuardUser extends PluginsfGuardUser {
             ->select('u.*')
             ->from('sfGuardUser u, u.Profile p')
             ->where('time_to_sec(timediff(now(), u.last_login)) < ?', sfConfig::get('app_user_online_period', 480))
+            ->andWhere('u.is_active = ?', true)
             ->orderBy('time_to_sec(timediff(now(), u.last_login)) asc');
         if($page !== 'count') {
             $query = new Doctrine_Pager($query,$page,sfConfig::get('app_users_per_page', 10));

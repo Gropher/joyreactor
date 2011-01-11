@@ -552,17 +552,15 @@ a#cancel-comment-reply-link {
     position:static;
 }
 #joytip {
-    position:fixed;
-    background-color:white;
+    position:absolute;
+    background: none repeat scroll 0% 0% rgb(249, 233, 142); 
+    color: rgb(162, 125, 53); 
+    overflow: hidden; 
+    text-align: left;
     z-index:1000;
-    margin:0;
-    padding:0;
+    margin:0px;
+    padding:0px;
     display:none;
-    font-size:13px;
-    color:#333;
-    border-style:solid;
-    border-width:thin;
-    border-color:black;
 }
 .joyplot-header {
     text-align:center;

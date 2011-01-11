@@ -19,6 +19,7 @@
         <?endif?>
     </head>
     <body>
+        <div id="joytip"></div>
         <div id="container">
             <div id="header">
                 <h1><? echo link_to(__('JoyReactor'), '@homepage') ?></h1>
