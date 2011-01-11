@@ -33,7 +33,7 @@ $j(function ()
     {
         if (item)
         {
-            $j("#joytip").css({'top':item.pageY+5, 'left':item.pageX+5});
+            $j("#joytip").css({'top':item.pageY+5, 'left':item.pageX+10});
             $j("#joytip").text((new Date(item.datapoint[0])).toLocaleFormat("%d %b")+"\n "+ getMoodName(item.datapoint[1]));
             $j("#joytip").show('fast');
             $j("#joytip").oneTime(1500,function()
