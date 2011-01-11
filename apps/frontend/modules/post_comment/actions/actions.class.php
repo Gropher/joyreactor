@@ -12,7 +12,7 @@ class post_commentActions extends sfActions {
     public function executeDelete(sfWebRequest $request) {
         $this->comment = Doctrine::getTable('PostComment')->find(array($request->getParameter('id')));
         $this->post = $this->comment->getPost();
-        $this->forward404Unless($this->comment && ($this->comment->getUser() == $this->getUser()->getGuardUser() || $this->post->getUser() == $this->getUser()->getGuardUser()));
+        $this->forward404Unless($this->comment && !$this->comment->isOld() && $this->comment->getUser() == $this->getUser()->getGuardUser());
         $this->comment->delete();
         $this->redirect('post/show?id='.$this->post->getId());
     }

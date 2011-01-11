@@ -5,9 +5,9 @@
     </li>
     <li<? if($sf_context->getModuleName() == 'post' && in_array($sf_context->getActionName(), array('new', 'index', 'best'))): ?> class="current_page_item"<? endif ?>>
         <?if(getDeltaCount($sf_user, Post::getNewLine('count'), "index") > 0):?>
-            <? echo link_to(__('Новое')." (+".getDeltaCount($sf_user, Post::getNewLine('count'), "index").")", 'post/index')?>
+            <? echo link_to(__('Лента')." (+".getDeltaCount($sf_user, Post::getNewLine('count'), "index").")", 'post/index')?>
         <?else:?>
-            <? echo link_to(__('Новое'), 'post/index')?>
+            <? echo link_to(__('Лента'), 'post/index')?>
         <?endif?>
     </li>
     <li <?if($sf_context->getModuleName() == 'post' && $sf_context->getActionName() == 'discussion'): ?> class="current_page_item"<? endif ?>>

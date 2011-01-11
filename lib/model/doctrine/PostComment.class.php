@@ -5,6 +5,10 @@
  */
 class PostComment extends BasePostComment
 {
+    public function isOld() {
+        return time() - strtotime($this['created_at']) > sfConfig::get('app_post_comment_delete_period', 15) * 60;
+    }
+
     public function postInsert($event)
     {
         if($this->Post->getUserId() != $this->getUserId()) {

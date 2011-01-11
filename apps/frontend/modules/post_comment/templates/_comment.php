@@ -25,7 +25,7 @@
             <? if(!isset($noreply) || !$noreply): ?>
                 <? if($sf_user->isAuthenticated()): ?>
                     <span class="reply-link">
-                        <? if($sf_user->getGuardUser() == $comment->getPost()->getUser() || $sf_user->getGuardUser() == $comment->getUser()): ?>
+                        <? if(!$comment->isOld() && $sf_user->getGuardUser() == $comment->getUser()): ?>
                             <? echo link_to('удалить', 'post_comment/delete?id='.$comment->getId(), array('title' => __('удалить комментарий'), 'class'=>"delete", 'onclick' => "return confirm('".__('Действительно удалить комментарий?')."')")) ?>
                         <? endif ?>
                         <? echo link_to_function(__('ответить↓'), '$j(".addcomment").hide("fast");if($j("#comment_reply'.$comment->getId().'").is(":visible"))$j("#comment_reply'.$comment->getId().'").hide("fast"); else $j("#comment_reply'.$comment->getId().'").show("fast")') ?>
