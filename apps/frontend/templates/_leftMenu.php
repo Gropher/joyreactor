@@ -23,8 +23,9 @@
         <? include_partial('global/friendConnect') ?>
     <? endif ?>
     <!--LiveInternet counter--><script type="text/javascript"><!--
+    var tag = 'img';
     document.write("<a href='http://www.liveinternet.ru/click' "+
-    "target=_blank><img src='//counter.yadro.ru/hit?t26.6;r"+
+    "target=_blank><"+tag+" src='//counter.yadro.ru/hit?t26.6;r"+
     escape(document.referrer)+((typeof(screen)=="undefined")?"":
     ";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
     screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
