@@ -22,7 +22,7 @@
         <div id="joytip"></div>
         <div id="container">
             <div id="header">
-                <h1><? echo link_to(__('JoyReactor'), '@homepage') ?></h1>
+                <div class="logo"><? echo link_to(__('JoyReactor'), '@homepage') ?></div>
                 <div class="description">Твоё хорошее настроение</div>
             </div>
             <div id="page">

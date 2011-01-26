@@ -118,7 +118,7 @@ form {
     height: 123px;
 }
 
-#header h1 {
+#header .logo {
     padding: 25px 0 0 53px;
     margin: 0;
     color: #faf6bb;
@@ -126,8 +126,8 @@ form {
     font-size: 2em;
 }
 
-#header h1 a,
-#header h1 a:hover {
+#header .logo a,
+#header .logo a:hover {
     text-decoration: none;
     color: #faf6bb;
 }
