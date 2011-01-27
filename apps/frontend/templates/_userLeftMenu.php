@@ -27,13 +27,15 @@
             <? echo link_to(__('Закладки'), 'post/favorite?username='.$user->getUsername())?><br/><br/>
         </div>
     </li>
+    <!--
     <li>
         <h2><? echo __('Пульс настроения ').$user->getUsername() ?></h2>
         <div class="sidebarContent">
-            <? include_partial('global/joyPlot', array('joyplot' => $user->getJoyPlot(), 'dateFilterUrl' => "/user/".$user->getUsername().'/date/')) ?>
+            <? //include_partial('global/joyPlot', array('joyplot' => $user->getJoyPlot(), 'dateFilterUrl' => "/user/".$user->getUsername().'/date/')) ?>
             &nbsp;&nbsp;&nbsp;<nobr><small><small><span><?echo __('Настроение за неделю').': <i>'.$user->getAveMood().'</i>'?></span></small></small></nobr><br/><br/>
         </div>
     </li>
+    -->
     <?if($user->getLastStatus() && $user->getLastStatus()->getText()):?>
     <li>
         <h2><? echo __('Cтатус ').$user->getUsername() ?></h2>
