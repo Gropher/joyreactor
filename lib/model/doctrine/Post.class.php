@@ -86,8 +86,10 @@ class Post extends BasePost {
     }
 
     public function preDelete($event) {
-        $this->User->getProfile()->setRating($this->User->getProfile()->getRating() - $this->getRating());
-        $this->User->save();
+        if($this->getRating() > 0) {
+          $this->User->getProfile()->setRating($this->User->getProfile()->getRating() - $this->getRating());
+          $this->User->save();
+        }
     }
 
     public function deleteBlogs() {

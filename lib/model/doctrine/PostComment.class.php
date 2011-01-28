@@ -12,12 +12,12 @@ class PostComment extends BasePostComment
     public function postInsert($event)
     {
         if($this->Post->getUserId() != $this->getUserId()) {
-            $this->Post->setRating($this->Post->getRating() + sfConfig::get('app_post_comment_rating', 1));
+            $this->Post->setRating($this->Post->getRating() + sfConfig::get('app_post_comment_rating', 0.1));
 
-            $this->Post->User->getProfile()->setRating($this->Post->User->getProfile()->getRating() + sfConfig::get('app_post_comment_rating', 1));
+            $this->Post->User->getProfile()->setRating($this->Post->User->getProfile()->getRating() + sfConfig::get('app_post_comment_rating', 0.1));
             $this->Post->User->save();
 
-            $this->User->getProfile()->setRating($this->User->getProfile()->getRating() + sfConfig::get('app_user_comment_rating', 1));
+            $this->User->getProfile()->setRating($this->User->getProfile()->getRating() + sfConfig::get('app_user_comment_rating', 0.1));
             $this->User->save();
         }
         $this->Post->setCommentsCount($this->Post->getCommentsCount() + 1);
@@ -27,12 +27,12 @@ class PostComment extends BasePostComment
     public function preDelete($event)
     {
         if($this->Post->getUserId() != $this->getUserId()) {
-            $this->Post->setRating($this->Post->getRating() - sfConfig::get('app_post_comment_rating', 1));
+            $this->Post->setRating($this->Post->getRating() - sfConfig::get('app_post_comment_rating', 0.1));
 
-            $this->Post->User->getProfile()->setRating($this->Post->User->getProfile()->getRating() - sfConfig::get('app_post_comment_rating', 1));
+            $this->Post->User->getProfile()->setRating($this->Post->User->getProfile()->getRating() - sfConfig::get('app_post_comment_rating', 0.1));
             $this->Post->User->save();
 
-            $this->User->getProfile()->setRating($this->User->getProfile()->getRating() - sfConfig::get('app_user_comment_rating', 1));
+            $this->User->getProfile()->setRating($this->User->getProfile()->getRating() - sfConfig::get('app_user_comment_rating', 0.1));
             $this->User->save();
         }
         $this->Post->setCommentsCount($this->Post->getCommentsCount() - 1);
