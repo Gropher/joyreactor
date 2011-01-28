@@ -30,7 +30,9 @@
                     <? include_partial('global/menu') ?>
                 </div>
                 <div id="searchBar">
-                    <div style="float: left; padding: 5px"><? include_slot('menu2') ?></div>
+                    <div id="submenu">
+                        <? include_slot('menu2') ?>
+                    </div>
                     <? include_partial('global/search') ?>
                 </div>
                 <div id="pageinner">

@@ -9,7 +9,7 @@
         <div> 
             <div class="article post-good">
                 <div class="content">
-                    <h3><?echo image_tag("/images/smile_good.png",array('width'=>24)).' '.__("Привет!")?></h3>
+                    <h3><?echo image_tag("/images/smile_good.png",array('width'=>32)).' '.__("Привет!")?></h3>
                     <?echo __("Мы рады тебя видеть =) Проверь почту, если ты этого еще не сделал. Туда будет сыпаться все твое общение.")?><br/>
                     <p><b><?echo __("Теперь ты можешь")?>:</b></p>
                     <ol>

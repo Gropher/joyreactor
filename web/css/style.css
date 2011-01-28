@@ -667,3 +667,13 @@ a#cancel-comment-reply-link {
 .tagcloudlink{
     text-decoration:none;
 }
+
+#submenu {
+    float: left;
+    padding: 5px
+}
+
+#submenu a {
+    text-decoration: none;
+    font-size: 12px;
+}

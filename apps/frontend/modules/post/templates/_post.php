@@ -9,7 +9,7 @@
             <? include_partial('favorite/link', array('post' => $post)) ?>
         <? endif ?>
         <big><big>
-            <? echo image_tag("/images/smile_".$post->getMoodName().".png",array('height'=>24))?>
+            <? echo image_tag("/images/smile_".$post->getMoodName().".png",array('height'=>32))?>
             <a <?if($post->getUser()->isOnline()) {
                     echo 'class="online_username" ';
                     if($post->getUser()->getLastStatus() && $post->getUser()->getLastStatus()->getText())
