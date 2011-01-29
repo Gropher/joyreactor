@@ -12,6 +12,7 @@ function parsetext($text) {
     $res = auto_link_text($res);
     $res = strip_tags_attributes($res,array('<strike>', '<s>', '<sup>', '<sub>', '<embed>', '<object>', '<param>', '<p>', '<b>', '<i>', '<br>', '<br/>', '<a>', '<em>', '<font>', '<strong>', '<img>', '<img/>', '<small>', '<big>', '<div>', '<span>'));
     $res = closetags($res);
+    $res = redirectExternalLinks($res);
     $res = nl2br($res);
     $res = str_replace(array("\n", "\r"), " ", $res);
     $res = trim($res);
@@ -20,7 +21,10 @@ function parsetext($text) {
 
 function redirectExternalLinks($text)
 {
-  preg_match_all( "", $text, $result);
+  $text = preg_replace_callback( "/<a\s[^>]*href=(\"??)(http[^\" >]*?)\\1[^>]*>(.*)<\/a>/siU", function ($match) {
+    return "<a href='/redirect?url=" . urlencode($match[2]) . "'>" . $match[3] . "</a>";
+  }, $text);
+  return $text;
 }
 
 function closetags ( $html ) {

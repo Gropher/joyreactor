@@ -123,7 +123,14 @@ best:
   param: { module: post, action: best, page: 1 }
   requirements: { page: \d+ }
 
-
+# url redirect
+url-redirect:
+  url: /redirect
+  param:
+    module: main
+    action: redirect
+    
+# Default routes - delete it in future
 default_index:
   url:   /:module
   param: { action: index }
