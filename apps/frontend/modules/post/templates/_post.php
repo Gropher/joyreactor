@@ -80,7 +80,7 @@
                   'class'=>'commentnum',
                   'onclick' => '$j("#post_comment_list'.$post->getId().'")
                       .toggle("fast")
-                      .load("'.url_for("post/comments?id=".$post->getId()).'", function() {UpdateCommentsCss();}
+                      .load("'.url_for("post/comments?id=".$post->getId()."&rand=".rand()).'", function() {UpdateCommentsCss();}
                     );
                     return false;')) ?>
             <?if(getDeltaCount($sf_user, $post->getCommentsCount(), "comments".$post->getId()) > 0):?>
