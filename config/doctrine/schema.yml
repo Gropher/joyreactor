@@ -304,18 +304,16 @@ PostAttribute:
       default: "" 
     comment: string(2147483647)
   indexes:
+    value:
+      fields: [value(333)]
     post_id:
       fields: [post_id]
-      type: ~
     type:
       fields: [type]
-      type: ~
     created_at:
       fields: [created_at]
-      type: ~
     updated_at:
       fields: [updated_at]
-      type: ~
   relations:
     Post:
       class: Post
@@ -350,6 +348,8 @@ PostCommentAttribute:
       default: "" 
     comment: string(2147483647)
   indexes:
+    value:
+      fields: [value(333)]
     post_comment_id:
       fields: [post_comment_id]
     type:
