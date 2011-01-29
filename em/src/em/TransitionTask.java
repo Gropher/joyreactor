@@ -17,6 +17,7 @@ public class TransitionTask implements Runnable {
         this.context = context;
     }
 
+    @SuppressWarnings("SleepWhileHoldingLock")
     public void run() {
         while (true) {
             try {
@@ -134,6 +135,7 @@ public class TransitionTask implements Runnable {
 
     private void messageToPost(Message message) {
         String text = message.getText().trim();
+        String text_original = text;
         List<Blog> blogs = new ArrayList<Blog>();
         double moodNo = 0;
         boolean doWork = false;
@@ -170,7 +172,8 @@ public class TransitionTask implements Runnable {
             System.out.println("Transition: empty post, nothing to do.");
             return;
         }
-        Post post = new Post(message.getUserId(), text, moodNo, message.getType());
+        Post post = new Post(message.getUserId(), null, moodNo, message.getType());
+        post.setText_original(text_original);
         post = context.getPostFacade().create(post);
         for (Blog blog : blogs) {
             BlogPost bp = new BlogPost();

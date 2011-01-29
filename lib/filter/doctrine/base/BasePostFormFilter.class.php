@@ -15,6 +15,7 @@ abstract class BasePostFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'user_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
       'text'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'text_original'  => new sfWidgetFormFilterInput(),
       'header'         => new sfWidgetFormFilterInput(),
       'rating'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'comments_count' => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -30,6 +31,7 @@ abstract class BasePostFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'user_id'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
       'text'           => new sfValidatorPass(array('required' => false)),
+      'text_original'  => new sfValidatorPass(array('required' => false)),
       'header'         => new sfValidatorPass(array('required' => false)),
       'rating'         => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'comments_count' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -80,6 +82,7 @@ abstract class BasePostFormFilter extends BaseFormFilterDoctrine
       'id'             => 'Number',
       'user_id'        => 'ForeignKey',
       'text'           => 'Text',
+      'text_original'  => 'Text',
       'header'         => 'Text',
       'rating'         => 'Number',
       'comments_count' => 'Number',

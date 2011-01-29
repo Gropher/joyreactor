@@ -732,7 +732,7 @@ Post:
       notnull: true
     text:
       type: string(2147483647)
-      notnull: true
+      notnull: false
     text_original:
       type: string(2147483647)
     header:

@@ -20,6 +20,7 @@ public class WatchDog implements Runnable {
         this.context = context;
     }
 
+    @SuppressWarnings("SleepWhileHoldingLock")
     public void run() {
         while (true) {
             try {
