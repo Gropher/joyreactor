@@ -5,7 +5,9 @@ Disallow: /user/*/friendline/*
 Disallow: /user/*/friendline$
 Disallow: /frontend_dev.php/
 Disallow: /post_vote/create/
+Disallow: /redirect
 
 User-agent: *
 Disallow: /frontend_dev.php/
 Disallow: /post_vote/create/
+Disallow: /redirect
