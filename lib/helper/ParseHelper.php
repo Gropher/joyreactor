@@ -22,7 +22,7 @@ function parsetext($text) {
 function redirectExternalLinks($text)
 {
   $text = preg_replace_callback( "/<a\s[^>]*href=(\"??)(http[^\" >]*?)\\1[^>]*>(.*)<\/a>/siU", function ($match) {
-    return "<a href='/redirect?url=" . urlencode($match[2]) . "'>" . $match[3] . "</a>";
+    return "<a href='/redirect?url=" . urlencode($match[2]) . "' rel='nofollow'>" . $match[3] . "</a>";
   }, $text);
   return $text;
 }
