@@ -7,13 +7,28 @@
  */
 class PostCommentAttributeTable extends Doctrine_Table
 {
-    /**
-     * Returns an instance of this class.
-     *
-     * @return object PostCommentAttributeTable
-     */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('PostCommentAttribute');
-    }
+  /**
+   * Returns an instance of this class.
+   *
+   * @return object PostCommentAttributeTable
+   */
+  public static function getInstance()
+  {
+      return Doctrine_Core::getTable('PostCommentAttribute');
+  }
+
+  /**
+   * Ищет картинку, прикреплённую к комменту
+   *
+   * @param string $image картинка в /uploads
+   * @return PostCommentAttribute атрибут, или null
+   */
+  public function FindImage($image)
+  {
+    $query = $this->createQuery()
+          ->where('value = ?', '/uploads/' . $image)
+          ->andWhere('type = ?', 'picture');
+
+    return $query->fetchOne();
+  }
 }

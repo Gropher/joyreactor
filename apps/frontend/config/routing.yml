@@ -129,7 +129,13 @@ url-redirect:
   param:
     module: main
     action: redirect
-    
+
+image-redirect:
+  url: /redirect/image
+  param:
+    module: main
+    action: redirectImage
+
 # Default routes - delete it in future
 default_index:
   url:   /:module

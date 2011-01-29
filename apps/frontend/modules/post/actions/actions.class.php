@@ -318,7 +318,7 @@ class postActions extends sfActions {
               else
             $this->redirect(url_for('post/new'));
         } catch (Exception $e) {
-	    //echo $e;
+            echo $e;
             echo "Возникла ошибка при создании поста.<br/>\n";
             if($this->getRequestParameter('text')) {
                 echo "Текст поста был такой:<br/>\n";
