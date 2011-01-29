@@ -172,7 +172,6 @@ PostComment:
       notnull: false
     comment:
       type: string(2147483647)
-      notnull: true
     comment_original:
       type: string(2147483647)
     power:
@@ -732,7 +731,6 @@ Post:
       notnull: true
     text:
       type: string(2147483647)
-      notnull: false
     text_original:
       type: string(2147483647)
     header:

@@ -12,9 +12,7 @@
         ?>
     </span>
     <?endif?>
-    <?if($post->getText()!= null):?>
-        <span><? echo $post->getText(ESC_RAW) ?></span>
-    <?endif?>
+    <span><? echo $post->getTextParsed(ESC_RAW) ?></span>
     <? foreach($post->getAttributes() as $attr):?>
         <div class="image" >
         <? echo image_tag($attr->getValue(), array('absolute' => true,'id'=> 'postPicture'.$attr->getId(),

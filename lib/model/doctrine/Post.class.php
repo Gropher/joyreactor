@@ -8,6 +8,21 @@ class Post extends BasePost {
         return time() - strtotime($this['created_at']) > sfConfig::get('app_post_delete_period', 1) * 3600 * 24;
     }
 
+    /**
+     * Возвращает распаршенный текст поста
+     *
+     * @return string текст поста, пригодный для показа пользователю
+     */
+    public function getTextParsed() {
+      if($this->getText() === null)
+      {
+        sfContext::getInstance()->getConfiguration()->loadHelpers(array('Parse','Text','Tag'));
+        $this->setText(parsetext($this->getTextOriginal()));
+        $this->save();
+      }
+      return $this->getText();
+    }
+    
     public function getBlogCode() {
         sfApplicationConfiguration::getActive()->loadHelpers(array('Tag', 'I18N'));
         if(!$this->getText() && $this->Attributes->count()) {

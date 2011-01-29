@@ -43,4 +43,19 @@ class PostComment extends BasePostComment
         foreach($this->getComments() as $comment)
                 $comment->delete();
     }
+
+    /**
+     * Возвращает распаршенный текст комментария
+     *
+     * @return string текст комментария, пригодный для показа пользователю
+     */
+    public function getCommentParsed() {
+      if($this->getComment() === null)
+      {
+        sfContext::getInstance()->getConfiguration()->loadHelpers(array('Parse','Text','Tag'));
+        $this->setComment(parsetext($this->getCommentOriginal()));
+        $this->save();
+      }
+      return $this->getComment();
+    }
 }
