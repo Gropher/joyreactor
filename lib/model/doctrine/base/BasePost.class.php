@@ -8,6 +8,7 @@
  * @property integer $id
  * @property integer $user_id
  * @property string $text
+ * @property string $text_original
  * @property string $header
  * @property float $rating
  * @property integer $comments_count
@@ -27,6 +28,7 @@
  * @method integer             getId()             Returns the current record's "id" value
  * @method integer             getUserId()         Returns the current record's "user_id" value
  * @method string              getText()           Returns the current record's "text" value
+ * @method string              getTextOriginal()   Returns the current record's "text_original" value
  * @method string              getHeader()         Returns the current record's "header" value
  * @method float               getRating()         Returns the current record's "rating" value
  * @method integer             getCommentsCount()  Returns the current record's "comments_count" value
@@ -45,6 +47,7 @@
  * @method Post                setId()             Sets the current record's "id" value
  * @method Post                setUserId()         Sets the current record's "user_id" value
  * @method Post                setText()           Sets the current record's "text" value
+ * @method Post                setTextOriginal()   Sets the current record's "text_original" value
  * @method Post                setHeader()         Sets the current record's "header" value
  * @method Post                setRating()         Sets the current record's "rating" value
  * @method Post                setCommentsCount()  Sets the current record's "comments_count" value
@@ -85,6 +88,10 @@ abstract class BasePost extends sfDoctrineRecord
         $this->hasColumn('text', 'string', 2147483647, array(
              'type' => 'string',
              'notnull' => true,
+             'length' => 2147483647,
+             ));
+        $this->hasColumn('text_original', 'string', 2147483647, array(
+             'type' => 'string',
              'length' => 2147483647,
              ));
         $this->hasColumn('header', 'string', 2147483647, array(

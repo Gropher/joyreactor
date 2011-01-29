@@ -10,35 +10,41 @@
  * @property integer $post_id
  * @property integer $parent_id
  * @property string $comment
+ * @property string $post_comment
  * @property integer $power
  * @property boolean $isNew
  * @property sfGuardUser $User
  * @property Post $Post
  * @property PostComment $Parent
  * @property Doctrine_Collection $Comments
+ * @property Doctrine_Collection $Attributes
  * 
- * @method integer             getId()        Returns the current record's "id" value
- * @method integer             getUserId()    Returns the current record's "user_id" value
- * @method integer             getPostId()    Returns the current record's "post_id" value
- * @method integer             getParentId()  Returns the current record's "parent_id" value
- * @method string              getComment()   Returns the current record's "comment" value
- * @method integer             getPower()     Returns the current record's "power" value
- * @method boolean             getIsNew()     Returns the current record's "isNew" value
- * @method sfGuardUser         getUser()      Returns the current record's "User" value
- * @method Post                getPost()      Returns the current record's "Post" value
- * @method PostComment         getParent()    Returns the current record's "Parent" value
- * @method Doctrine_Collection getComments()  Returns the current record's "Comments" collection
- * @method PostComment         setId()        Sets the current record's "id" value
- * @method PostComment         setUserId()    Sets the current record's "user_id" value
- * @method PostComment         setPostId()    Sets the current record's "post_id" value
- * @method PostComment         setParentId()  Sets the current record's "parent_id" value
- * @method PostComment         setComment()   Sets the current record's "comment" value
- * @method PostComment         setPower()     Sets the current record's "power" value
- * @method PostComment         setIsNew()     Sets the current record's "isNew" value
- * @method PostComment         setUser()      Sets the current record's "User" value
- * @method PostComment         setPost()      Sets the current record's "Post" value
- * @method PostComment         setParent()    Sets the current record's "Parent" value
- * @method PostComment         setComments()  Sets the current record's "Comments" collection
+ * @method integer             getId()           Returns the current record's "id" value
+ * @method integer             getUserId()       Returns the current record's "user_id" value
+ * @method integer             getPostId()       Returns the current record's "post_id" value
+ * @method integer             getParentId()     Returns the current record's "parent_id" value
+ * @method string              getComment()      Returns the current record's "comment" value
+ * @method string              getPostComment()  Returns the current record's "post_comment" value
+ * @method integer             getPower()        Returns the current record's "power" value
+ * @method boolean             getIsNew()        Returns the current record's "isNew" value
+ * @method sfGuardUser         getUser()         Returns the current record's "User" value
+ * @method Post                getPost()         Returns the current record's "Post" value
+ * @method PostComment         getParent()       Returns the current record's "Parent" value
+ * @method Doctrine_Collection getComments()     Returns the current record's "Comments" collection
+ * @method Doctrine_Collection getAttributes()   Returns the current record's "Attributes" collection
+ * @method PostComment         setId()           Sets the current record's "id" value
+ * @method PostComment         setUserId()       Sets the current record's "user_id" value
+ * @method PostComment         setPostId()       Sets the current record's "post_id" value
+ * @method PostComment         setParentId()     Sets the current record's "parent_id" value
+ * @method PostComment         setComment()      Sets the current record's "comment" value
+ * @method PostComment         setPostComment()  Sets the current record's "post_comment" value
+ * @method PostComment         setPower()        Sets the current record's "power" value
+ * @method PostComment         setIsNew()        Sets the current record's "isNew" value
+ * @method PostComment         setUser()         Sets the current record's "User" value
+ * @method PostComment         setPost()         Sets the current record's "Post" value
+ * @method PostComment         setParent()       Sets the current record's "Parent" value
+ * @method PostComment         setComments()     Sets the current record's "Comments" collection
+ * @method PostComment         setAttributes()   Sets the current record's "Attributes" collection
  * 
  * @package    Empaty
  * @subpackage model
@@ -74,6 +80,10 @@ abstract class BasePostComment extends sfDoctrineRecord
         $this->hasColumn('comment', 'string', 2147483647, array(
              'type' => 'string',
              'notnull' => true,
+             'length' => 2147483647,
+             ));
+        $this->hasColumn('post_comment', 'string', 2147483647, array(
+             'type' => 'string',
              'length' => 2147483647,
              ));
         $this->hasColumn('power', 'integer', 4, array(
@@ -156,6 +166,10 @@ abstract class BasePostComment extends sfDoctrineRecord
         $this->hasMany('PostComment as Comments', array(
              'local' => 'id',
              'foreign' => 'parent_id'));
+
+        $this->hasMany('PostCommentAttribute as Attributes', array(
+             'local' => 'id',
+             'foreign' => 'post_comment_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
