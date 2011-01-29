@@ -87,7 +87,6 @@ abstract class BasePost extends sfDoctrineRecord
              ));
         $this->hasColumn('text', 'string', 2147483647, array(
              'type' => 'string',
-             'notnull' => true,
              'length' => 2147483647,
              ));
         $this->hasColumn('text_original', 'string', 2147483647, array(
