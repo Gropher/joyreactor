@@ -78,33 +78,35 @@ abstract class BasePostAttribute extends sfDoctrineRecord
              ));
 
 
+        $this->index('value', array(
+             'fields' => 
+             array(
+              0 => 'value(333)',
+             ),
+             ));
         $this->index('post_id', array(
              'fields' => 
              array(
               0 => 'post_id',
              ),
-             'type' => NULL,
              ));
         $this->index('type', array(
              'fields' => 
              array(
               0 => 'type',
              ),
-             'type' => NULL,
              ));
         $this->index('created_at', array(
              'fields' => 
              array(
               0 => 'created_at',
              ),
-             'type' => NULL,
              ));
         $this->index('updated_at', array(
              'fields' => 
              array(
               0 => 'updated_at',
              ),
-             'type' => NULL,
              ));
         $this->option('type', 'MYISAM');
         $this->option('collate', 'utf8_unicode_ci');
