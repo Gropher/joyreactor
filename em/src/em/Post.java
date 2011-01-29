@@ -39,10 +39,14 @@ public class Post implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Lob
     @Column(name = "text")
     private String text = "";
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "text_original")
+    private String text_original = "";
     @Basic(optional = false)
     @Column(name = "rating")
     private double rating = 0.0;
@@ -109,6 +113,20 @@ public class Post implements Serializable {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    /**
+     * @return the text_original
+     */
+    public String getText_original() {
+        return text_original;
+    }
+
+    /**
+     * @param text_original the text_original to set
+     */
+    public void setText_original(String text_original) {
+        this.text_original = text_original;
     }
 
     public double getRating() {
@@ -274,5 +292,4 @@ public class Post implements Serializable {
     public String toString() {
         return "ejb.Post[id=" + id + "]";
     }
-
 }
