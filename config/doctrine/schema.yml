@@ -173,6 +173,8 @@ PostComment:
     comment:
       type: string(2147483647)
       notnull: true
+    comment_original:
+      type: string(2147483647)
     power:
       type: integer(4)
       notnull: true
@@ -319,6 +321,48 @@ PostAttribute:
       class: Post
       foreign: id
       local: post_id
+      type: one
+      onDelete: cascade
+      foreignType: many
+      foreignAlias: Attributes
+
+PostCommentAttribute:
+  tableName: post_comment_attribute
+  actAs: { Timestampable: ~ }
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    post_comment_id:
+      type: integer(4)
+      notnull: true
+    type:
+      type: enum(10)
+      values: [tag, picture, audio, video]
+      notnull: true
+    value:
+      type: string(2147483647)
+      notnull: true
+    origin:
+      type: string(1024)
+      notnull: true
+      default: "" 
+    comment: string(2147483647)
+  indexes:
+    post_comment_id:
+      fields: [post_comment_id]
+    type:
+      fields: [type]
+    created_at:
+      fields: [created_at]
+    updated_at:
+      fields: [updated_at]
+  relations:
+    PostComment:
+      class: PostComment
+      foreign: id
+      local: post_comment_id
       type: one
       onDelete: cascade
       foreignType: many
@@ -689,6 +733,8 @@ Post:
     text:
       type: string(2147483647)
       notnull: true
+    text_original:
+      type: string(2147483647)
     header:
       type: string(2147483647)
     rating:

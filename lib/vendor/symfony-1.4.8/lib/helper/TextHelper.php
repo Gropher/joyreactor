@@ -236,7 +236,7 @@ if (!defined('SF_AUTO_LINK_RE'))
       (?:\?[\w\+%&=.;-]+)?     # query string
       (?:\#[\w\-]*)?           # trailing anchor
     )
-    ([[:punct:]]|\s|<|$)    # trailing text
+    ((?=[[:punct:]]|\s|<)|$)    # trailing text
    ~x');
 }
 
@@ -283,5 +283,5 @@ function _auto_link_urls($text, $href_options = array(), $truncate = false, $tru
  */
 function _auto_link_email_addresses($text)
 {
-  return preg_replace('/([\w\.!#\$%\-+.]+@[A-Za-z0-9\-]+(\.[A-Za-z0-9\-]+)+)/', '<a href="mailto:\\1">\\1</a>', $text);
+  return preg_replace('/(?<!href=[\'"]mailto:)\s([\w\.!#\$%\-+.]+@[A-Za-z0-9\-]+(\.[A-Za-z0-9\-]+)+)/', '<a href="mailto:\\1">\\1</a>', $text);
 }

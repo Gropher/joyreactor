@@ -66,26 +66,18 @@ class post_commentActions extends sfActions {
           return;
         }
 
+        sfApplicationConfiguration::getActive()->loadHelpers(array('Parse','Text','Tag', 'I18N','Url'));
+
         $user = $this->getUser()->getGuardUser();
         $comment = new PostComment();
         $comment->setUser($user);
         $comment->setPost($this->post);
         if($this->parent)
             $comment->setParent($this->parent);
-        $comment->setComment($text);
+        $comment->setComment(parsetext($text));
+        $comment->setCommentOriginal($text);
         $comment->save();
-//            try {
-//                if($this->parent)
-//                    nahoMail::send('Ответ',
-//                        nahoMail::getBody('partial', 'post_comment/notify_comment',
-//                        array('post' => $this->post, 'parent' => $this->parent, 'comment' => $comment)),
-//                        $this->parent->getUser()->getProfile()->getEMail());
-//                else
-//                    nahoMail::send('Комментарий',
-//                        nahoMail::getBody('partial', 'post_comment/notify_comment',
-//                        array('post' => $this->post, 'parent' => $this->parent, 'comment' => $comment)),
-//                        $this->post->getUser()->getProfile()->getEMail());
-//            }catch(Exception $e){}
+
         $this->curUser = $this->getUser()->getGuardUser();
         if($this->curUser) {
             Cookie::setCookie($this->curUser, "comments".$this->post->getId(), $this->post->getAllComments('count'), time() + 24 * 60 * 60);

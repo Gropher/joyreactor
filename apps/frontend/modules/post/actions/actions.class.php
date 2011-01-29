@@ -227,7 +227,7 @@ class postActions extends sfActions {
     }
 
     public function executeCreate(sfWebRequest $request) {
-        sfApplicationConfiguration::getActive()->loadHelpers(array('I18N','Url'));
+        sfApplicationConfiguration::getActive()->loadHelpers(array('Parse','Text','Tag', 'I18N','Url'));
         $this->forward404Unless($request->isMethod('post'));
         $user = $this->getUser()->getGuardUser();
         try {
@@ -267,7 +267,8 @@ class postActions extends sfActions {
                 }
             } while ($doWork);
             $post = new Post();
-            $post->setText($text);
+            $post->setTextOriginal($text);
+            $post->setText(parsetext($text));
             if($useMoodNo)
                 $post->setMood($moodNo);
             else

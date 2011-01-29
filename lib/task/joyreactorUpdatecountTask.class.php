@@ -4,11 +4,6 @@ class joyreactorUpdatecountTask extends sfBaseTask
 {
   protected function configure()
   {
-    // // add your own arguments here
-    // $this->addArguments(array(
-    //   new sfCommandArgument('my_arg', sfCommandArgument::REQUIRED, 'My argument'),
-    // ));
-
     $this->addOptions(array(
       new sfCommandOption('application', null, sfCommandOption::PARAMETER_REQUIRED, 'The application name'),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
@@ -20,7 +15,7 @@ class joyreactorUpdatecountTask extends sfBaseTask
     $this->name             = 'update-count';
     $this->briefDescription = '';
     $this->detailedDescription = <<<EOF
-The [joyreactor:update-count|INFO] task does things.
+The [joyreactor:update-count|INFO] task updated count for blogs.
 Call it with:
 
   [php symfony joyreactor:update-count|INFO]

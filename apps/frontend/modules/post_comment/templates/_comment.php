@@ -3,7 +3,7 @@
     <? if(!isset($level)) $level = 0; ?>
     <div class="avatar"><img src="/images/comments.gif" title="<? echo user_time($comment->getCreatedAt()) ?>" /></div>
     <div class="txt">
-        <? echo parsetext($comment->getComment(ESC_RAW)) ?>&nbsp;&mdash;
+        <? echo $comment->getComment(ESC_RAW) ?>&nbsp;&mdash;
         <span>
             <a <?if($comment->getUser()->isOnline()) {
                     echo 'class="online_username" ';

@@ -13,7 +13,7 @@
     </span>
     <?endif?>
     <?if($post->getText()!= null):?>
-        <span><? echo parsetext($post->getText(ESC_RAW)) ?></span>
+        <span><? echo $post->getText(ESC_RAW) ?></span>
     <?endif?>
     <? foreach($post->getAttributes() as $attr):?>
         <div class="image" >
@@ -22,11 +22,6 @@
             "title"=>str_replace("\n", " ", $attr->getComment()),
             'onload'=> 'var width = 811; if(screen.width == 1024) width=689; if(typeof $j == \'function\' && $j(\'#postPicture'.$attr->getId().'\') && $j(\'#postPicture'.$attr->getId().'\').width() > width)'.
                 ' $j(\'#postPicture'.$attr->getId().'\').width(width);')) ?>
-        <?// echo "<a href='".url_for("post/attribute?id=".$attr->getId())."'>".image_tag($attr->getValue(), array('id'=> 'postPicture'.$attr->getId(),
-//            "alt"=>$attr->getComment(),
-//            "title"=>str_replace("\n", " ", $attr->getComment()),
-//            'onload'=> 'var width = 811; if(screen.width == 1024) width=689; if(typeof $j == \'function\' && $j(\'#postPicture'.$attr->getId().'\') && $j(\'#postPicture'.$attr->getId().'\').width() > width)'.
-//                ' $j(\'#postPicture'.$attr->getId().'\').width(width);'))."</a>" ?>
         </div>
     <? endforeach ?>
 </div>

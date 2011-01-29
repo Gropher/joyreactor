@@ -9,7 +9,7 @@
     </span>
     <?endif?>
     <?if($post->getText()!= null):?>
-        <span><? echo parsetext($post->getText(ESC_RAW)) ?></span>
+        <span><? echo $post->getText(ESC_RAW) ?></span>
     <?endif?>
     <? foreach($post->getAttributes() as $attr):?>
         <div>

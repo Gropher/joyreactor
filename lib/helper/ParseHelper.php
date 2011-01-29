@@ -1,17 +1,36 @@
 <?php
 function parsetext($text) {
-    $res = trim($text);
+    $res = $text;
+
+    // убираем переводы строк внутри тэгов
+    do
+    {
+      $oldRes = $res;
+      $res = preg_replace("/(<[^>]*)[\n\r]/m", '$1 ', $res);
+    } while($res != $oldRes);
+
+    $res = auto_link_text($res);
     $res = strip_tags_attributes($res,array('<strike>', '<s>', '<sup>', '<sub>', '<embed>', '<object>', '<param>', '<p>', '<b>', '<i>', '<br>', '<br/>', '<a>', '<em>', '<font>', '<strong>', '<img>', '<img/>', '<small>', '<big>', '<div>', '<span>'));
     $res = closetags($res);
     $res = nl2br($res);
-    $res = auto_link_text($res);
+    $res = str_replace(array("\n", "\r"), " ", $res);
+    $res = trim($res);
     return $res;
+}
+
+function redirectExternalLinks($text)
+{
+  preg_match_all( "", $text, $result);
 }
 
 function closetags ( $html ) {
     #put all opened tags into an array
-    preg_match_all ( "#<([a-z]+)( .*)?(?!/)>#iU", $html, $result );
+    preg_match_all ( "#<([a-z]+) [^>]*((?:(?:'[^']*')|(?:\"[^\"]*'))[^>]*)*(?!/)>#iU", $html, $result );
     $openedtags = $result[1];
+
+    # fix img, hr, br
+    $openedtags = array_diff($openedtags, array("img", "hr", "br"));
+
     #put all closed tags into an array
     preg_match_all ( "#</([a-z]+)>#iU", $html, $result );
     $closedtags = $result[1];
