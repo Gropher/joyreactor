@@ -79,7 +79,6 @@ abstract class BasePostComment extends sfDoctrineRecord
              ));
         $this->hasColumn('comment', 'string', 2147483647, array(
              'type' => 'string',
-             'notnull' => true,
              'length' => 2147483647,
              ));
         $this->hasColumn('comment_original', 'string', 2147483647, array(
