@@ -22,7 +22,10 @@ function parsetext($text) {
 function redirectExternalLinks($text)
 {
   $text = preg_replace_callback( "/<a\s[^>]*href=([\"']??)(http[^\" >]*?)\\1[^>]*>(.*)<\/a>/siU", function ($match) {
-    return "<a href='http://".sfContext::getInstance()->getRequest()->getHost()."/redirect?url=" . urlencode($match[2]) . "' rel='nofollow'>" . $match[3] . "</a>";
+    $host = sfContext::getInstance()->getRequest()->getHost();
+    if(!$host)
+	$host = "www.joyreactor.ru";
+    return "<a href='http://".$host."/redirect?url=" . urlencode($match[2]) . "' rel='nofollow'>" . $match[3] . "</a>";
   }, $text);
   return $text;
 }
