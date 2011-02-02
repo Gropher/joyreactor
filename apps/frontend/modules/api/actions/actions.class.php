@@ -51,6 +51,7 @@ class apiActions extends sfActions {
         sfApplicationConfiguration::getActive()->loadHelpers(array('Partial'));
         $this->filename = 'error';
         $post = Doctrine::getTable('Post')->find(array($this->getRequestParameter('post_id')));
+        $post->getTextParsed();
         $admin = sfGuardUser::getAdminUser();
         if($admin && urldecode($this->getRequestParameter('login')) == $admin->getProfile()->getLjlogin() &&
             urldecode($this->getRequestParameter('pass')) == $admin->getProfile()->getLjpassword() &&

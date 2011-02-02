@@ -22,8 +22,10 @@ public class PostFacade {
     public Post create(Post post) {
         context.getEntityManager().persist(post);
         context.getEntityManager().flush();
-        if(post.getType().equalsIgnoreCase("post"))
+        if(post.getType().equalsIgnoreCase("post")) {
             context.getSiteApi().postCreateTrigger(post);
+            context.getEntityManager().refresh(post);
+        }
         return post;
     }
 

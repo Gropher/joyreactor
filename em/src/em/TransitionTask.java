@@ -242,7 +242,7 @@ public class TransitionTask implements Runnable {
             res += "Настроение: " + post.getMoodName() + "<br/>\n";
             if(!post.getTagLine().equalsIgnoreCase(""))
                 res += "Теги: " + post.getTagLine() + "<br/>\n";
-            if(!post.getText().equalsIgnoreCase(""))
+            if(post.getText() != null && !post.getText().equalsIgnoreCase(""))
                 res += "Текст поста: " + post.getText() + "<br/>\n";
             for(PostAttribute attr : post.getPostAttributeCollection())
                 res += "<img src='"+context.SITE_URL+attr.getValue()+"'/><br/>\n";
@@ -261,7 +261,7 @@ public class TransitionTask implements Runnable {
             res += "Настроение: " + post.getMoodName() + "\n";
             if(!post.getTagLine().equalsIgnoreCase(""))
                 res += "Теги: " + post.getTagLine() + "\n";
-            if(!post.getText().equalsIgnoreCase(""))
+            if(post.getText() != null && !post.getText().equalsIgnoreCase(""))
                 res += "Текст поста: " + post.getText() + "\n";
             res += context.SITE_URL + "/post/" + post.getId() + "\n" +
                    "Для добавления комментария используйте команду: @c|" + post.getId();
@@ -288,7 +288,7 @@ public class TransitionTask implements Runnable {
             res += "Настроение: " + comment.getPostId().getMoodName() + "\n";
             if(!comment.getPostId().getTagLine().equalsIgnoreCase(""))
                 res += "Теги: " + comment.getPostId().getTagLine() + "\n";
-            if(!comment.getPostId().getText().equalsIgnoreCase(""))
+            if(comment.getPostId().getText() != null && !comment.getPostId().getText().equalsIgnoreCase(""))
                 res += "Текст: " + comment.getPostId().getText() + "\n";
             res += comment.getUserId().getUsername() + ": " + comment.getComment() + "\n" +
                    "Для ответа используйте команду: @c|" + comment.getPostId().getId() + "|" + comment.getId();
@@ -298,7 +298,7 @@ public class TransitionTask implements Runnable {
                 res += "Настроение: " + comment.getPostId().getMoodName() + "\n";
                 if(!comment.getPostId().getTagLine().equalsIgnoreCase(""))
                     res += "Теги: " + comment.getPostId().getTagLine() + "\n";
-                if(!comment.getPostId().getText().equalsIgnoreCase(""))
+                if(comment.getPostId().getText() != null && !comment.getPostId().getText().equalsIgnoreCase(""))
                     res += "Текст: " + comment.getPostId().getText() + "\n";
                 res += comment.getParentId().getUserId().getUsername() + ": " + comment.getParentId().getComment() + "\n" +
                        comment.getUserId().getUsername() + ": " + comment.getComment() + "\n" +
@@ -308,7 +308,7 @@ public class TransitionTask implements Runnable {
                 res += "Настроение: " + comment.getPostId().getMoodName() + "\n";
                 if(!comment.getPostId().getTagLine().equalsIgnoreCase(""))
                     res += "Теги: " + comment.getPostId().getTagLine() + "\n";
-                if(!comment.getPostId().getText().equalsIgnoreCase(""))
+                if(comment.getPostId().getText() != null && !comment.getPostId().getText().equalsIgnoreCase(""))
                     res += "Текст: " + comment.getPostId().getText() + "\n";
                 res += comment.getParentId().getUserId().getUsername() + ": " + comment.getParentId().getComment() + "\n" +
                        comment.getUserId().getUsername() + ": " + comment.getComment() + "\n" +
@@ -326,7 +326,7 @@ public class TransitionTask implements Runnable {
             res += "Настроение: " + comment.getPostId().getMoodName() + "<br/>\n";
             if(!comment.getPostId().getTagLine().equalsIgnoreCase(""))
                 res += "Теги: " + comment.getPostId().getTagLine() + "<br/>\n";
-            if(!comment.getPostId().getText().equalsIgnoreCase(""))
+            if(comment.getPostId().getText() != null && !comment.getPostId().getText().equalsIgnoreCase(""))
                 res += "Текст: " + comment.getPostId().getText() + "<br/>\n";
             for(PostAttribute attr : comment.getPostId().getPostAttributeCollection())
                 res += "<img src='"+context.SITE_URL+attr.getValue()+"'/><br/>\n";
@@ -345,7 +345,7 @@ public class TransitionTask implements Runnable {
                 res += "Настроение: " + comment.getPostId().getMoodName() + "<br/>\n";
                 if(!comment.getPostId().getTagLine().equalsIgnoreCase(""))
                     res += "Теги: " + comment.getPostId().getTagLine() + "<br/>\n";
-                if(!comment.getPostId().getText().equalsIgnoreCase(""))
+                if(comment.getPostId().getText() != null && !comment.getPostId().getText().equalsIgnoreCase(""))
                     res += "Текст: " + comment.getPostId().getText() + "<br/>\n";
                 for(PostAttribute attr : comment.getPostId().getPostAttributeCollection())
                     res += "<img src='"+context.SITE_URL+attr.getValue()+"'/><br/>\n";
@@ -365,7 +365,7 @@ public class TransitionTask implements Runnable {
                 res += "Настроение: " + comment.getPostId().getMoodName() + "<br/>\n";
                 if(!comment.getPostId().getTagLine().equalsIgnoreCase(""))
                     res += "Теги: " + comment.getPostId().getTagLine() + "<br/>\n";
-                if(!comment.getPostId().getText().equalsIgnoreCase(""))
+                if(comment.getPostId().getText() != null && !comment.getPostId().getText().equalsIgnoreCase(""))
                     res += "Текст: " + comment.getPostId().getText() + "<br/>\n";
                 for(PostAttribute attr : comment.getPostId().getPostAttributeCollection())
                     res += "<img src='"+context.SITE_URL+attr.getValue()+"'/><br/>\n";

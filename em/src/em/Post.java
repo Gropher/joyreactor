@@ -43,7 +43,7 @@ public class Post implements Serializable {
     @Lob
     @Column(name = "text")
     private String text = "";
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Lob
     @Column(name = "text_original")
     private String text_original = "";
