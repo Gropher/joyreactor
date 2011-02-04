@@ -47,7 +47,7 @@ public class SiteAPI {
         try {
             HttpClient client = new HttpClient();
             GetMethod method = new GetMethod(POST_INSERT_URL+"/login/"+URLEncoder.encode(CROSSPOSTING_NAME, "UTF-8")+"/pass/"+URLEncoder.encode(CROSSPOSTING_PASS, "UTF-8")+"/post_id/"+post.getId().toString());
-            Logger.getLogger(SiteAPI.class.getName()).log(Level.INFO, POST_INSERT_URL+"/login/"+URLEncoder.encode(CROSSPOSTING_NAME, "UTF-8")+"/pass/"+URLEncoder.encode(CROSSPOSTING_PASS, "UTF-8")+"/post_id/"+post.getId().toString());
+            Logger.getLogger(SiteAPI.class.getName()).log(Level.INFO, "{0}/login/{1}/pass/{2}/post_id/{3}", new Object[]{POST_INSERT_URL, URLEncoder.encode(CROSSPOSTING_NAME, "UTF-8"), URLEncoder.encode(CROSSPOSTING_PASS, "UTF-8"), post.getId().toString()});
             client.executeMethod(method);
         } catch (Exception ex) {
             Logger.getLogger(SiteAPI.class.getName()).log(Level.SEVERE, null, ex);
@@ -59,7 +59,7 @@ public class SiteAPI {
         try {
             HttpClient client = new HttpClient();
             GetMethod method = new GetMethod(MAIN_PAGE_URL+"/login/"+URLEncoder.encode(CROSSPOSTING_NAME, "UTF-8")+"/pass/"+URLEncoder.encode(CROSSPOSTING_PASS, "UTF-8")+"/post_id/"+post.getId().toString());
-            Logger.getLogger(SiteAPI.class.getName()).log(Level.INFO, MAIN_PAGE_URL+"/login/"+URLEncoder.encode(CROSSPOSTING_NAME, "UTF-8")+"/pass/"+URLEncoder.encode(CROSSPOSTING_PASS, "UTF-8")+"/post_id/"+post.getId().toString());
+            Logger.getLogger(SiteAPI.class.getName()).log(Level.INFO, "{0}/login/{1}/pass/{2}/post_id/{3}", new Object[]{MAIN_PAGE_URL, URLEncoder.encode(CROSSPOSTING_NAME, "UTF-8"), URLEncoder.encode(CROSSPOSTING_PASS, "UTF-8"), post.getId().toString()});
             client.executeMethod(method);
         } catch (Exception ex) {
             Logger.getLogger(SiteAPI.class.getName()).log(Level.SEVERE, null, ex);
