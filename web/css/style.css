@@ -327,9 +327,11 @@ form {
     padding: 0;
     background: url(/images/pageInnerBk.gif) right top repeat;
 }
-#content h2{
+#content div.mainheader{
     margin-top: 10px;
     margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
 #contentinner {

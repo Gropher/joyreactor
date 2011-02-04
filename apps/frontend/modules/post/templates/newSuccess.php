@@ -27,7 +27,7 @@
         <? include_partial('addPost') ?>
     </p>
 <? endif ?>
-<h2><? echo __('Новые записи') ?></h2>
+<div class="mainheader">><? echo __('Новые записи') ?></div>
 <div id="post_list">
     <? include_partial('postList', array('posts' => Post::getNewLine($sf_request->getParameter('page')))); ?>
 </div>

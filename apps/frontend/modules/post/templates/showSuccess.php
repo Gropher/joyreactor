@@ -8,7 +8,7 @@
     <? include_partial('post/post', array('post' => $post, 'show_comments' => 1, 'showAddComment' => $showAddComment)) ?>
 </div>
 <?if (isset($simPosts)):?>
-<h2><?echo __('Похожие посты')?></h2>
+<div class="mainheader"><?echo __('Похожие посты')?></div>
 <table width="100%">
     <tr>
         <?foreach ($simPosts as $simPost):?>

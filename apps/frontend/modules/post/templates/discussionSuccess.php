@@ -2,7 +2,7 @@
     <? include_partial('addPost') ?>
 </p>
 
-<h2><? echo __('Обсуждаемое') ?></h2>
+<div class="mainheader"><? echo __('Обсуждаемое') ?></div>
 <div id="post_list">
     <? include_partial('postList', array('posts' => $sf_user->getGuardUser()->getDiscussionLine($sf_request->getParameter('page')), "show_comments" => true)); ?>
 </div>

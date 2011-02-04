@@ -2,7 +2,7 @@
 	<? include_partial('addPost', array('mypage' => true)) ?>
 </p>
 
-<h2><? echo __('Мои записи') ?></h2>
+<div class="mainheader"><? echo __('Мои записи') ?></div>
 <div id="post_list">
     <? include_partial('postList', array('posts' => $sf_user->getGuardUser()->getLine($sf_request->getParameter('page')))); ?>
     <?if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getProfile()->getRating()==0):?>

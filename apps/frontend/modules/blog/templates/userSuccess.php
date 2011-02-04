@@ -1,4 +1,4 @@
-<h2><? echo $blog->getName() ?> / <? echo $user->getUsername()?></h2>
+<div class="mainheader"><? echo $blog->getName() ?> / <? echo $user->getUsername()?></div>
 <div id="post_list">
     <? include_partial('post/postList', array('posts' => $blog->getUserLine($user, $sf_request->getParameter('page')))); ?>
 </div>

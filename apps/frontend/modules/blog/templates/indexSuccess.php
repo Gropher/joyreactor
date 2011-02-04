@@ -1,4 +1,4 @@
-<h2><? echo __('Список тэгов') ?></h2>
+<div class="mainheader"><? echo __('Список тэгов') ?></div>
 <? foreach ($blog_list as $blog): ?>
   <div>
   	<a href="<? echo url_for('@tag?name='.$blog->getTag()) ?>"><? echo $blog->getName() ?></a>

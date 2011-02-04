@@ -1,4 +1,4 @@
-<h2><? echo __('Записи за ').strftime('%d %B %Y, %A', strtotime($sf_request->getParameter('date'))) ?></h2>
+<div class="mainheader"><? echo __('Записи за ').strftime('%d %B %Y, %A', strtotime($sf_request->getParameter('date'))) ?></div>
 <div id="post_list">
     <? include_partial('postList', array('posts' => $posts)); ?>
 </div>

@@ -1,4 +1,4 @@
-<h2><? echo __("Записи без тега") ?></h2>
+<div class="mainheader"><? echo __("Записи без тега") ?></div>
 <div id="post_list">
     <? include_partial('post/postList', array('posts' => Blog::getNoBlogLine($sf_request->getParameter('page')))); ?>
 </div>
