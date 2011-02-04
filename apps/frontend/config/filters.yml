@@ -6,4 +6,6 @@ remember_me:
   class:   sfGuardRememberMeFilter
 
 cache:     ~
+meta:
+  class: kokaMetaRoutingFilter
 execution: ~

@@ -5,37 +5,39 @@ class postActions extends sfActions {
         if($this->curUser) {
             Cookie::setCookie($this->curUser, "index", Post::getNewLine('count'), time() + 24 * 60 * 60);
             Cookie::setCookie($this->curUser, "indexTime", date("Y-m-d H:i:s"), time() + 24 * 60 * 60);
-        } else {
-            $this->form = $this->applyForm();
-            if($request->isMethod('post')) {
-                sfApplicationConfiguration::getActive()->loadHelpers(array('Guid'));
-                $this->form->bind($request->getParameter('sfApplyApply'));
-                if ($this->form->isValid()) {
-                    $this->form->setValidate("n".createGuid());
-                    $this->form->save();
-                    $this->getUser()->signin($this->form->getObject()->getUser(), true);
-                    $post = new Post();
-                    $post->setText($this->getRequestParameter('text'));
-                    $post->setMoodName($this->getRequestParameter('mood'));
-                    $post->setUser($this->form->getObject()->getUser());
-                    $post->save();
-                    try {
-                        $mailer = $this->getMailer();
-          		$profile = $this->form->getObject();
-          		$mailContext = array('name' => $profile->getFullname(),
-            			'validate' => $profile->getValidate(), 'partnerId' => $this->partnerId);
-          		$message = Swift_Message::newInstance();
-          		$from = sfConfig::get('app_sfApplyPlugin_from');
-          		$message->setFrom($from['email'], $from['fullname']);
-          		$message->setTo($profile->getEmail(), $profile->getUser()->getUsername());
-          		$message->setSubject(sfConfig::get('app_sfApplyPlugin_apply_subject', "Активация аккаунта на сайте " . $request->getHost()));
-          		$message->setBody($this->getPartial('global/sendValidateNew', $mailContext), 'text/html');
-          		$message->addPart($this->getPartial('global/sendValidateNewText', $mailContext), 'text/plain');
-	  	        $mailer->send($message); 
-                    }catch(Exception $e) {}
-                    return 'After';
-                }
-            }
+            return;
+        }
+        
+        $this->form = $this->applyForm();
+        if(!$request->isMethod('post'))
+          return;
+        
+        sfApplicationConfiguration::getActive()->loadHelpers(array('Guid'));
+        $this->form->bind($request->getParameter('sfApplyApply'));
+        if ($this->form->isValid()) {
+            $this->form->setValidate("n".createGuid());
+            $this->form->save();
+            $this->getUser()->signin($this->form->getObject()->getUser(), true);
+            $post = new Post();
+            $post->setText($this->getRequestParameter('text'));
+            $post->setMoodName($this->getRequestParameter('mood'));
+            $post->setUser($this->form->getObject()->getUser());
+            $post->save();
+            try {
+                $mailer = $this->getMailer();
+                $profile = $this->form->getObject();
+                $mailContext = array('name' => $profile->getFullname(),
+                    'validate' => $profile->getValidate(), 'partnerId' => $this->partnerId);
+                $message = Swift_Message::newInstance();
+                $from = sfConfig::get('app_sfApplyPlugin_from');
+                $message->setFrom($from['email'], $from['fullname']);
+                $message->setTo($profile->getEmail(), $profile->getUser()->getUsername());
+                $message->setSubject(sfConfig::get('app_sfApplyPlugin_apply_subject', "Активация аккаунта на сайте " . $request->getHost()));
+                $message->setBody($this->getPartial('global/sendValidateNew', $mailContext), 'text/html');
+                $message->addPart($this->getPartial('global/sendValidateNewText', $mailContext), 'text/plain');
+                $mailer->send($message);
+            }catch(Exception $e) {}
+            return 'After';
         }
     }
 

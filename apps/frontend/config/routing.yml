@@ -1,40 +1,84 @@
-about:
-  url:  /about
-  param: { module: page, action: index }
+# main lines
+homepage:
+  url:   /:page
+  param:
+    module: post
+    action: index
+    page: 1
+  requirements:
+    page: \d+
 
-profile:
-  url:  /people/show/:username
-  param: { module: people, action: show }
+new:
+  url:   /new/:page
+  param:
+    module: post
+    action: new
+    page: 1
+  requirements:
+    page: \d+
 
-friendLine:
-  url:  /user/:username/friendline/:page
-  param: { module: post, action: friends, page: 1 }
-  requirements: { page: \d+ }
+best:
+  url:   /best/:page
+  param:
+    module: post
+    action: best
+    page: 1
+    noindex: true
+  requirements:
+    page: \d+
 
 discussionLine:
   url:  /discussion/:page
-  param: { module: post, action: discussion, page: 1 }
-  requirements: { page: \d+ }
+  param:
+    module: post
+    action: discussion
+    page: 1
+    noindex: true
+  requirements:
+    page: \d+
 
-personalLine:
-  url:  /user/:username/line/:page
-  param: { module: post, action: personal, page: 1 }
-  requirements: { page: \d+ }
+post:
+  url:  /post/:id/:partnerId
+  param:
+    module: post
+    action: show
+    partnerId: 0
+  requirements:
+    id: \d+
+
+# url redirect
+url-redirect:
+  url: /redirect
+  param:
+    module: main
+    action: redirect
+
+image-redirect:
+  url: /redirect/image
+  param:
+    module: main
+    action: redirectImage
+
+# date filters
+dateFilter:
+  url:  /date/:date/:page
+  param:
+    module: post
+    action: date
+    page: 1
+    noindex: true
+  requirements:
+    page: \d+
 
 userDateFilter:
   url:  /user/:username/date/:date/:page
-  param: { module: post, action: userdate, page: 1 }
-  requirements: { page: \d+ }
-
-dateFilter:
-  url:  /date/:date/:page
-  param: { module: post, action: date, page: 1 }
-  requirements: { page: \d+ }
-
-favorite:
-  url:  /user/:username/favorite/:page
-  param: { module: post, action: favorite, page: 1 }
-  requirements: { page: \d+ }
+  param:
+    module: post
+    action: userdate
+    page: 1
+    noindex: true
+  requirements:
+    page: \d+
 
 #blogs (tags) module
 list-tags:
@@ -48,43 +92,112 @@ list-tags:
     
 tag:
   url:  /tag/:name/:page
-  param: { module: blog, action: show, page: 1 }
-  requirements: { page: \d+ }
+  param:
+    module: blog
+    action: show
+    page: 1
+  requirements:
+    page: \d+
 
 usertag:
   url:  /user/:username/tag/:name/:page
-  param: { module: blog, action: user, page: 1 }
-  requirements: { page: \d+ }
+  param:
+    module: blog
+    action: user
+    page: 1
+    noindex: true
+  requirements:
+    page: \d+
 
 notag:
   url:  /notag/:page
-  param: { module: blog, action: notag, page: 1 }
-  requirements: { page: \d+ }
+  param:
+    module: blog
+    action: notag
+    page: 1
+  requirements:
+    page: \d+
 
+# User pages
+profile:
+  url:  /people/show/:username
+  param:
+    module: people
+    action: show
+    
 user:
   url:  /user/:username/:page
-  param: { module: post, action: user, page: 1 }
-  requirements: { page: \d+ }
+  param:
+    module: post
+    action: user
+    noindex: true
+  requirements:
+    page: \d+
 
+user-first-page:
+  url:  /user/:username
+  param:
+    module: post
+    action: user
+    page: 1
+
+favorite:
+  url:  /user/:username/favorite/:page
+  param:
+    module: post
+    action: favorite
+    page: 1
+    noindex: true
+  requirements:
+    page: \d+
+
+personalLine:
+  url:  /user/:username/line/:page
+  param:
+    module: post
+    action: personal
+    page: 1
+    noindex: true
+  requirements:
+    page: \d+
+
+friendLine:
+  url:  /user/:username/friendline/:page
+  param:
+    module: post
+    action: friends
+    page: 1
+    noindex: true
+  requirements:
+    page: \d+
+
+# People
 people:
   url:  /people/:page
-  param: { module: people, action: index, page: 1 }
-  requirements: { page: \d+ }
+  param:
+    module: people
+    action: index
+    page: 1
+  requirements:
+    page: \d+
 
 peopleTop:
   url:  /people/top/:page
-  param: { module: people, action: top, page: 1 }
-  requirements: { page: \d+ }
+  param:
+    module: people
+    action: top
+    page: 1
+  requirements:
+    page: \d+
 
 peopleFriends:
   url:  /user/:username/friends/:page
-  param: { module: people, action: friends, page: 1 }
-  requirements: { page: \d+ }
-  
-post:
-  url:  /post/:id/:partnerId
-  param: { module: post, action: show, partnerId: 0  }
-  requirements: { id: \d+ }
+  param:
+    module: people
+    action: friends
+    page: 1
+  requirements:
+    page: \d+
 
 # sfApply rules
 apply:
@@ -109,32 +222,12 @@ sf_guard_password:
   url: /reset-request
   param: { module: sfApply, action: resetRequest }
 
-# default rules
-homepage:
-  url:   /:page
-  param: { module: post, action: index, page: 1 }
-  requirements: { page: \d+ }
-new:
-  url:   /new/:page
-  param: { module: post, action: new, page: 1 }
-  requirements: { page: \d+ }
-best:
-  url:   /best/:page
-  param: { module: post, action: best, page: 1 }
-  requirements: { page: \d+ }
-
-# url redirect
-url-redirect:
-  url: /redirect
+# Static page
+about:
+  url:  /about
   param:
-    module: main
-    action: redirect
-
-image-redirect:
-  url: /redirect/image
-  param:
-    module: main
-    action: redirectImage
+    module: page
+    action: index
 
 # Default routes - delete it in future
 default_index:
