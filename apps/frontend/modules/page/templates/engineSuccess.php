@@ -6,7 +6,7 @@
         <?echo link_to(__('Партнерка'), 'page/partners')?>
     <?endif?>
 <? end_slot() ?>
-<h1><?echo __("Движок")?></h1>
+<div class="mainheader"><?echo __("Движок")?></div>
 <p>
     <?echo __("Движок нашего сайта написан на <a href='http://php.net/'>PHP5</a>
               c использованием <a href='http://www.symfony-project.org/'>Symfony Framework 1.2</a> 

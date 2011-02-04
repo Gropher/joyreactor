@@ -29,7 +29,7 @@
     </p>
 <? endif ?>
 
-<h2><? echo __('Лучшие записи') ?></h2>
+<div class="mainheader"><? echo __('Лучшие записи') ?></div>
 <div id="post_list">
     <? include_partial('postList', array('posts' => Post::getBestLine($sf_request->getParameter('page')))); ?>
 </div>

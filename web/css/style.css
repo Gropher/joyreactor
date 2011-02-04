@@ -685,3 +685,8 @@ a#cancel-comment-reply-link {
     text-decoration: none;
     font-size: 12px;
 }
+
+#mood_question {
+  font-size: 1.2em;
+  font-weight: bold;
+}

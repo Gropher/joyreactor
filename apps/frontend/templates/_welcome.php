@@ -1,5 +1,5 @@
 <? use_helper('Javascript'); ?>
-<h1>Наши тематические подборки</h1>
+<strong>Наши тематические подборки</strong>
 <table width="100%">
 <tbody>
 <tr>
@@ -25,7 +25,7 @@
 </td>
 </tr></tbody></table>
 <br/>
-<h1 id="mood_question"><? echo __('Как настроение?') ?></h1>
+<div id="mood_question"><? echo __('Как настроение?') ?></div>
 <span id= "hint" style="color: #999;">(выбери подходящий смайлик)&nbsp;</span>
 <? echo form_tag('post/index', array('method' => 'post') ) ?>
 <div class='mood'>

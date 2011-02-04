@@ -1,4 +1,4 @@
-<h1><? echo __('Мой профиль') ?></h1>
+<div class="mainheader"><? echo __('Мой профиль') ?></div>
 <div id="user_profile">
     <? include_partial('userProfile', array('user' => $user)); ?>
 </div>

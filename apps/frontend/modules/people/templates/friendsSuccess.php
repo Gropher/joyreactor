@@ -1,8 +1,8 @@
 <? if($sf_user->isAuthenticated() && $user == $sf_user->getGuardUser()): ?>
-    <h1><? echo __('Мои друзья') ?></h1>
+    <div class="mainheader"><? echo __('Мои друзья') ?></div>
     <? include_partial('global/myLeftMenu') ?>
 <? else: ?>
-    <h1><? echo __('Друзья').' '.$user->getUsername()?></h1>
+    <div class="mainheader"><? echo __('Друзья').' '.$user->getUsername()?></div>
     <? include_partial('global/userLeftMenu', array('user' => $user)) ?>
 <? endif ?>
 

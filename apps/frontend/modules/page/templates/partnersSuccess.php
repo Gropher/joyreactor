@@ -3,7 +3,7 @@
     <?echo link_to(__('Движок'),'page/engine')?>&nbsp;&nbsp;|&nbsp;&nbsp;
     <b><?echo __('Партнерка')?></b>
 <? end_slot() ?>
-<h1><?echo __("Партнерка")?></h1>
+<div class="mainheader"><?echo __("Партнерка")?></div>
 <p>
     <?echo __("Уникальная акция на реакторе: приведи друга, получи рейтинг.")?>
 </p>

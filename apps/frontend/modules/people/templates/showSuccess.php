@@ -1,4 +1,4 @@
-<h1><? echo __('Профиль').' '.$user->getUsername() ?></h1>
+<div class="mainheader"><? echo __('Профиль').' '.$user->getUsername() ?></div>
 <div id="user_profile">
     <? include_partial('userProfile', array('user' => $user)); ?>
 </div>
