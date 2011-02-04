@@ -53,12 +53,6 @@ url-redirect:
     module: main
     action: redirect
 
-image-redirect:
-  url: /redirect/image
-  param:
-    module: main
-    action: redirectImage
-
 # date filters
 dateFilter:
   url:  /date/:date/:page
