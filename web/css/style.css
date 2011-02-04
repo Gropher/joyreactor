@@ -669,6 +669,11 @@ a#cancel-comment-reply-link {
     text-decoration:none;
 }
 
+#tagcloud h2 {
+  display: inline;
+  font-weight: normal;
+}
+
 #submenu {
     float: left;
     padding: 5px
