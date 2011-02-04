@@ -1,7 +1,7 @@
 <? if($sf_user->isAuthenticated()): ?>
     <? include_partial('post/addPost', array('noajax' => true, 'tag' => '#'.$blog->getTag(ESC_RAW).' ')) ?>
 <? endif; ?>
-<h2><? echo $blog->getName() ?></h2>
+<h1><? echo $blog->getName() ?></h1>
 <?php echo $blog->getDescription(ESC_RAW); ?>
 <h3><?php echo $blog->getSynonyms(); ?></h3>
 <div id="post_list">
