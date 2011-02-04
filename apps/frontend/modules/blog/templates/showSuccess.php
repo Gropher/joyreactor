@@ -5,7 +5,7 @@
 <?php echo $blog->getDescription(ESC_RAW); ?>
 <h3><?php echo $blog->getSynonyms(); ?></h3>
 <div id="post_list">
-    <? include_partial('post/postList', array('posts' => $blog->getLine($sf_request->getParameter('page')))); ?>
+    <? include_partial('post/postList', array('posts' => $blog->getLine($sf_request->getParameter('page')), 'tagStyle' => 'h2')); ?>
 </div>
 <? include_partial('global/blogLeftMenu', array('blog' => $blog)) ?>
 <? include_partial('global/paging', array('pageLen' =>sfConfig::get('app_posts_per_page'),

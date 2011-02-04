@@ -1,13 +1,6 @@
 <? use_helper('Text', 'Parse'); ?>
 <div>
-    <?if($post->getBlogs()->count() != 0):?>
-    <span style="display:block; color:#666;">
-        <?
-        foreach($post->getBlogs() as $blog)
-            echo link_to('#'.$blog->getTag(), 'blog/show?name='.$blog->getTag(), array("absolute" => "true", "title" => $blog->getName()))." ";
-        ?>
-    </span>
-    <?endif?>
+    <?php include_partial('post/post_tags', array('post' => $post, 'tagStyle' => 'h1')); ?>
     <span><? echo $post->getTextParsed(ESC_RAW) ?></span>
     <? foreach($post->getAttributes() as $attr):?>
         <div>

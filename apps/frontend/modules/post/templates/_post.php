@@ -27,20 +27,9 @@
         </big></big>
     </div><!-- /uhead -->
     <?if(!($sf_user->isAuthenticated() && $sf_user->getGuardUser()->isHidden($post))):?>
-        <?include_partial('post/post_content', array('post' => $post)) ?>
+        <?include_partial('post/post_content', array('post' => $post, 'tagStyle' => $tagStyle)) ?>
     <?else:?>
-        <?if($post->getBlogs()->count() != 0):?>
-        <span style="display:block; color:#666;">
-            <?
-            foreach($post->getBlogs() as $blog) {
-                $blog_link = link_to($blog->getTag(), 'blog/show?name='.$blog->getTag(ESC_RAW), array("absolute" => "true", "title" => $blog->getName()))." ";
-		if($blog->getCount() > 1)
-			$blog_link = "<b>".$blog_link."</b>";
-		echo $blog_link;
-	    }
-            ?>
-        </span>
-        <?endif?>
+        <?php include_partial('post/post_tags', array('post' => $post, 'tagStyle' => $tagStyle)); ?>
     <?endif?>
     <div class="ufoot">
         <span class="date">

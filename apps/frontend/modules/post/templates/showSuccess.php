@@ -20,7 +20,7 @@
   <h1 class="post_description"><?echo $tagnames?></h1>
 <?php endif ?>
 <div id="postContainer<? echo $post->getId() ?>" >
-    <? include_partial('post/post', array('post' => $post, 'show_comments' => 1, 'showAddComment' => $showAddComment)) ?>
+    <? include_partial('post/post', array('post' => $post, 'show_comments' => 1, 'showAddComment' => $showAddComment, 'tagStyle' => 'span')) ?>
 </div>
 <?if (isset($simPosts)):?>
 <div class="mainheader"><?echo __('Похожие посты')?></div>

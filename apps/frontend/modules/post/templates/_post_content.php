@@ -1,17 +1,6 @@
 <? use_helper('Text', 'Parse'); ?> 
 <div>
-    <?if($post->getBlogs()->count() != 0):?>
-    <span style="display:block; color:#666;">
-        <?
-	foreach($post->getBlogs() as $blog) {
-                $blog_link = link_to($blog->getTag(), 'blog/show?name='.$blog->getTag(ESC_RAW), array("absolute" => "true", "title" => $blog->getName()." (".$blog->getCount()." ".__("постов").")"))." ";
-                if($blog->getCount() > 1)
-                        $blog_link = "<b>".$blog_link."</b>";
-                echo $blog_link;
-        }
-        ?>
-    </span>
-    <?endif?>
+    <?php include_partial('post/post_tags', array('post' => $post, 'tagStyle' => $tagStyle)); ?>
     <span><? echo $post->getTextParsed(ESC_RAW) ?></span>
     <? foreach($post->getAttributes() as $attr):?>
         <div class="image" >

@@ -692,3 +692,10 @@ a#cancel-comment-reply-link {
   font-size: 1.2em;
   font-weight: bold;
 }
+
+.taglist {
+  display:block;
+  color:#666;
+  font-weight: normal;
+  font-size: 1.0em;
+}
