@@ -32,13 +32,6 @@
         <? echo link_to(__('Мои настройки'), '@settings')?><br/><br/>
     </div>
 </li>
-<li>
-    <h2><? echo __('Мой пульс настроения ') ?></h2>
-    <div class="sidebarContent">
-        <? include_partial('global/joyPlot', array('joyplot' => $sf_user->getGuardUser()->getJoyPlot(), 'dateFilterUrl' => "/user/".$sf_user->getGuardUser()->getUsername().'/date/')) ?>
-        &nbsp;&nbsp;&nbsp;<nobr><small><small><span><?echo __('Ваше настроение за неделю').': <i>'.$sf_user->getGuardUser()->getAveMood().'</i>'?></span></small></small></nobr><br/><br/>
-    </div>
-</li>
 <?if($sf_user->getGuardUser()->getLastStatus() && $sf_user->getGuardUser()->getLastStatus()->getText()):?>
 <li>
     <h2><? echo __('Мой статус') ?></h2>
