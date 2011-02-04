@@ -1,5 +1,5 @@
 <li>
-    <h2><? echo __('Теги ').$user->getUsername() ?></h2>
+    <div class="sideheader"><? echo __('Теги ').$user->getUsername() ?></div>
     <div class="sidebarContent">
         <div id="tagcloud" style="width:243px;">
         </div>

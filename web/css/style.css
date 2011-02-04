@@ -259,13 +259,14 @@ form {
     font-size: 0.85em;
 }
 
-#sidebar ul li h2 {
+#sidebar ul li div.sideheader {
     margin: 0;
     background: url(/images/yellowBarBk.gif) repeat;
     color: #3a3a3a;
     font-family: Garamond, Georgia, serif;
     font-size: 1.3em;
     padding: 5px 3px 5px 10px;
+    font-weight: bold;
 }
 
 #sidebar ul li table {

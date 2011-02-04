@@ -1,5 +1,5 @@
 <li>
-    <h2><? echo __('Мои теги')?></h2>
+    <div class="sideheader"><? echo __('Мои теги')?></div>
     <div class="sidebarContent">
         <div id="tagcloud" style="width:243px;height:200px;">
         </div>

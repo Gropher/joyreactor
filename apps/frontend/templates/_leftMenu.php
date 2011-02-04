@@ -4,7 +4,7 @@
     <? else: ?>
         <? if(!$sf_user->isAuthenticated()): ?>
             <li>
-                <h2>Привет!</h2>
+                <div class="sideheader">Привет!</div>
                 <div class="sidebarContent">
 		    Ты троль, лжец и девственник? <br/><br/> 
                     <span style="font-size: 21px;"><a href="/register/">Присоединяйся!</a></span><br/>

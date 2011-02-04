@@ -1,5 +1,5 @@
 <li>
-    <h2>Google Friend Connect</h2>
+    <div class="sideheader">Google Friend Connect</div>
     <div class="sidebarContent">
         <!-- Include the Google Friend Connect javascript library. -->
         <script type="text/javascript" src="http://www.google.com/friendconnect/script/friendconnect.js"></script>

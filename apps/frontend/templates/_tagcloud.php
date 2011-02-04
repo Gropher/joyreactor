@@ -1,5 +1,5 @@
 <li>
-    <h2><? echo __('Теги') ?></h2>
+    <div class="sideheader"><? echo __('Теги') ?></div>
     <div class="sidebarContent">
         <div id="tagcloud" style="width:243px;">
           <?php $tags = Blog::getTags(); ?>

@@ -29,7 +29,7 @@
     </li>
     <?if($user->getLastStatus() && $user->getLastStatus()->getText()):?>
     <li>
-        <h2><? echo __('Cтатус ').$user->getUsername() ?></h2>
+        <div class="sideheader"><? echo __('Cтатус ').$user->getUsername() ?></div>
         <div class="sidebarContent">
             <? include_partial('people/status', array('status' => $user->getLastStatus())) ?>
         </div>
@@ -37,14 +37,14 @@
     <?endif?>
     <? include_partial('global/userTagcloud', array('user'=> $user)) ?>
     <li>
-        <h2><?echo __('Друзья ').$user->getUsername()?></h2>
+        <div class="sideheader"><?echo __('Друзья ').$user->getUsername()?></div>
         <div class="sidebarContent">
             <? include_partial('people/userList', array('users' => $user->getFriendsList(1), 'compact' => true)); ?><br/>
             <?if($user->getFriendsList('count') > sfConfig::get('app_users_per_page')) echo link_to(__('Все друзья')."(".$user->getFriendsList('count').")", 'people/friends?username='.$user->getUsername())?>
         </div>
     </li>
     <li>
-        <h2><?echo __('Профиль ').$user->getUsername()?></h2>
+        <div class="sideheader"><?echo __('Профиль ').$user->getUsername()?></div>
         <div class="sidebarContent">
             <? include_partial('people/userProfile', array('user' => $user)); ?>
         </div>

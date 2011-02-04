@@ -34,7 +34,7 @@
 </li>
 <?if($sf_user->getGuardUser()->getLastStatus() && $sf_user->getGuardUser()->getLastStatus()->getText()):?>
 <li>
-    <h2><? echo __('Мой статус') ?></h2>
+    <div class="sideheader"><? echo __('Мой статус') ?></div>
     <div class="sidebarContent">
             <? include_partial('people/status', array('status' => $sf_user->getGuardUser()->getLastStatus())) ?>
     </div>
@@ -42,14 +42,14 @@
 <?endif?>
 <? include_partial('global/myTagcloud') ?>
 <li>
-    <h2><?echo __('Мои друзья')?></h2>
+    <div class="sideheader"><?echo __('Мои друзья')?></div>
     <div class="sidebarContent">
         <? include_partial('people/userList', array('users' => $sf_user->getGuardUser()->getFriendsList(1), 'compact' => true)); ?><br/>
         <?if($sf_user->getGuardUser()->getFriendsList('count') > sfConfig::get('app_users_per_page')) echo '<small>'.link_to(__('Все друзья')."(".$sf_user->getGuardUser()->getFriendsList('count').")</small>", 'people/friends?username='.$sf_user->getGuardUser()->getUsername())?>
     </div>
 </li>
 <li>
-    <h2><?echo __('Мой профиль')?></h2>
+    <div class="sideheader"><?echo __('Мой профиль')?></div>
     <div class="sidebarContent">
         <? include_partial('people/userProfile', array('user' => $sf_user->getGuardUser())); ?>
         <?if($sf_user->getGuardUser()->getFavoriteBlogsList(1, 'count')):?>

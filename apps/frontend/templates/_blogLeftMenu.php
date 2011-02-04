@@ -1,6 +1,6 @@
 <? slot('leftmenu') ?>
     <li>
-        <h2><? echo __('Тег').' "'.$blog->getName().'"'?></h2>
+        <div class="sideheader"><? echo __('Тег').' "'.$blog->getName().'"'?></div>
         <div class="sidebarContent">
             <?php if($blog->getAvatar()) : ?>
               <img src="<?php echo $blog->getAvatar(); ?>" alt="<?php echo $blog->getName(); ?>" />
