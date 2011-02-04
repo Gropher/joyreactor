@@ -29,7 +29,6 @@
         <? include_partial('addPost', array('noajax' => true)) ?>
     </p>
 <? endif ?>
-<h2><? echo __('Главная') ?></h2>
 <div id="post_list">
     <? include_partial('postList', array('posts' => Post::getLine($sf_request->getParameter('page')))); ?>
 </div>
