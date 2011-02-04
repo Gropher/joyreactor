@@ -611,6 +611,11 @@ a#cancel-comment-reply-link {
     color:#666;
     line-height:20px;
 }
+
+.article .ufoot, h2.post_description {
+    display: inline;
+}
+
 .article .ufoot span a {
     line-height:20px;
     height:20px;

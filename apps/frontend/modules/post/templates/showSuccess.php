@@ -2,7 +2,8 @@
 <?if (!isset($showAddComment)) $showAddComment = 0 ?>
 <h1 class="post_description"><?echo $description?></h1>
 <?if ($tagnames):?>
-<h2 class="post_description"><?echo __("Теги") . ": " . $tagnames?></h2>
+<span class="post_description"><?echo __("Теги") . ": " ?></span>
+<h2 class="post_description"><?php echo $tagnames?></h2>
 <?endif?>
 <div id="postContainer<? echo $post->getId() ?>" >
     <? include_partial('post/post', array('post' => $post, 'show_comments' => 1, 'showAddComment' => $showAddComment)) ?>
