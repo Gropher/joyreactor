@@ -1,10 +1,24 @@
 <?if (!isset($show_comments)) $show_comments = 0 ?>
 <?if (!isset($showAddComment)) $showAddComment = 0 ?>
-<h1 class="post_description"><?echo $description?></h1>
-<?if ($tagnames):?>
-<span class="post_description"><?echo __("Теги") . ": " ?></span>
-<h2 class="post_description"><?php echo $tagnames?></h2>
-<?endif?>
+
+<?php if($description) : ?>
+  <h1 class="post_description"><?echo $description?></h1>
+  <?if ($tagnames):?>
+    <br/>
+    <span class="post_description"><?echo __("Теги") . ": " ?></span>
+    <h2 class="post_description"><?php echo $tagnames?></h2>
+  <?endif?>
+<?php elseif($seoTitle && ($seoTitle != $tagnames)) : ?>
+  <h1 class="post_description"><?echo $seoTitle?></h1>
+  <?if ($tagnames):?>
+    <br/>
+    <span class="post_description"><?echo __("Теги") . ": " ?></span>
+    <h2 class="post_description"><?php echo $tagnames?></h2>
+  <?endif?>
+<?php elseif($tagnames) : ?>
+  <span class="post_description"><?echo __("Теги") . ": " ?></span>
+  <h1 class="post_description"><?echo $tagnames?></h1>
+<?php endif ?>
 <div id="postContainer<? echo $post->getId() ?>" >
     <? include_partial('post/post', array('post' => $post, 'show_comments' => 1, 'showAddComment' => $showAddComment)) ?>
 </div>

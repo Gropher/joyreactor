@@ -610,9 +610,6 @@ a#cancel-comment-reply-link {
     font-size:11px;
     color:#666;
     line-height:20px;
-}
-
-.article .ufoot, h2.post_description {
     display: inline;
 }
 

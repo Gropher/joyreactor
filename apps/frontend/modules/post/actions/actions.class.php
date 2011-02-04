@@ -99,8 +99,8 @@ class postActions extends sfActions {
         $this->partnerId = $request->getParameter('partnerId');
         if($this->partnerId)
             setcookie('partnerId', $this->partnerId, time()+60*60*2 , "/");
-        $this->title = $this->post->getSeoTitle();
-        $this->title = $this->title ? $this->title." / " : "";
+        $this->seoTitle = $this->post->getSeoTitle();
+        $this->title = $this->seoTitle ? $this->seoTitle." / " : "";
         $this->description = $this->post->getSeoDescription();
         $this->text = trimword(strip_tags($this->post->getText()), sfConfig::get('app_post_description_length'));
         if($this->text)
