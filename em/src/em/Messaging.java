@@ -173,22 +173,22 @@ public class Messaging {
         this.context = context;
     }
 
-    public boolean sendMail(String toAddress, String text) throws MessagingException {
-        MimeMessage message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("noreply@joyreactor.ru"));
+    public boolean sendMail(String toAddress, String text){
         try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("noreply@joyreactor.ru"));
             message.addRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(toAddress));
+            message.setSubject("JoyReactor");
+            message.setText(text, "UTF-8", "html");
+            transport = session.getTransport("smtp");
+            transport.connect(context.SMTP_HOST, context.SMTP_LOGIN, context.SMTP_PASS);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+            return true;
         } catch (Exception ex) {
             Logger.getLogger(Messaging.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-        message.setSubject("JoyReactor");
-        message.setText(text, "UTF-8", "html");
-        transport = session.getTransport("smtp");
-        transport.connect(context.SMTP_HOST, context.SMTP_LOGIN, context.SMTP_PASS);
-        transport.sendMessage(message, message.getAllRecipients());
-        transport.close();
-        return true;
     }
 
     public synchronized javax.mail.Message[] receiveMail() throws NoSuchProviderException, MessagingException {

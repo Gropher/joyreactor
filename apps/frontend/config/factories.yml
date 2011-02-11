@@ -33,14 +33,6 @@ all:
   mailer:
     param:
       delivery_strategy: realtime
-      transport:
-        class: Swift_SmtpTransport
-        param:
-          host:       smtp.gmail.com
-          port:       465
-          encryption: ssl
-          username: "em@joyreactor.ru"
-          password: "FPN2GAI[<2"
 
 #all:
 #  controller:

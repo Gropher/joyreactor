@@ -1,4 +1,7 @@
 <?if($post->getBlogs()->count() != 0):?>
+  <?if !isset($tagStyle)?>
+    <?$tagStyle = "div"?>
+  <?endif?>
   <<?php echo $tagStyle ?> class="taglist">
     <?
       foreach($post->getBlogs() as $blog) {
