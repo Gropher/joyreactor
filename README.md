@@ -95,34 +95,29 @@ Alias /sf /var/www/vhosts/empaty/httpdocs/lib/vendor/symfony/data/web/sf
 
 Устанавливаем фреймворк Symfony следующим набором команд:
 
-5. Под Windows: `symfony`
+5. 
+  - Под Windows: `symfony`
+  - Под Linux: `sudo chmod 777 symfony`
 
-Под Linux: `sudo chmod 777 symfony`
+6. 
+  - Под Windows: `symfony project:permissions`
+  - Под Linux: `sudo ./symfony project:permissions`
 
-6. Под Windows: `symfony project:permissions`
-
-Под Linux: `sudo ./symfony project:permissions`
-
-7. Под Windows: `symfony plugin:publish-assets`
-
-Под Linux: `./symfony plugin:publish-assets`
+7. 
+  - Под Windows: `symfony plugin:publish-assets`
+  - Под Linux: `./symfony plugin:publish-assets`
 
 8. Привязываем Реактор к созданной в шаге 1 базе данных: 
-
-Под Windows (необходимо подставить нужные данные и четко соблюдать синтаксис): `symfony configure:database --name=doctrine --class=sfDoctrineDatabase "mysql:host=localhost;dbname=ИМЯ_БАЗЫ" ИМЯ_ПОЛЬЗОВАТЕЛЯ ПАРОЛЬ`
-
-Под Linux: `./symfony configure:database --name=doctrine --class=sfDoctrineDatabase "mysql:host=localhost;dbname=ИМЯ_БАЗЫ" ИМЯ_ПОЛЬЗОВАТЕЛЯ ПАРОЛЬ`
+  -  Под Windows (необходимо подставить нужные данные и четко соблюдать синтаксис): `symfony configure:database --name=doctrine --class=sfDoctrineDatabase "mysql:host=localhost;dbname=ИМЯ_БАЗЫ" ИМЯ_ПОЛЬЗОВАТЕЛЯ ПАРОЛЬ`
+  - Под Linux: `./symfony configure:database --name=doctrine --class=sfDoctrineDatabase "mysql:host=localhost;dbname=ИМЯ_БАЗЫ" ИМЯ_ПОЛЬЗОВАТЕЛЯ ПАРОЛЬ`
 
 9. Устанавливаем дефолтную базу данных (в ответ на вопрос о перезаписи базы нажимаем 'y' и Enter)
-
-Под Windows: `symfony doctrine:build-all-reload`
-Под Linux: `./symfony doctrine:build-all-reload` — в ответ на вопрос о перезаписи базы нажимаем 'y' и Enter
+  - Под Windows: `symfony doctrine:build-all-reload`
+  - Под Linux: `./symfony doctrine:build-all-reload` — в ответ на вопрос о перезаписи базы нажимаем 'y' и Enter
 
 10. Завершаем установку.
-
-Под Windows: `symfony cc`
-
-Под Linux: `./symfony cc`
+  - Под Windows: `symfony cc`
+  - Под Linux: `./symfony cc`
 
 
 ## Настройка и администрирование Реактора.
@@ -138,5 +133,5 @@ CSS-стили находятся в папке /web/css/.
 Сразу же после установки движка настоятельно рекомендуется изменить их через профиль пользователя admin.
 
 
-Спасибо за внимание и надеемся, что Реактор окажется Вам полезен. 
+## Спасибо за внимание и надеемся, что Реактор окажется Вам полезен. 
 Напоминаем также, что движок находится в стадии разработки и тестирования. В следующих публикациях попробуем более подробно остановиться на внешнем оформлении и настройке модулей Реактора.
